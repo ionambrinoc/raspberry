@@ -1,0 +1,14 @@
+package controller;
+
+import java.util.List;
+
+public class MessageSender {
+
+	public void sendMessage(List<String> newOrders, String newPi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+}
