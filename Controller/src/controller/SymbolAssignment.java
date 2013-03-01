@@ -1,8 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 
 public class SymbolAssignment {
@@ -14,6 +16,8 @@ public class SymbolAssignment {
 	
 	public SymbolAssignment(){
 		gUPI = 0;
+		piTranslate = HashBiMap.create();
+		piSymbolHashTable = new ArrayList<Integer>(97);
 	}
 	
 	protected int hashFunction(int input){
