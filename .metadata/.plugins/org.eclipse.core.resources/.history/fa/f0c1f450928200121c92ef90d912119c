@@ -1,0 +1,53 @@
+package controller;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class MessageHistory {
+	
+	protected MessageSender messageSender;
+	protected ListOfPi history; //List of messages for each order id, list of order ids for each pi, list of pies
+	
+	public MessageHistory(MessageSender messageSender){
+		this.messageSender = messageSender;
+	}
+
+	public void addMessage(String message, String orderID, String pi) {
+		Pi newPi = history.contains(pi); // checks to see if any messages have been sent to this particular pi before
+		if (newPi != null) { 
+			if (newPi.listOfOrderID.containsKey(orderID)){ //checks to see if that orderid has been seen before
+				newPi.listOfOrderID.get(orderID).add(message); //adds the message to the list associtated with that orderid
+			}
+			else newPi.listOfOrderID.put(orderID, new LinkedList<String>(Arrays.asList(message));
+		}
+	}
+	
+	public List<String> piDown(String pi, String newPi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	protected class Pi {
+		public String name;
+		public HashMap<String, Queue<String>> listOfOrderID; //List of OrderIDs
+		
+	}
+	
+	protected class ListOfPi {
+		public List<Pi> listOfPi;
+		
+		public Pi contains(String nameOfPi){
+			for (int i = 0; i < listOfPi.size(); i ++){
+				if (listOfPi.get(i).name == nameOfPi) return listOfPi.get(i);
+			}
+			return null;
+		}
+	}
+	
+	
+
+
+}

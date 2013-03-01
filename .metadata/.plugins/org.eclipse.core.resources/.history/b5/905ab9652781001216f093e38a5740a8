@@ -1,0 +1,21 @@
+package controller;
+
+import java.util.HashMap;
+
+public class SymbolAssignment {
+
+	protected HashMap<Integer,Integer> piFrequencyList; //List of UPI and frequency
+	
+	public static void add(String pi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String removePi(String pi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+}

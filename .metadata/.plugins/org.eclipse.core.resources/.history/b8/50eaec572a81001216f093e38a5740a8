@@ -1,0 +1,32 @@
+package controller;
+
+import java.util.HashMap;
+import java.util.List;
+
+public class SymbolAssignment {
+
+	protected HashMap<Integer,Integer> piFrequencyList; //List of UPIs and frequency
+	protected HashMap<Integer, String> PiTranslate; //List of UPIs and mac addresses
+	protected List<Integer> piSymbolHashTable; //Array of UPIs with direct addressing
+	
+	protected int hashFunction(int input){
+		return (input % 97);
+	}
+	
+	public String addSymbol(int symbol){ //returns the mac address of a pi
+		
+	}
+	
+	public static void add(String pi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String removePi(String pi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+}

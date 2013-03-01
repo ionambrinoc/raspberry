@@ -1,0 +1,23 @@
+package controller;
+
+import java.util.List;
+
+public class MessageHistory {
+	
+	protected MessageSender messageSender;
+	protected List<List<List<String>>> history; //List of messages for each order id, list of order ids for each pi, list of pies
+	
+	public MessageHistory(MessageSender messageSender){
+		this.messageSender = messageSender;
+	}
+
+	public
+	
+	public List<String> piDown(String pi, String newPi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+}

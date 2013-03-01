@@ -1,0 +1,11 @@
+package controller;
+
+public class PiManager {
+
+	PiManager (MessageSender messageSender, SymbolAssignment symbolAssignment, MessageHistory messageHistory) {
+		protected MessageSender messageSender = messageSender;
+		
+	}
+	
+
+}

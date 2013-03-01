@@ -1,0 +1,34 @@
+package controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PiManager {
+
+	protected MessageSender messageSender;
+	protected SymbolAssignment symbolAssingment;
+	protected MessageHistory messageHistory;
+	protected List<String> listOfPies;
+	
+	
+	public PiManager (MessageSender messageSender, SymbolAssignment symbolAssignment, MessageHistory messageHistory) {
+		this.messageSender = messageSender;
+		this.symbolAssignment = symbolAssignment;
+		this.messageHistory = messageHistory;
+		listOfPies = new ArrayList<String>();
+	}
+	
+	public void addPi(String pi) {
+		if (!listOfPies.contains(pi)) {
+			new KeepAliveTimer(pi, this, messageHistory);
+			SymbolAssignment.add(pi);
+		}
+	}
+	
+	public void removePi(String pi){
+		if (listOfPies.contains(pi)) {
+			String newPi = symbolAssignment.removePi(pi);
+		}
+	}
+
+}

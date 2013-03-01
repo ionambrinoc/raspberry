@@ -1,0 +1,52 @@
+package controller;
+
+import java.util.HashMap;
+import java.util.List;
+
+public class MessageHistory {
+	
+	protected MessageSender messageSender;
+	protected List<Pi> history; //List of messages for each order id, list of order ids for each pi, list of pies
+	protected HashMap<OrderID> hashMapOfOrderID;
+	
+	public MessageHistory(MessageSender messageSender){
+		this.messageSender = messageSender;
+	}
+
+	public void addMessage(String message, String orderID, String pi) {
+		history.
+	}
+	
+	public List<String> piDown(String pi, String newPi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	protected class Pi {
+		public String name;
+		public List<OrderId> listOfOrderID; //List of OrderIDs
+		
+	}
+	
+	protected class OrderId {
+		
+		public final String name;
+		protected List<String> listOfMessages; //List of Messages
+		
+		public OrderId (String name){
+			this.name = name;
+		}
+		
+		public void append (String message){
+			listOfMessages.add(message);
+		}
+		
+		public List<String> getList(){
+			return listOfMessages;
+		}
+		
+	}
+
+
+
+}
