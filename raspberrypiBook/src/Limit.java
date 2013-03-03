@@ -1,15 +1,10 @@
-
-public class Limit  //each limit is a doubly linked list of limit objects
+public class Limit  //    each limit is a doubly linked list of limit objects
 {
-	int limitPrice;
-	int totalVolume;
+	public final int limitPrice;			public int totalVolume;
 	
-	Limit parent;
-	Limit leftChild;
-	Limit rightChild;
+	public Limit parent;	public Limit leftChild;		public Limit rightChild;
 	
-	Order headOrder;
-	Order tailOrder;
+	public Order headOrder;					public Order tailOrder;
 	
 	public Limit (int price, Limit parent, Limit leftChild, Limit rightChild)
 	{
@@ -40,4 +35,14 @@ public class Limit  //each limit is a doubly linked list of limit objects
 									else current=current.nextOrder; 
 		return null;
 	}
+	
+	public void removeOrder (int idNumber)
+	{
+		Order current = getOrder(idNumber);
+		current.prevOrder.nextOrder = current.nextOrder;
+		current.nextOrder.prevOrder = current.prevOrder;
+	}
+	
+	public void modifyOrder (int idNumber, int vol, int price)
+	{	getOrder(idNumber).modify(vol,  price);   	}
 }

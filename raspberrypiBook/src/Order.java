@@ -2,10 +2,8 @@ public class Order
 {
 	public final int idNumber;
 	public final boolean buy; //true for buy, false for sell;
-	public final String symbol;
-	private int volume;
-	private int price; //limit price
-	public final int time;
+	public final String symbol;		public final int time;
+	private int volume;          	private int price; //limit price
 	
 	public Order prevOrder;
 	public Order nextOrder;
