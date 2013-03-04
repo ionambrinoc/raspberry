@@ -18,16 +18,16 @@ public class PiManager {
 		listOfPies = new ArrayList<String>();
 	}
 	
-	public void addPi(String pi) {
+	public void addPi(int pi) {
 		if (!listOfPies.contains(pi)) {
 			new KeepAliveTimer(pi, this, messageHistory);
 			symbolAssignment.add(pi);
 		}
 	}
 	
-	public void removePi(String pi){
+	public void removePi(int pi){
 		if (listOfPies.contains(pi)) {
-			String newPi = symbolAssignment.removePi(pi);
+			int newPi = symbolAssignment.removePi(pi);
 			List<String> newOrders = messageHistory.piDown(pi, newPi);
 			messageSender.sendMessage(newOrders, newPi);
 		}

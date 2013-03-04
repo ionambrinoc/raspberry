@@ -10,7 +10,7 @@ import com.google.common.collect.HashBiMap;
 public class SymbolAssignment {
 
 	protected PriorityQueue<uPIFrequency> piFrequencyList; //List of UPIs and frequency
-	protected BiMap<Integer, String> piTranslate; //List of UPIs and mac addresses
+	protected BiMap<Integer, Integer> piTranslate; //List of UPIs and mac addresses
 	protected List<Integer> piSymbolHashTable; //Array of UPIs with direct addressing
 	protected int gUPI;
 	
@@ -24,7 +24,7 @@ public class SymbolAssignment {
 		return (input % 97);
 	}
 	
-	public String addSymbol(int symbol){ //returns the mac address of a pi
+	public int addSymbol(int symbol){ //returns the mac address of a pi
 		Integer newPi = piSymbolHashTable.get(hashFunction(symbol));
 		if (newPi != null){ //If the symbol has been seen before, returns the pi associated with that symbol
 			return piTranslate.get(newPi);
@@ -38,13 +38,13 @@ public class SymbolAssignment {
 		}
 	}
 	
-	public void add(String pi) { //Adds a pi to the pool available to have symbols assigned to them
+	public void add(int pi) { //Adds a pi to the pool available to have symbols assigned to them
 		piTranslate.put(gUPI, pi); //Gives it a unique integer value.
 		piFrequencyList.add(new uPIFrequency(gUPI)); //Adds the pi to the frequency list with frequency 0.
 		gUPI += 1; //Ensure the next pi will be given a new number.
 	}
 
-	public String removePi(String pi) {
+	public int removePi(int pi) {
 		Integer oldPiUPI = piTranslate.inverse().get(pi);
 		uPIFrequency newPi = piFrequencyList.remove(); // get pi with lowest utilisation
 		for (int i = 0;  i < piSymbolHashTable.size(); i++) { // for every symbol
@@ -56,7 +56,7 @@ public class SymbolAssignment {
 		return piTranslate.get(newPi.uPI);
 	}
 
-	protected class uPIFrequency { //used to store the amount of symbols associated to each pi
+	protected class uPIFrequency implements Comparable<uPIFrequency> { //used to store the amount of symbols associated to each pi
 		
 		uPIFrequency(int uPI){
 			this.uPI = uPI;
@@ -64,6 +64,9 @@ public class SymbolAssignment {
 		}
 		public final Integer uPI;
 		public Integer frequency;
+		public int compareTo(uPIFrequency that) {
+			return this.frequency - that.frequency;
+		}
 	}
 
 }

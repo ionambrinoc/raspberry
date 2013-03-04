@@ -1,0 +1,24 @@
+package controller;
+
+import java.util.List;
+public class MessageSender {
+	protected ParserSender parserSender;
+	public MessageSender(){
+		ParserSender parserSender = new ParserSender();
+		parserSender.start();
+	}
+
+	public void sendMessage(String newOrders, String newPi) {
+		
+	}
+
+	
+	
+	public void sendMessage(List<String> newOrders, String newPi) {
+		
+		
+	}
+
+
+
+}
