@@ -4,18 +4,13 @@ public class PiReceiver extends Thread{
 	private ZMQ.Context context;
 	private ZMQ.Socket receiver;
 	
-	public PiReceiver() {
+	public PiReceiver(String addr) {
 		context = ZMQ.context(1);
 		receiver = context.socket(ZMQ.PULL);
-		receiver.connect("tcp://192.168.1.100:10000");
+		receiver.connect(addr);
 	}
 	
-	public byte[] getNextMsg(){
+	public byte[] recv(){
 		return receiver.recv(0);
-	}
-	
-	public void terminate(){
-		receiver.close();
-		context.term();
 	}
 }
