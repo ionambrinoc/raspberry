@@ -1,9 +1,10 @@
 package controller;
 
 public class ParserReader {
-
+	public int i = 0;
 	public ParserMessage getMessage(){
-	return new ParserMessage();
+		i++;
+		return new ParserMessage(i);
 		}
 	}
 	

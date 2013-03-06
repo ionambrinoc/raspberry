@@ -37,7 +37,7 @@ public class ControllerSender extends Thread{
 	
 	public void send(byte[] msg){
 		System.out.println(new String(msg));
-		//sender.send(msg, 0);
+		sender.send(msg, 0);
 		
 	}
 }

@@ -41,6 +41,7 @@ public class SymbolAssignment {
 			newPi = minUsePi.uPI;
 			minUsePi.frequency += 1;
 			piFrequencyList.add(minUsePi);
+			piSymbolHashTable.add(hashFunction(symbol), newPi);
 			return piTranslate.get(newPi);
 		}
 	}
