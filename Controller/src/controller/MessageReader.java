@@ -20,6 +20,6 @@ public class MessageReader {
 		ParserMessage nextMessage = parserReader.getMessage();
 		int nextPi = symbolAssignment.addSymbol(nextMessage.symbol);
 		messageHistory.addMessage(nextMessage.message, nextMessage.orderID, nextPi);
-		
+		messageSender.sendMessage(nextMessage.message, nextPi);
 	}
 }

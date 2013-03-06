@@ -17,6 +17,7 @@ public class PiManager implements ControllerNetworkListener {
 		this.symbolAssignment = symbolAssignment;
 		this.messageHistory = messageHistory;
 		listOfPies = new ArrayList<String>();
+		controllerNetwork.addListener(this);
 	}
 	
 	public void piUp(int pi) {
@@ -34,7 +35,7 @@ public class PiManager implements ControllerNetworkListener {
 	}
 
 	public void orderConfirmed(int orderId, int piId) {
-		// TODO Auto-generated method stub
+		messageHistory.orderCompleted(orderId, piId);
 		
 	}
 

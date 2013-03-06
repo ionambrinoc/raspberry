@@ -31,7 +31,7 @@ public class MessageHistory {
 		else history.listOfPi = new ArrayList<Pi>();
 	}
 	
-	public void orderCompleted(int pi, String orderID){
+	public void orderCompleted(int pi, int orderID){
 		history.get(pi).listOfOrderID.remove(orderID);
 	}
 	

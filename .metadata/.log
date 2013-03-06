@@ -415,3 +415,12 @@ java.lang.NullPointerException
 	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5204)
 	at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:106)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SESSION 2013-03-04 21:33:43.151 -----------------------------------------------
+eclipse.buildId=I20120502-2000
+java.version=1.6.0_27
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_GB
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2013-03-04 22:06:30.773
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
