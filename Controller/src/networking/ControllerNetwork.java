@@ -44,4 +44,17 @@ public class ControllerNetwork {
 	public void send(byte[] msg, int piId){
 		senders.get(piId).send(msg);
 	}
+	public void addListener(ControllerNetworkListener newListener){
+		
+	}
+
+	public void executeMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean getSema() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

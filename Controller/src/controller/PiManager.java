@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import networking.ControllerNetwork;
 import networking.ControllerNetworkListener;
 
 public class PiManager implements ControllerNetworkListener {
@@ -12,7 +14,7 @@ public class PiManager implements ControllerNetworkListener {
 	protected List<String> listOfPies;
 	
 	
-	public PiManager (MessageSender messageSender, SymbolAssignment symbolAssignment, MessageHistory messageHistory) {
+	public PiManager (ControllerNetwork controllerNetwork, MessageSender messageSender, SymbolAssignment symbolAssignment, MessageHistory messageHistory) {
 		this.messageSender = messageSender;
 		this.symbolAssignment = symbolAssignment;
 		this.messageHistory = messageHistory;

@@ -5,8 +5,8 @@ import networking.ControllerNetwork;
 import java.util.List;
 public class MessageSender {
 	protected ControllerNetwork controllerNetwork;
-	public MessageSender(){
-		this.controllerNetwork = new ControllerNetwork();
+	public MessageSender(ControllerNetwork controllerNetwork){
+		this.controllerNetwork = controllerNetwork;
 	}
 
 	public void sendMessage(byte[] newOrders, int newPi) {
