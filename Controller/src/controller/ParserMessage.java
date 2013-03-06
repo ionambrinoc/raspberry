@@ -3,7 +3,7 @@ package controller;
 
 public class ParserMessage {
 
-	public Byte[] message;
+	public byte[] message;
 	public Integer orderID;
 	public Integer symbol;
 	

@@ -1,7 +1,7 @@
 package networking;
 
 public interface ControllerNetworkListener {
-	public void piUp(String piId);
-	public void piDown(String piId);
-	public void newMessage(byte[] msg);
+	public void piUp(int piId);
+	public void piDown(int piId);
+	public void orderConfirmed(int orderId, int piId);
 }

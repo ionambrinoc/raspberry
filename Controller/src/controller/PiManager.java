@@ -2,8 +2,9 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import networking.ControllerNetworkListener;
 
-public class PiManager {
+public class PiManager implements ControllerNetworkListener {
 
 	protected MessageSender messageSender;
 	protected SymbolAssignment symbolAssignment;
@@ -18,19 +19,23 @@ public class PiManager {
 		listOfPies = new ArrayList<String>();
 	}
 	
-	public void addPi(int pi) {
+	public void piUp(int pi) {
 		if (!listOfPies.contains(pi)) {
-			new KeepAliveTimer(pi, this, messageHistory);
 			symbolAssignment.add(pi);
 		}
 	}
 	
-	public void removePi(int pi){
+	public void piDown(int pi){
 		if (listOfPies.contains(pi)) {
 			int newPi = symbolAssignment.removePi(pi);
-			List<String> newOrders = messageHistory.piDown(pi, newPi);
+			List<byte[]> newOrders = messageHistory.piDown(pi, newPi);
 			messageSender.sendMessage(newOrders, newPi);
 		}
+	}
+
+	public void orderConfirmed(int orderId, int piId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
