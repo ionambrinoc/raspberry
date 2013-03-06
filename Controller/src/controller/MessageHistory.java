@@ -17,7 +17,7 @@ public class MessageHistory {
 		this.messageSender = messageSender;
 	}
 
-	public void addMessage(String message, String orderID, int pi) {
+	public void addMessage(Byte[] message, String orderID, int pi) {
 		Pi newPi = history.get(pi); // checks to see if any messages have been sent to this particular pi before
 		if (newPi != null) { 
 			if (newPi.listOfOrderID.containsKey(orderID)){ //checks to see if that orderid has been seen before
@@ -41,7 +41,7 @@ public class MessageHistory {
 		Iterator<String> oldPiElements = oldPi.listOfOrderID.keySet().iterator();
 		while (oldPiElements.hasNext()) {
 			String currentOldPiElement = oldPiElements.next(); //iterate through the elements in the hash table associated with the pi that has just gone down
-			Queue<String> currentOldPiMessage = oldPi.listOfOrderID.get(currentOldPiElement); //Generate a list of all the messages associated with a particular orderID
+			Queue<Byte[]> currentOldPiMessage = oldPi.listOfOrderID.get(currentOldPiElement); //Generate a list of all the messages associated with a particular orderID
 			listOfMessagesToBeSent.addAll(currentOldPiMessage); //Add these messages to the output
 			newPi.listOfOrderID.put(currentOldPiElement, currentOldPiMessage); //Add these orderID and associated messages to the new pis
 		}
@@ -52,7 +52,7 @@ public class MessageHistory {
 	
 	protected class Pi {
 		public int name;
-		public HashMap<String, Queue<String>> listOfOrderID; //List of OrderIDs
+		public HashMap<String, Queue<Byte[]>> listOfOrderID; //List of OrderIDs
 		
 	}
 	

@@ -17,8 +17,9 @@ public class MessageReader {
 	
 	public void ReadAndSendNextMessage(){
 	
-		ParserMessage newMessage = parserReader.getMessage();
-		
+		ParserMessage nextMessage = parserReader.getMessage();
+		int nextPi = symbolAssignment.addSymbol(nextMessage.symbol);
+		messageHistory.addMessage(nextMessage.message, nextMessage.orderID, nextPi);
 		
 	}
 }
