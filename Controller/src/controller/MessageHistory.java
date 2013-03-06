@@ -23,7 +23,7 @@ public class MessageHistory {
 			if (newPi.listOfOrderID.containsKey(orderID)){ //checks to see if that orderid has been seen before
 				newPi.listOfOrderID.get(orderID).add(message); //adds the message to the list associtated with that orderid
 			}
-			else newPi.listOfOrderID.put(orderID, new LinkedList<String>(Arrays.asList(message))); //Creates a new linked list with one element which is the message to be added
+			else newPi.listOfOrderID.put(orderID, new LinkedList<Byte[]>((message))); //Creates a new linked list with one element which is the message to be added
 		}
 		else history.listOfPi = new ArrayList<Pi>();
 	}
@@ -32,8 +32,8 @@ public class MessageHistory {
 		history.get(pi).listOfOrderID.remove(orderID);
 	}
 	
-	public List<String> piDown(int oldPiAddress, int newPiAddress) {
-		List<String> listOfMessagesToBeSent = new LinkedList<String>();
+	public List<Byte[]> piDown(int oldPiAddress, int newPiAddress) {
+		List<Byte[]> listOfMessagesToBeSent = new LinkedList<Byte[]>();
 		
 		Pi oldPi = history.get(oldPiAddress);
 		Pi newPi = history.get(newPiAddress);
