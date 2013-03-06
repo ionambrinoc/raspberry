@@ -9,13 +9,13 @@ public class ControllerReceiver extends Thread{
 	public ControllerReceiver() {
 		context = ZMQ.context(1);
 		receiver = context.socket(ZMQ.PULL);
-		receiver.connect("tcp://192.168.1.100:10010");
+		receiver.connect("tcp://192.168.206.145:10010");
 	}
 	
 	@Override
 	public void run() {
 		while(true){
-			listener.newMessage(receiver.recv(0));
+			//listener.newMessage(receiver.recv(0));
 		}
 	}
 

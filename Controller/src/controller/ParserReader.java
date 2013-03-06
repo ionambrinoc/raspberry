@@ -1,7 +1,9 @@
 package controller;
 
-public interface ParserReader {
+public class ParserReader {
 
-	public ParserMessage getMessage();
+	public ParserMessage getMessage(){
+	return new ParserMessage();
+		}
+	}
 	
-}

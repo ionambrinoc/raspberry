@@ -14,6 +14,7 @@ public class MessageHistory {
 	
 	public MessageHistory(MessageSender messageSender){
 		this.messageSender = messageSender;
+		history = new ListOfPi();
 	}
 
 	public void addMessage(byte[] message, Integer orderID, int pi) {

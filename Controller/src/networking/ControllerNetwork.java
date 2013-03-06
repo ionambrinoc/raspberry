@@ -14,8 +14,8 @@ public class ControllerNetwork {
 	
 	public ControllerNetwork() {
 		piAddrs = new HashMap<Integer, String>(5);
-		piAddrs.put(0, "tcp://192.168.1.100:20000");
-		piAddrs.put(1, "tcp://192.168.1.100:20001");
+		piAddrs.put(0, "tcp://192.168.206.145:20000");
+		piAddrs.put(1, "tcp://192.168.206.145:20001");
 //		piAddrs.put(2, "tcp://192.168.1.100:20002");
 //		piAddrs.put(3, "tcp://192.168.1.100:20003");
 //		piAddrs.put(4, "tcp://192.168.1.100:20004");
