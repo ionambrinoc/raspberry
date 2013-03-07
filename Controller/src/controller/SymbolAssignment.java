@@ -17,7 +17,14 @@ public class SymbolAssignment {
 	public SymbolAssignment(){
 		gUPI = 0;
 		piTranslate = HashBiMap.create();
+		piFrequencyList = new PriorityQueue<uPIFrequency>();
 		piSymbolHashTable = new ArrayList<Integer>(97);
+		for (int i = 0; i<97;i++){
+			piSymbolHashTable.add(null);
+		}
+		for (int i = 0; i<2;i++){
+			add(i);
+		}
 	}
 	
 	protected int hashFunction(int input){
@@ -34,6 +41,7 @@ public class SymbolAssignment {
 			newPi = minUsePi.uPI;
 			minUsePi.frequency += 1;
 			piFrequencyList.add(minUsePi);
+			piSymbolHashTable.add(hashFunction(symbol), newPi);
 			return piTranslate.get(newPi);
 		}
 	}

@@ -17,6 +17,7 @@ public class Controller {
 		this.controllerNetwork = new ControllerNetwork();
 		this.messageSender = new MessageSender(controllerNetwork);
 		this.messageHistory = new MessageHistory(messageSender);
+		this.parserReader = new ParserReader();
 		this.messageReader = new MessageReader(parserReader, messageHistory, symbolAssignment, messageSender);
 		this.piManager = new PiManager(controllerNetwork, messageSender, symbolAssignment, messageHistory);
 	}
