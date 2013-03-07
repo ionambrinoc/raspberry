@@ -34,7 +34,7 @@ public class Display extends JPanel{
 		});
 	}
 	
-	public void start() {
+	public void start() throws InterruptedException {
 		timer.start();
 		while(true){
 			if(itIsTime){
@@ -43,11 +43,7 @@ public class Display extends JPanel{
 				itIsTime=false;
 			}
 			else {
-				try {
-					statThread.sleep(1);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				statThread.sleep(1);
 				statThread.updateList();
 			}
 		}

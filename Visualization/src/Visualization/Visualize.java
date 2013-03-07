@@ -27,11 +27,11 @@ public class Visualize extends JFrame {
 		// http://www.coderanch.com/t/334083/GUI/java/start-JFrame-maximized-mode has useful ideas on setting panel size
 	}
 	
-	public void start(){
+	public void start() throws InterruptedException{
 		display.start();
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		Visualize visualise = new Visualize();
 		visualise.setLocation(40,30);
 		visualise.setVisible(true);
