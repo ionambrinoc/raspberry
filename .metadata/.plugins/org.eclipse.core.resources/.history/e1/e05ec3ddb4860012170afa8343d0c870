@@ -1,0 +1,29 @@
+package controller;
+
+import java.util.Iterator;
+import networking.ControllerNetwork;
+import java.util.List;
+public class MessageSender {
+	protected ControllerNetwork controllerNetwork;
+	public MessageSender(ControllerNetwork controllerNetwork){
+		this.controllerNetwork = controllerNetwork;
+	}
+
+	public void sendMessage(byte[] newOrders, int newPi) {
+		controllerNetwork.send(newOrders, newPi);
+	}
+
+	
+	
+	public void sendMessage(List<byte[]> newOrders, int newPi) {
+		Iterator<byte[]> newOrdersIterator = newOrders.iterator();
+		while (newOrdersIterator.hasNext()){
+			sendMessage(/*newOrdersIterator.next()*/ new byte[](newPi) , newPi);
+			
+		}
+		
+	}
+
+
+
+}

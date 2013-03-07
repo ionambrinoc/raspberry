@@ -1,0 +1,24 @@
+package controller;
+
+import networking.ControllerNetwork;
+
+public class Controller {
+
+	protected ControllerNetwork controllerNetwork;
+	protected MessageSender messageSender;
+	protected MessageHistory messageHistory;
+	
+	public Controller(){
+		this.controllerNetwork = new ControllerNetwork();
+		MessageSender messageSender = new MessageSender(controllerNetwork);
+		MessageHistory messageHistory = new MessageHistory(messageSender);
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
