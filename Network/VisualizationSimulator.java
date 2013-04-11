@@ -1,10 +1,10 @@
 
-public class VisualizationMain {
+public class VisualizationSimulator {
+	
 	public static void main(String[] args){
 		VisualizationNetwork network = new VisualizationNetwork();
-		
 		while(true){
-			System.out.println(new String(network.recv())+" received");
+			System.out.println(new String(network.recv()));
 		}
 	}
 }
