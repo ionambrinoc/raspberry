@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-
+package networking;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
@@ -8,14 +7,12 @@ public class ControllerNetwork {
 	private ControllerVentilator ventilator;
 	private ZMQ.Socket controller;
 	private ZMQ.Poller poller;
-	private ControllerNetworkListener listener;
 	
-	public ControllerNetwork(ControllerNetworkListener listener) {
-		this.listener = listener;
+	public ControllerNetwork() {
 		context = new ZContext();
 		controller = context.createSocket(ZMQ.PAIR);
 		controller.bind("inproc://tocontroller");
-		ventilator = new ControllerVentilator(context, listener);
+		ventilator = new ControllerVentilator(context);
 		ventilator.start();
 		
 		poller = new ZMQ.Poller(1);
@@ -28,12 +25,12 @@ public class ControllerNetwork {
 		controller.send(msg, 0);
 	}
 	
-	public boolean hasConfirmation(){
+	public boolean hasMessage(){
 		poller.poll(1000);
 		return poller.pollin(0);
 	}
 	
-	public byte[] nextConfirmation(){
+	public byte[] nextMessage(){
 		return controller.recv();
 	}
 }

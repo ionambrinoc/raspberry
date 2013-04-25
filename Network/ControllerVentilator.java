@@ -1,5 +1,5 @@
-import java.awt.Frame;
-import java.nio.ByteBuffer;
+package networking;
+
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
@@ -22,7 +22,6 @@ public class ControllerVentilator extends Thread{
 	private ZMQ.Socket pi;
 	private ZMQ.Socket controller;
 	private WorkersPool workers;
-	private ControllerNetworkListener listener;
 	
 	private class Worker{
         ZFrame identity;	// Unique identity of each worker
@@ -64,7 +63,7 @@ public class ControllerVentilator extends Thread{
 		public void workerUpdate(Worker worker) {
         	if(!workers.remove(worker)){
 //        		System.out.println("Ventilator: "+worker.identity.toString()+" is connected");
-        		listener.piUp(worker.identity.toString());
+        		//TODO pi up
         	}
             workers.offerLast(worker);
         }
@@ -90,15 +89,14 @@ public class ControllerVentilator extends Thread{
                     .peekFirst()) {
                 ZFrame identity = workers.pollFirst().identity;
 //                System.out.println("Ventilator: "+identity.toString()+" disconnected");
-                listener.piDown(identity.toString());
+                //TODO pi donw
                 identity.destroy();
             }
         }
 	}
 	
-	public ControllerVentilator(ZContext context, ControllerNetworkListener listener) {
+	public ControllerVentilator(ZContext context) {
 		this.context = context;
-		this.listener = listener;
 		pi = context.createSocket(ZMQ.ROUTER);
 		pi.bind("tcp://192.168.1.100:10000");
 		controller = context.createSocket(ZMQ.PAIR);
@@ -129,8 +127,8 @@ public class ControllerVentilator extends Thread{
 				
 				// If it is confirmation, send the msg part to controller channel
                 if(msg.size() == 3)	{
-//                	controller.send(msg.getLast().getData(), 0);
-                	listener.orderConfirmed(new Integer(new String(msg.getLast().getData())), msg.getFirst().toString());
+                	//TODO
+                	controller.send(msg.getLast().getData(), 0);
                 }
                 // If it is heartbeat
                 else if(msg.size() == 2){
