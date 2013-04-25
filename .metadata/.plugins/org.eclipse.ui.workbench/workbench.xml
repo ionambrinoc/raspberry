@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
-<window height="588" maximized="true" width="1018" x="183" y="27">
+<window height="586" maximized="true" width="1018" x="183" y="27">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="144" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="148" y="34"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
-<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="40" y="30"/>
-<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="160" y="34"/>
+<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="44" y="34"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="92" y="34"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="92" y="34"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="128" y="34"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="236" y="34"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -41,64 +41,97 @@
 <part id="8"/>
 <part id="9"/>
 <part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
+<part id="16"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Controller.java" partName="Controller.java" path="/home/pi/GroupProject/Controller/src/controller/Controller.java" title="Controller.java" tooltip="Controller/src/controller/Controller.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/Controller.java"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="VisualizationReceiver.java" partName="VisualizationReceiver.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/VisualizationReceiver.java" title="VisualizationReceiver.java" tooltip="Visualization/src/Visualization/VisualizationReceiver.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/VisualizationReceiver.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="24" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StatThread.java" partName="StatThread.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/StatThread.java" title="StatThread.java" tooltip="Visualization/src/Visualization/StatThread.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/StatThread.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="348" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LastOrderPrice.java" partName="LastOrderPrice.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/LastOrderPrice.java" title="LastOrderPrice.java" tooltip="Visualization/src/Visualization/LastOrderPrice.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/LastOrderPrice.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="411" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Statistic.java" partName="Statistic.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/Statistic.java" title="Statistic.java" tooltip="Visualization/src/Visualization/Statistic.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/Statistic.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="339" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GravityBound.java" partName="GravityBound.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/GravityBound.java" title="GravityBound.java" tooltip="BoulderDash/src/boulderdash/model/GravityBound.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/GravityBound.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ListeningTimer.java" partName="ListeningTimer.java" path="/home/pi/GroupProject/Controller/src/controller/ListeningTimer.java" title="ListeningTimer.java" tooltip="Controller/src/controller/ListeningTimer.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/ListeningTimer.java"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="VisualizationNetwork.java" partName="VisualizationNetwork.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/VisualizationNetwork.java" title="VisualizationNetwork.java" tooltip="Visualization/src/Visualization/VisualizationNetwork.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/VisualizationNetwork.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="1" selectionOffset="24" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameElement.java" partName="GameElement.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/GameElement.java" title="GameElement.java" tooltip="BoulderDash/src/boulderdash/model/GameElement.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/GameElement.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SymbolAssignment.java" partName="SymbolAssignment.java" path="/home/pi/GroupProject/Controller/src/controller/SymbolAssignment.java" title="SymbolAssignment.java" tooltip="Controller/src/controller/SymbolAssignment.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/SymbolAssignment.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1156" selectionTopPixel="230"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MsgCompare.java" partName="MsgCompare.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/MsgCompare.java" title="MsgCompare.java" tooltip="Visualization/src/Visualization/MsgCompare.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/MsgCompare.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="267" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageHistory.java" partName="MessageHistory.java" path="/home/pi/GroupProject/Controller/src/controller/MessageHistory.java" title="MessageHistory.java" tooltip="Controller/src/controller/MessageHistory.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageHistory.java"/>
-<editorState selectionHorizontalPixel="201" selectionLength="0" selectionOffset="2048" selectionTopPixel="521"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Display.java" partName="Display.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/Display.java" title="Display.java" tooltip="Visualization/src/Visualization/Display.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/Display.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1131" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageSender.java" partName="MessageSender.java" path="/home/pi/GroupProject/Controller/src/controller/MessageSender.java" title="MessageSender.java" tooltip="Controller/src/controller/MessageSender.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageSender.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="361" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Visualize.java" partName="Visualize.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/Visualize.java" title="Visualize.java" tooltip="Visualization/src/Visualization/Visualize.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/Visualize.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1140" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageReader.java" partName="MessageReader.java" path="/home/pi/GroupProject/Controller/src/controller/MessageReader.java" title="MessageReader.java" tooltip="Controller/src/controller/MessageReader.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageReader.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="769" selectionTopPixel="26"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Cave.java" partName="Cave.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/Cave.java" title="Cave.java" tooltip="BoulderDash/src/boulderdash/model/Cave.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/Cave.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="956"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="KeepAliveTimer.java" partName="KeepAliveTimer.java" path="/home/pi/GroupProject/Controller/src/controller/KeepAliveTimer.java" title="KeepAliveTimer.java" tooltip="Controller/src/controller/KeepAliveTimer.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/KeepAliveTimer.java"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayState.java" partName="PlayState.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/view/state/PlayState.java" title="PlayState.java" tooltip="BoulderDash/src/boulderdash/view/state/PlayState.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/view/state/PlayState.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="68" selectionOffset="1408" selectionTopPixel="382"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DisplayStatisticStrategy.java" partName="DisplayStatisticStrategy.java" path="/home/eilidh/raspberry/Visualization/src/DisplayStrategy/DisplayStatisticStrategy.java" title="DisplayStatisticStrategy.java" tooltip="Visualization/src/DisplayStrategy/DisplayStatisticStrategy.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/DisplayStrategy/DisplayStatisticStrategy.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="82" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DisplayLastOrderPriceStrategy.java" partName="DisplayLastOrderPriceStrategy.java" path="/home/eilidh/raspberry/Visualization/src/DisplayStrategy/DisplayLastOrderPriceStrategy.java" title="DisplayLastOrderPriceStrategy.java" tooltip="Visualization/src/DisplayStrategy/DisplayLastOrderPriceStrategy.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/DisplayStrategy/DisplayLastOrderPriceStrategy.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="494" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerMovement.java" partName="PlayerMovement.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/movement/PlayerMovement.java" title="PlayerMovement.java" tooltip="BoulderDash/src/boulderdash/model/movement/PlayerMovement.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/movement/PlayerMovement.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PiManager.java" partName="PiManager.java" path="/home/pi/GroupProject/Controller/src/controller/PiManager.java" title="PiManager.java" tooltip="Controller/src/controller/PiManager.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/PiManager.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="487" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserSender.java" partName="ParserSender.java" path="/home/pi/GroupProject/Controller/src/controller/ParserSender.java" title="ParserSender.java" tooltip="Controller/src/controller/ParserSender.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/ParserSender.java"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GravityBoundOrSlipperyMovement.java" partName="GravityBoundOrSlipperyMovement.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java" title="GravityBoundOrSlipperyMovement.java" tooltip="BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserMessage.java" partName="ParserMessage.java" path="/home/pi/GroupProject/Controller/src/controller/ParserMessage.java" title="ParserMessage.java" tooltip="Controller/src/controller/ParserMessage.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/ParserMessage.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="93" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserReader.java" partName="ParserReader.java" path="/home/pi/GroupProject/Controller/src/controller/ParserReader.java" title="ParserReader.java" tooltip="Controller/src/controller/ParserReader.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/ParserReader.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="89" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" partName="Player.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/Player.java" title="Player.java" tooltip="BoulderDash/src/boulderdash/model/Player.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/Player.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
+<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
+<viewState isPinned="false">
+<view IMemento.internal.id="org.eclipse.jdt.ui.JavaSearchResultPage" org.eclipse.jdt.search.resultpage.grouping="3" org.eclipse.jdt.search.resultpage.limit="1000" org.eclipse.jdt.search.resultpage.limit_enabled="TRUE" org.eclipse.jdt.search.resultpage.sorting="1" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2"/>
+<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+</viewState>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="180" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="532"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -284,6 +317,7 @@
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.search.ui.views.SearchView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars>
 <fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@18df2e4" orientation="512" selectedTabId="org.eclipse.help.ui.HelpView" style="0">
@@ -315,13 +349,13 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.19152157" ratioLeft="253" ratioRight="1068" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.68365556" ratioLeft="389" ratioRight="180" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.66227347" ratioLeft="402" ratioRight="205" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
-<page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -329,6 +363,7 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
@@ -349,179 +384,162 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageHistory.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/SymbolAssignment.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/KeepAliveTimer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/Controller.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/ListeningTimer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageReader.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageSender.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/PiManager.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageReader.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageSender.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/ParserSender.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/ListeningTimer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/KeepAliveTimer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageHistory.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/PiManager.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/ParserMessage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/ParserReader.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/Controller.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageSender.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageReader.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageHistory.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/KeepAliveTimer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/SymbolAssignment.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/Display.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/Visualize.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/Visualize.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/StatThread.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/VisualizationReceiver.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/VisualizationNetwork.java"/>
 </editors>
-<item historyLabel="KeepAliveTimer.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position/>
 </item>
-<item historyLabel="Controller.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="2038" y="0"/>
 </item>
-<item historyLabel="KeepAliveTimer.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Visualize.java" index="1">
+<position info="not_deleted" x="890" y="0"/>
 </item>
-<item historyLabel="ListeningTimer.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position/>
 </item>
-<item historyLabel="MessageHistory.java" index="0">
-<position info="not_deleted" x="2391" y="0"/>
+<item historyLabel="Visualize.java" index="1">
+<position info="not_deleted" x="890" y="0"/>
 </item>
-<item historyLabel="MessageReader.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position/>
 </item>
-<item historyLabel="MessageSender.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Visualize.java" index="1">
+<position info="not_deleted" x="890" y="0"/>
 </item>
-<item historyLabel="PiManager.java" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position/>
 </item>
-<item historyLabel="SymbolAssignment.java" index="1">
-<position info="not_deleted" x="493" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="936" y="0"/>
 </item>
-<item historyLabel="MessageReader.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="968" y="0"/>
 </item>
-<item historyLabel="MessageSender.java" index="9">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1192" y="0"/>
 </item>
-<item historyLabel="ParserSender.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="689" y="0"/>
 </item>
-<item historyLabel="ListeningTimer.java" index="11">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="968" y="0"/>
 </item>
-<item historyLabel="KeepAliveTimer.java" index="12">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1253" y="0"/>
 </item>
-<item historyLabel="MessageHistory.java" index="13">
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="689" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1253" y="0"/>
+</item>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="689" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1253" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1019" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="959" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="968" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="198" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="926" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="198" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="1059" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="965" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1072" y="0"/>
+</item>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="709" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position/>
+</item>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="709" y="0"/>
+</item>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="654" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="965" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1037" y="0"/>
+</item>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="551" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="965" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1037" y="0"/>
+</item>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="965" y="0"/>
+</item>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1108" y="0"/>
+</item>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="551" y="0"/>
+</item>
+<item historyLabel="StatThread.java" index="3">
+<position/>
+</item>
+<item historyLabel="VisualizationReceiver.java" index="4">
 <position info="not_deleted" x="48" y="0"/>
 </item>
-<item historyLabel="ParserSender.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PiManager.java" index="14">
-<position info="not_deleted" x="487" y="0"/>
-</item>
-<item historyLabel="SymbolAssignment.java" index="1">
-<position info="not_deleted" x="1295" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="ParserMessage.java" index="15">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ParserMessage.java" index="15">
-<position info="not_deleted" x="124" y="0"/>
-</item>
-<item historyLabel="ParserReader.java" index="16">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ParserReader.java" index="16">
-<position info="not_deleted" x="89" y="0"/>
-</item>
-<item historyLabel="PiManager.java" index="14">
-<position info="not_deleted" x="487" y="0"/>
-</item>
-<item historyLabel="ParserMessage.java" index="15">
-<position info="not_deleted" x="124" y="0"/>
-</item>
-<item historyLabel="ParserMessage.java" index="15">
-<position info="not_deleted" x="93" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="Controller.java" index="17">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="8">
+<item historyLabel="VisualizationNetwork.java" index="5">
 <position info="not_deleted" x="48" y="0"/>
 </item>
-<item historyLabel="MessageReader.java" index="8">
-<position info="not_deleted" x="527" y="0"/>
+<item historyLabel="VisualizationNetwork.java" index="5">
+<position info="not_deleted" x="0" y="25"/>
 </item>
-<item historyLabel="MessageReader.java" index="8">
-<position info="not_deleted" x="566" y="0"/>
+<item historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="348" y="0"/>
 </item>
-<item historyLabel="MessageReader.java" index="8">
-<position info="not_deleted" x="629" y="0"/>
+<item historyLabel="VisualizationNetwork.java" index="5">
+<position info="not_deleted" x="24" y="1"/>
 </item>
-<item historyLabel="ParserSender.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Display.java" index="0">
+<position info="not_deleted" x="1131" y="0"/>
 </item>
-<item historyLabel="ParserReader.java" index="16">
-<position info="not_deleted" x="89" y="0"/>
+<item historyLabel="Visualize.java" index="2">
+<position info="not_deleted" x="1140" y="0"/>
 </item>
-<item historyLabel="MessageSender.java" index="9">
-<position info="not_deleted" x="361" y="0"/>
-</item>
-<item historyLabel="ParserSender.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="MessageSender.java" index="18">
-<position info="not_deleted" x="361" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="19">
-<position info="not_deleted" x="769" y="0"/>
-</item>
-<item historyLabel="MessageHistory.java" index="20">
-<position info="not_deleted" x="48" y="0"/>
-</item>
-<item historyLabel="KeepAliveTimer.java" index="21">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="SymbolAssignment.java" index="22">
-<position info="not_deleted" x="1156" y="0"/>
-</item>
-<item historyLabel="MessageHistory.java" index="20">
-<position info="not_deleted" x="48" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="19">
-<position info="not_deleted" x="769" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="19">
-<position info="not_deleted" x="688" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="19">
-<position info="not_deleted" x="738" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="19">
-<position info="not_deleted" x="759" y="0"/>
-</item>
-<item historyLabel="MessageReader.java" index="19">
-<position info="not_deleted" x="769" y="0"/>
-</item>
-<item historyLabel="MessageHistory.java" index="20">
-<position info="not_deleted" x="48" y="0"/>
-</item>
-<item historyLabel="MessageHistory.java" index="20">
-<position info="not_deleted" x="2216" y="0"/>
-</item>
-<item active="true" historyLabel="MessageHistory.java" index="20">
-<position info="not_deleted" x="1726" y="0"/>
+<item active="true" historyLabel="StatThread.java" index="3">
+<position info="not_deleted" x="348" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -543,41 +561,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserReader.java" tooltip="Controller/src/controller/ParserReader.java">
-<persistable path="/Controller/src/controller/ParserReader.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="BoulderDash/src/boulderdash/model/Player.java">
+<persistable path="/BoulderDash/src/boulderdash/model/Player.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserMessage.java" tooltip="Controller/src/controller/ParserMessage.java">
-<persistable path="/Controller/src/controller/ParserMessage.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GravityBoundOrSlipperyMovement.java" tooltip="BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java">
+<persistable path="/BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserSender.java" tooltip="Controller/src/controller/ParserSender.java">
-<persistable path="/Controller/src/controller/ParserSender.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerMovement.java" tooltip="BoulderDash/src/boulderdash/model/movement/PlayerMovement.java">
+<persistable path="/BoulderDash/src/boulderdash/model/movement/PlayerMovement.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PiManager.java" tooltip="Controller/src/controller/PiManager.java">
-<persistable path="/Controller/src/controller/PiManager.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DisplayLastOrderPriceStrategy.java" tooltip="Visualization/src/DisplayStrategy/DisplayLastOrderPriceStrategy.java">
+<persistable path="/Visualization/src/DisplayStrategy/DisplayLastOrderPriceStrategy.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="yo.java" tooltip="Controller/src/controller/yo.java">
-<persistable path="/Controller/src/controller/yo.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DisplayStatisticStrategy.java" tooltip="Visualization/src/DisplayStrategy/DisplayStatisticStrategy.java">
+<persistable path="/Visualization/src/DisplayStrategy/DisplayStatisticStrategy.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="KeepAliveTimer.java" tooltip="Controller/src/controller/KeepAliveTimer.java">
-<persistable path="/Controller/src/controller/KeepAliveTimer.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayState.java" tooltip="BoulderDash/src/boulderdash/view/state/PlayState.java">
+<persistable path="/BoulderDash/src/boulderdash/view/state/PlayState.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageReader.java" tooltip="Controller/src/controller/MessageReader.java">
-<persistable path="/Controller/src/controller/MessageReader.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Cave.java" tooltip="BoulderDash/src/boulderdash/model/Cave.java">
+<persistable path="/BoulderDash/src/boulderdash/model/Cave.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageSender.java" tooltip="Controller/src/controller/MessageSender.java">
-<persistable path="/Controller/src/controller/MessageSender.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Visualize.java" tooltip="Visualization/src/Visualize.java">
+<persistable path="/Visualization/src/Visualize.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageHistory.java" tooltip="Controller/src/controller/MessageHistory.java">
-<persistable path="/Controller/src/controller/MessageHistory.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Display.java" tooltip="Visualization/src/Display.java">
+<persistable path="/Visualization/src/Display.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SymbolAssignment.java" tooltip="Controller/src/controller/SymbolAssignment.java">
-<persistable path="/Controller/src/controller/SymbolAssignment.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MsgCompare.java" tooltip="Visualization/src/MsgCompare.java">
+<persistable path="/Visualization/src/MsgCompare.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ListeningTimer.java" tooltip="Controller/src/controller/ListeningTimer.java">
-<persistable path="/Controller/src/controller/ListeningTimer.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameElement.java" tooltip="BoulderDash/src/boulderdash/model/GameElement.java">
+<persistable path="/BoulderDash/src/boulderdash/model/GameElement.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Controller.java" tooltip="Controller/src/controller/Controller.java">
-<persistable path="/Controller/src/controller/Controller.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Stat.java" tooltip="Visualization/src/Stat.java">
+<persistable path="/Visualization/src/Stat.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="VisualizationNetwork.java" tooltip="Visualization/src/VisualizationNetwork.java">
+<persistable path="/Visualization/src/VisualizationNetwork.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GravityBound.java" tooltip="BoulderDash/src/boulderdash/model/GravityBound.java">
+<persistable path="/BoulderDash/src/boulderdash/model/GravityBound.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Statistic.java" tooltip="Visualization/src/Statistic.java">
+<persistable path="/Visualization/src/Statistic.java"/>
 </file>
 </mruList>
 </workbench>
