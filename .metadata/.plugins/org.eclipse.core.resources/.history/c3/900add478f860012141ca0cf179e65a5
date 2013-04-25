@@ -1,7 +1,0 @@
-package networking;
-
-public interface ControllerNetworkListener {
-	public void piUp(int piId);
-	public void piDown(int piId);
-	public void newMessage(byte[] msg);
-}

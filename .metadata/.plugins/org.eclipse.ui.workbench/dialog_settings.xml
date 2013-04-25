@@ -21,7 +21,11 @@
 	<section name="NewWizardAction">
 	</section>
 	<section name="ImportExportAction">
+<<<<<<< HEAD
+		<item value="org.eclipse.ui.wizards.import.ExternalProject" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+=======
 		<item value="org.eclipse.ui.wizards.import.FileSystem" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+>>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
 			<item value="org.eclipse.ui.Basic"/>
 		</list>

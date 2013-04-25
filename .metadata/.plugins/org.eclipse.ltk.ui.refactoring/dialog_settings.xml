@@ -4,8 +4,14 @@
 		<item value="400" key="height"/>
 		<item value="600" key="width"/>
 	</section>
+<<<<<<< HEAD
+	<section name="InferTypeArguments">
+		<item value="true" key="leaveUnconstrainedRaw"/>
+		<item value="true" key="assumeCloneReturnsSameType"/>
+=======
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="*" key="patterns"/>
 		<item value="false" key="moveWizard.updateQualifiedNames"/>
+>>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
 	</section>
 </section>
