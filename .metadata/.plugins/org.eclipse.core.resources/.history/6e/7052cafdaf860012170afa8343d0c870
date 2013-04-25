@@ -1,0 +1,11 @@
+package controller;
+
+
+public class ParserMessage {
+
+	public byte[] message = null;
+	public Integer orderID =1;
+	public Integer symbol =1;
+	
+	
+}

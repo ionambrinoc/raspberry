@@ -1,0 +1,31 @@
+package controller;
+
+import networking.ControllerNetwork;
+
+public class Controller {
+
+	protected ControllerNetwork controllerNetwork;
+	protected MessageSender messageSender;
+	protected MessageHistory messageHistory;
+	protected SymbolAssignment symbolAssignment;
+	protected ParserReader parserReader;
+	protected MessageReader messageReader;
+	protected PiManager piManager;
+	
+	public Controller(){
+		this.symbolAssignment = new SymbolAssignment();
+		this.controllerNetwork = new ControllerNetwork();
+		this.messageSender = new MessageSender(controllerNetwork);
+		this.messageHistory = new MessageHistory(messageSender);
+		this.messageReader = new MessageReader(parserReader, messageHistory, symbolAssignment, messageSender);
+		this.piManager = new PiManager(controllerNetwork, messageSender, symbolAssignment, messageHistory);
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

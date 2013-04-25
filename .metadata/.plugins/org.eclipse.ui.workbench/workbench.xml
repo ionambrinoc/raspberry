@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="20" version="2.0">
+<workbench progressCount="17" version="2.0">
 <workbenchAdvisor/>
 <window height="586" maximized="true" width="1018" x="183" y="27">
 <fastViewData fastViewLocation="1024"/>
@@ -43,14 +43,18 @@
 <part id="10"/>
 <part id="11"/>
 <part id="12"/>
+<<<<<<< HEAD
 <part id="13"/>
 <part id="14"/>
 <part id="15"/>
 <part id="16"/>
+=======
+>>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
 </presentation>
 </folder>
 </info>
 </editorArea>
+<<<<<<< HEAD
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="VisualizationReceiver.java" partName="VisualizationReceiver.java" path="/home/eilidh/raspberry/Visualization/src/Visualization/VisualizationReceiver.java" title="VisualizationReceiver.java" tooltip="Visualization/src/Visualization/VisualizationReceiver.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Visualization/src/Visualization/VisualizationReceiver.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="24" selectionOffset="0" selectionTopPixel="0"/>
@@ -114,9 +118,58 @@
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GravityBoundOrSlipperyMovement.java" partName="GravityBoundOrSlipperyMovement.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java" title="GravityBoundOrSlipperyMovement.java" tooltip="BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/movement/GravityBoundOrSlipperyMovement.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+=======
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SymbolAssignment.java" partName="SymbolAssignment.java" path="/home/pi/GroupProject/Controller/src/controller/SymbolAssignment.java" title="SymbolAssignment.java" tooltip="Controller/src/controller/SymbolAssignment.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/SymbolAssignment.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="962" selectionTopPixel="48"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageHistory.java" partName="MessageHistory.java" path="/home/pi/GroupProject/Controller/src/controller/MessageHistory.java" title="MessageHistory.java" tooltip="Controller/src/controller/MessageHistory.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageHistory.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="250" selectionTopPixel="48"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageSender.java" partName="MessageSender.java" path="/home/pi/GroupProject/Controller/src/controller/MessageSender.java" title="MessageSender.java" tooltip="Controller/src/controller/MessageSender.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageSender.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="289" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageReader.java" partName="MessageReader.java" path="/home/pi/GroupProject/Controller/src/controller/MessageReader.java" title="MessageReader.java" tooltip="Controller/src/controller/MessageReader.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageReader.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="683" selectionTopPixel="56"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PiManager.java" partName="PiManager.java" path="/home/pi/GroupProject/Controller/src/controller/PiManager.java" title="PiManager.java" tooltip="Controller/src/controller/PiManager.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/PiManager.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="443" selectionTopPixel="52"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserMessage.java" partName="ParserMessage.java" path="/home/pi/GroupProject/Controller/src/controller/ParserMessage.java" title="ParserMessage.java" tooltip="Controller/src/controller/ParserMessage.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/ParserMessage.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="61" selectionTopPixel="0"/>
+>>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" partName="Player.java" path="/media/eilidh/Data/workspace/BoulderDash/src/boulderdash/model/Player.java" title="Player.java" tooltip="BoulderDash/src/boulderdash/model/Player.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BoulderDash/src/boulderdash/model/Player.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Controller.java" partName="Controller.java" path="/home/pi/GroupProject/Controller/src/controller/Controller.java" title="Controller.java" tooltip="Controller/src/controller/Controller.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/Controller.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="215" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerNetwork.java" partName="ControllerNetwork.java" path="/home/pi/GroupProject/Controller/src/networking/ControllerNetwork.java" title="ControllerNetwork.java" tooltip="Controller/src/networking/ControllerNetwork.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/networking/ControllerNetwork.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="6" selectionOffset="1412" selectionTopPixel="555"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerNetworkListener.java" partName="ControllerNetworkListener.java" path="/home/pi/GroupProject/Controller/src/networking/ControllerNetworkListener.java" title="ControllerNetworkListener.java" tooltip="Controller/src/networking/ControllerNetworkListener.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/networking/ControllerNetworkListener.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="153" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerReceiver.java" partName="ControllerReceiver.java" path="/home/pi/GroupProject/Controller/src/networking/ControllerReceiver.java" title="ControllerReceiver.java" tooltip="Controller/src/networking/ControllerReceiver.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/networking/ControllerReceiver.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="296" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PiTracker.java" partName="PiTracker.java" path="/home/pi/GroupProject/Controller/src/networking/PiTracker.java" title="PiTracker.java" tooltip="Controller/src/networking/PiTracker.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/networking/PiTracker.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerSender.java" partName="ControllerSender.java" path="/home/pi/GroupProject/Controller/src/networking/ControllerSender.java" title="ControllerSender.java" tooltip="Controller/src/networking/ControllerSender.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/networking/ControllerSender.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
@@ -195,7 +248,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -384,6 +437,7 @@
 <workingSets/>
 <navigationHistory>
 <editors>
+<<<<<<< HEAD
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/Display.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/Visualize.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Visualization/src/Visualization/Visualize.java"/>
@@ -540,6 +594,168 @@
 </item>
 <item active="true" historyLabel="StatThread.java" index="3">
 <position info="not_deleted" x="348" y="0"/>
+=======
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageHistory.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/PiManager.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageReader.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/ParserMessage.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/ParserReader.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/SymbolAssignment.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/networking/ControllerNetwork.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/Controller.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/networking/ControllerReceiver.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/SymbolAssignment.java"/>
+</editors>
+<item historyLabel="MessageHistory.java" index="0">
+<position info="not_deleted" x="1218" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="722" y="0"/>
+</item>
+<item historyLabel="ControllerNetwork.java" index="6">
+<position info="not_deleted" x="1330" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="722" y="0"/>
+</item>
+<item historyLabel="PiManager.java" index="1">
+<position info="not_deleted" x="705" y="0"/>
+</item>
+<item historyLabel="MessageHistory.java" index="0">
+<position info="not_deleted" x="250" y="0"/>
+</item>
+<item historyLabel="SymbolAssignment.java" index="5">
+<position info="not_deleted" x="962" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="722" y="0"/>
+</item>
+<item historyLabel="MessageHistory.java" index="0">
+<position info="not_deleted" x="250" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="722" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="722" y="0"/>
+</item>
+<item historyLabel="MessageReader.java" index="2">
+<position info="not_deleted" x="827" y="0"/>
+</item>
+<item historyLabel="ParserReader.java" index="4">
+<position info="not_deleted" x="89" y="0"/>
+</item>
+<item historyLabel="MessageReader.java" index="2">
+<position info="not_deleted" x="827" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="566" y="0"/>
+</item>
+<item historyLabel="MessageReader.java" index="2">
+<position info="not_deleted" x="827" y="0"/>
+</item>
+<item historyLabel="SymbolAssignment.java" index="5">
+<position info="not_deleted" x="962" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="566" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="445" y="0"/>
+</item>
+<item historyLabel="MessageReader.java" index="2">
+<position info="not_deleted" x="827" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="445" y="0"/>
+</item>
+<item historyLabel="PiManager.java" index="1">
+<position info="not_deleted" x="443" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="722" y="0"/>
+</item>
+<item historyLabel="ParserMessage.java" index="3">
+<position info="not_deleted" x="61" y="0"/>
+</item>
+<item historyLabel="ParserReader.java" index="4">
+<position info="not_deleted" x="89" y="0"/>
+</item>
+<item historyLabel="PiManager.java" index="1">
+<position info="not_deleted" x="443" y="0"/>
+</item>
+<item historyLabel="SymbolAssignment.java" index="5">
+<position info="not_deleted" x="962" y="0"/>
+</item>
+<item historyLabel="PiManager.java" index="1">
+<position info="not_deleted" x="443" y="0"/>
+</item>
+<item historyLabel="MessageReader.java" index="2">
+<position info="not_deleted" x="827" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="722" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="720" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="822" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="915" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="913" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="929" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="976" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="1100" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="1100" y="0"/>
+</item>
+<item historyLabel="SymbolAssignment.java" index="5">
+<position info="not_deleted" x="962" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="1100" y="0"/>
+</item>
+<item historyLabel="MessageReader.java" index="2">
+<position info="not_deleted" x="683" y="0"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="1100" y="0"/>
+</item>
+<item historyLabel="ControllerNetwork.java" index="6">
+<position info="not_deleted" x="1336" y="6"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="1100" y="0"/>
+</item>
+<item historyLabel="ControllerNetwork.java" index="6">
+<position info="not_deleted" x="1412" y="6"/>
+</item>
+<item historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="1100" y="0"/>
+</item>
+<item historyLabel="ControllerReceiver.java" index="8">
+<position info="not_deleted" x="296" y="0"/>
+</item>
+<item historyLabel="SymbolAssignment.java" index="9">
+<position info="not_deleted" x="962" y="0"/>
+</item>
+<item active="true" historyLabel="Controller.java" index="7">
+<position info="not_deleted" x="215" y="0"/>
+>>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -561,6 +777,7 @@
 </trimLayout>
 </window>
 <mruList>
+<<<<<<< HEAD
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="BoulderDash/src/boulderdash/model/Player.java">
 <persistable path="/BoulderDash/src/boulderdash/model/Player.java"/>
 </file>
@@ -572,6 +789,28 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DisplayLastOrderPriceStrategy.java" tooltip="Visualization/src/DisplayStrategy/DisplayLastOrderPriceStrategy.java">
 <persistable path="/Visualization/src/DisplayStrategy/DisplayLastOrderPriceStrategy.java"/>
+=======
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerSender.java" tooltip="Controller/src/networking/ControllerSender.java">
+<persistable path="/Controller/src/networking/ControllerSender.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PiTracker.java" tooltip="Controller/src/networking/PiTracker.java">
+<persistable path="/Controller/src/networking/PiTracker.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerReceiver.java" tooltip="Controller/src/networking/ControllerReceiver.java">
+<persistable path="/Controller/src/networking/ControllerReceiver.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerNetworkListener.java" tooltip="Controller/src/networking/ControllerNetworkListener.java">
+<persistable path="/Controller/src/networking/ControllerNetworkListener.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerMain.java" tooltip="Controller/src/networking/ControllerMain.java">
+<persistable path="/Controller/src/networking/ControllerMain.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerNetwork.java" tooltip="Controller/src/networking/ControllerNetwork.java">
+<persistable path="/Controller/src/networking/ControllerNetwork.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserReader.java" tooltip="Controller/src/controller/ParserReader.java">
+<persistable path="/Controller/src/controller/ParserReader.java"/>
+>>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DisplayStatisticStrategy.java" tooltip="Visualization/src/DisplayStrategy/DisplayStatisticStrategy.java">
 <persistable path="/Visualization/src/DisplayStrategy/DisplayStatisticStrategy.java"/>
@@ -594,6 +833,7 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameElement.java" tooltip="BoulderDash/src/boulderdash/model/GameElement.java">
 <persistable path="/BoulderDash/src/boulderdash/model/GameElement.java"/>
 </file>
+<<<<<<< HEAD
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Stat.java" tooltip="Visualization/src/Stat.java">
 <persistable path="/Visualization/src/Stat.java"/>
 </file>
@@ -606,5 +846,7 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Statistic.java" tooltip="Visualization/src/Statistic.java">
 <persistable path="/Visualization/src/Statistic.java"/>
 </file>
+=======
+>>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
 </mruList>
 </workbench>

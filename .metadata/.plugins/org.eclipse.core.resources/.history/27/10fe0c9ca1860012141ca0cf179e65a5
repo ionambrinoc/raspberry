@@ -1,0 +1,21 @@
+package controller;
+
+import networking.ControllerNetwork;
+
+public class Controller {
+
+	
+	public Controller(){
+		ControllerNetwork controllerNetwork = new ControllerNetwork();
+		MessageSender messageSender = new MessageSender(controllerNetwork);
+		MessageHistory messageHistory = new MessageHistory(messageSender);
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
