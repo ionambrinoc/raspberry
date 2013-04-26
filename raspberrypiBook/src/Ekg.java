@@ -10,27 +10,32 @@ public class Ekg  //electrokardiogramm :)
 {	
 	InetAddress ip;
 	int rate;
+	byte[] mac;
 	
-	Timer timer = new Timer(rate, new ActionListener() { public void actionPerformed (ActionEvent e)  
-	{ 
-		// pass on mac address here
-	}		
-	} );
-	
-	public Ekg (int rate)
+	public Ekg (int rate) throws InterruptedException
 	{
 		try
 		{
 			ip= InetAddress.getLocalHost();;
 			NetworkInterface network = NetworkInterface.getByInetAddress(ip);
-			byte[] mac = network.getHardwareAddress(); //local MAC address
+			mac = network.getHardwareAddress(); //local MAC address
 		}
 		catch (UnknownHostException ex)
-		{	}
+		{	} // stub, won't fail.
 		catch (SocketException ex)
-		{	}
+		{	} // neither will this.
 		
 		rate = this.rate;
-		timer.start();
+
+		while(true)
+		{
+			try 
+			{
+				Thread.currentThread().sleep(rate);
+				System.out.println(mac.toString()); //send to controller here.
+			}
+			catch (InterruptedException ie) // stub, won't fail.
+			{	}
+		}	
 	}	
 }
