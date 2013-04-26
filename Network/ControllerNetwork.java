@@ -26,7 +26,7 @@ public class ControllerNetwork {
 	}
 	
 	public boolean hasMessage(){
-		poller.poll(1000);
+		poller.poll(0);
 		return poller.pollin(0);
 	}
 	

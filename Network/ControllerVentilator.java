@@ -62,8 +62,12 @@ public class ControllerVentilator extends Thread{
          */
 		public void workerUpdate(Worker worker) {
         	if(!workers.remove(worker)){
-//        		System.out.println("Ventilator: "+worker.identity.toString()+" is connected");
-        		//TODO pi up
+        		// One pi is up
+        		System.out.println("Ventilator: "+worker.identity.toString()+" is connected");
+        		byte[] id = worker.identity.getData();
+        		byte[] msg = new byte[1+id.length];
+        		msg[0] = 1; System.arraycopy(id, 0, msg, 1, id.length);
+        		controller.send(msg, 0);
         	}
             workers.offerLast(worker);
         }
@@ -88,8 +92,11 @@ public class ControllerVentilator extends Thread{
                     && w.expiry < System.currentTimeMillis(); w = workers
                     .peekFirst()) {
                 ZFrame identity = workers.pollFirst().identity;
-//                System.out.println("Ventilator: "+identity.toString()+" disconnected");
-                //TODO pi donw
+                System.out.println("Ventilator: "+identity.toString()+" disconnected");
+                byte[] id = identity.getData();
+                byte[] msg = new byte[1+id.length];
+                msg[0] = 2; System.arraycopy(id, 0, msg, 1, id.length);
+                controller.send(msg, 0);
                 identity.destroy();
             }
         }
@@ -127,12 +134,17 @@ public class ControllerVentilator extends Thread{
 				
 				// If it is confirmation, send the msg part to controller channel
                 if(msg.size() == 3)	{
-                	//TODO
-                	controller.send(msg.getLast().getData(), 0);
+                	byte[] msgFromPi = msg.getLast().getData();
+                	byte[] id = msg.getFirst().getData();
+                	byte[] msgToController = new byte[1+msgFromPi.length+id.length];
+                	msgToController[1] = 3;
+                	System.arraycopy(msgFromPi, 0, msgToController, 1, msgFromPi.length);
+                	System.arraycopy(id, 0, msgToController, 1+msgFromPi.length, id.length);
+                	controller.send(msgToController, 0);
                 }
                 // If it is heartbeat
                 else if(msg.size() == 2){
-//                	System.out.println("Ventilator: Heart beat received");
+                	System.out.println("Ventilator: Heart beat received");
                 }
                 else{
                 	System.out.println("Ventilator: invalid message from pi");

@@ -1,6 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
@@ -16,7 +21,8 @@ public class PiCollector extends Thread{
 	
 	private ZContext context;
 	private ZMQ.Socket pi;
-
+	
+	private String id;
 	private long ventilatorExpiry;
 	private long heartbeatAt;
 	
@@ -25,17 +31,34 @@ public class PiCollector extends Thread{
 		pi = context.createSocket(ZMQ.PAIR);
 		pi.connect("inproc://topi");
 	}
+	
+	private String getHostAddress(){
+		try {
+			Enumeration<NetworkInterface> interfaces;
+			interfaces = NetworkInterface.getNetworkInterfaces();
+			while (interfaces.hasMoreElements()){
+			    NetworkInterface current = interfaces.nextElement();
+			    if (!current.isUp() || current.isLoopback() || current.isVirtual()) continue;
+			    Enumeration<InetAddress> addresses = current.getInetAddresses();
+			    while (addresses.hasMoreElements()){
+			        InetAddress current_addr = addresses.nextElement();
+			        if (current_addr instanceof Inet4Address) 
+			        	return current_addr.getHostAddress();
+			        else continue;
+			    }
+			}
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
     private ZMQ.Socket connectVentilator(ZContext context) {
         ZMQ.Socket ventilator = context.createSocket(ZMQ.DEALER);
         // Set identity
-        try {
-			BufferedReader br = new BufferedReader(new FileReader("identity"));
-			ventilator.setIdentity(br.readLine().getBytes());
-			br.close();
-		} catch (IOException e) {
-			System.out.println("Collector: problem of reading file, will set random identity");
-		}
+        String id = getHostAddress();
+        if(id != null) ventilator.setIdentity(id.getBytes());
         
         ventilator.connect("tcp://192.168.1.100:10000");
         updateVentilator();
@@ -82,7 +105,7 @@ public class PiCollector extends Thread{
                 }
                 // If it is heartbeat
                 else if(msg.size() == 1){
-//                	System.out.println("Collector: Heartbeat from Controller received");
+                	System.out.println("Collector: Heartbeat from Controller received");
                 }else{
                 	System.out.println("Collector: invalid message from ip");
                 	msg.dump(System.out);
