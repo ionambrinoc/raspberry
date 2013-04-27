@@ -1,57 +1,66 @@
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 public class Message 
 {
-	public static int type;
-	public static int time;
-	public static int id;
-	public static int vol;
-	public static int price;
-	public static boolean buy;
-	public static String symbol;
+	public final byte type; 	public final int vol;
+	public final int time;      public final int price;
+	public final int id;  	    public final boolean buy;
+	public final int symbol;
 	
-	public Message (int t, int tm, int i, int v, int p, boolean b, String s)
+	public Message (int t, int tm, int i, int v, int p, boolean b, int s)
 	{
-		this.type = t;  this.price = p;	 this.time=   tm; this.id=i;
+		this.type = (byte)t;  this.price = p;	 this.time=   tm; this.id=i;
 		this.vol  = v;  this.buy   = b;  this.symbol = s;
 	}
 	
 	public Message (byte[] bytes)
 	{
-		byte[] type    = Arrays.copyOfRange(bytes, 2, 4); 
-			this.type  = byteToInt(type);
-		byte[] time    = Arrays.copyOfRange(bytes, 4, 8);
+		byte[] type    = Arrays.copyOfRange(bytes, 0, 1); 
+			this.type  = type[0];
+		byte[] time    = Arrays.copyOfRange(bytes, 1, 5);
 			this.time  = byteToInt(time);
-		byte[] symb    = Arrays.copyOfRange(bytes, 8,12);
-			this.symbol= symb.toString();
-		byte[] id      = Arrays.copyOfRange(bytes,16,20);
+		byte[] symb    = Arrays.copyOfRange(bytes, 5, 9);
+			this.symbol= byteToInt(symb);
+		byte[] id      = Arrays.copyOfRange(bytes, 9,13);
 			this.id    = byteToInt(id);
-		byte[] price   = Arrays.copyOfRange(bytes,20,24);
+		byte[] price   = Arrays.copyOfRange(bytes,13,17);
 			this.price = byteToInt(price);
-		byte[] vol     = Arrays.copyOfRange(bytes,24,28);
+		byte[] vol     = Arrays.copyOfRange(bytes,18,22);
 			this.vol   = byteToInt(vol);
-		byte[] buy     = Arrays.copyOfRange(bytes,28,29);
-			    int b  = byteToInt(buy);
-	    if (b==0) 
+		byte[] buy     = Arrays.copyOfRange(bytes,17,18);
+	    if (buy[0]==0) 
 	    	   this.buy=false;
 		  else this.buy=true;
 	}
 	
 	public byte[] toBytes()
 	{
-		byte[] bytes = null;
+		byte bb;		if (buy==true) bb=1; else bb=0;
+		byte[] t    = new byte[1]; t[0]=type;
+		byte[] tm   = ByteBuffer.allocate(4).putInt(time).array();
+		byte[] symb = ByteBuffer.allocate(4).putInt(symbol).array();
+		byte[] i    = ByteBuffer.allocate(4).putInt(id).array();
+		byte[] p    = ByteBuffer.allocate(4).putInt(price).array();
+ 		byte[] b    = new byte[1]; b[0]=bb;
+		byte[] v    = ByteBuffer.allocate(4).putInt(vol).array();
+		
+		byte[] bytes = new byte[23];
+		System.arraycopy(t,0,bytes,0,1);
+		System.arraycopy(tm,0,bytes,1,4);
+		System.arraycopy(symb,0,bytes,5,4);
+		System.arraycopy(i,0,bytes,9,4);
+		System.arraycopy(p,0,bytes,13,4);		
+		System.arraycopy(b,0,bytes,17,1);
+		System.arraycopy(v,0,bytes,18,4);
 		
 		return bytes;
 	}
 	
 	public int byteToInt (byte[] b)
 	{    
-	    int MASK = 0xFF;
-	    int result = 0;   
-	        result = b[0] & MASK;
-	        result = result + ((b[1] & MASK) << 8);
-	        result = result + ((b[2] & MASK) << 16);
-	        result = result + ((b[3] & MASK) << 24);            
-	    return result;
+		ByteBuffer wrapped = ByteBuffer.wrap(b); // big-endian by default
+		int num = wrapped.getInt(0); // 1
+		return num;
 	}
 }

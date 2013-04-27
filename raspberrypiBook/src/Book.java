@@ -111,7 +111,7 @@ public class Book
 			}
 		// then send confirmation back to server
 		
-		System.out.println("Order added");
+		System.out.println("Order added "+idNumber+" symbol "+symbol+" buy side "+buy+" volume "+volume+" price "+price+ "time "+time);
 	}					
 	
 	private int hasher (Order order)
@@ -174,12 +174,15 @@ public class Book
 		return current;
 	}
 	
+	/* GET ORDER BY TRADE SYMBOL */
+	
 	public void modifyOrder(int idNumber, int vol, int price)
 	{
 		Order order = getOrder(idNumber);
 		order.modify(vol, price);
 		order.parentLimit = getLimit(price, order.buy);
 		
+		System.out.println("Order modified: "+idNumber+" new volume "+vol+" new price "+price);
 		// then send confirmation back to server
 	}
 	
@@ -193,6 +196,7 @@ public class Book
 				current.parentLimit.prevLimit.nextLimit=current.parentLimit.nextLimit;
 				current.parentLimit.nextLimit.prevLimit=current.parentLimit.prevLimit;
 			}
+		System.out.println("Order removed: "+idNumber);
 	}
 	
 	public void execute(int thisIdNumber, int thatIdNumber) throws Throwable
