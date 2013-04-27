@@ -89,6 +89,7 @@ public class PiCollector extends Thread{
 		poller.register(pi, ZMQ.Poller.POLLIN);
 		
 		while (!Thread.currentThread().isInterrupted()){
+			
 			if(poller.poll(1000) == -1){
 				break;
 			}
@@ -101,6 +102,7 @@ public class PiCollector extends Thread{
 				updateVentilator();
 				// If it is work, send the msg part to pi channel
                 if (msg.size() == 2){
+                	// will block here if too many messages
                 	pi.send(msg.getLast().getData(), 0);
                 }
                 // If it is heartbeat
@@ -117,14 +119,12 @@ public class PiCollector extends Thread{
 				byte[] msg = pi.recv();
 				ventilator.sendMore("");
 				ventilator.send(msg, 0);
-				System.out.println("sent to Controller");
 			}
 			
 			// Lost connection
 			if(ventilatorExpiry < System.currentTimeMillis()){
 				System.out.println("Collector: disconnected to Controller");
 				// TODO Notify pi to clear cache
-				
 				context.destroySocket(ventilator);
 				
 				System.out.println("Collector: trying to reconnect in 3 seconds");

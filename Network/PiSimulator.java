@@ -1,13 +1,12 @@
-public class PiSimulator extends Thread{
-
+public class PiSimulator{
+	private static PiNetwork network;
 	public static void main(String[] args) throws InterruptedException {
-		PiNetwork network = new PiNetwork();
-		
+		network = new PiNetwork();
 		int i = 0;
 		while(true){
-			i = (i+1) % 5;
+			i = (i+1)%100;
 			network.sendToVisualization(network.recv());
-			if(i == 0) network.sendToToController("ok".getBytes());
+			if(i==0) network.sendToToController("ok".getBytes());
 		}
 	}
 }

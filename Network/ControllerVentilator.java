@@ -1,4 +1,4 @@
-package networking;
+
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
@@ -92,7 +92,7 @@ public class ControllerVentilator extends Thread{
                     && w.expiry < System.currentTimeMillis(); w = workers
                     .peekFirst()) {
                 ZFrame identity = workers.pollFirst().identity;
-                System.out.println("Ventilator: "+identity.toString()+" disconnected");
+//                System.out.println("Ventilator: "+identity.toString()+" disconnected");
                 byte[] id = identity.getData();
                 byte[] msg = new byte[1+id.length];
                 msg[0] = 2; System.arraycopy(id, 0, msg, 1, id.length);
@@ -137,14 +137,14 @@ public class ControllerVentilator extends Thread{
                 	byte[] msgFromPi = msg.getLast().getData();
                 	byte[] id = msg.getFirst().getData();
                 	byte[] msgToController = new byte[1+msgFromPi.length+id.length];
-                	msgToController[1] = 3;
+                	msgToController[0] = 3;
                 	System.arraycopy(msgFromPi, 0, msgToController, 1, msgFromPi.length);
                 	System.arraycopy(id, 0, msgToController, 1+msgFromPi.length, id.length);
                 	controller.send(msgToController, 0);
                 }
                 // If it is heartbeat
                 else if(msg.size() == 2){
-                	System.out.println("Ventilator: Heart beat received");
+//                	System.out.println("Ventilator: Heart beat received");
                 }
                 else{
                 	System.out.println("Ventilator: invalid message from pi");
