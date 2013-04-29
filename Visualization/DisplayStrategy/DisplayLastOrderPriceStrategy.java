@@ -11,7 +11,7 @@ public class DisplayLastOrderPriceStrategy implements DisplayStatisticStrategy{
 	
 	@Override
 	public String display() {
-		return "Last Order Price: Symbol: "+lastOrderPrice.getSymbol()+", Price: "+lastOrderPrice.getPrice()+", Volume: "+lastOrderPrice.getVolume()+".";
+		label.setText("Last Order Price: Symbol: "+lastOrderPrice.getSymbol()+", Price: "+lastOrderPrice.getPrice()+", Volume: "+lastOrderPrice.getVolume()+".");
 	}
 
 }
