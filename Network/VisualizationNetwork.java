@@ -2,7 +2,13 @@ import org.zeromq.ZContext;
 import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMsg;
-
+/**
+ * Create an instance of this class
+ * And use this class to recv msg from workers
+ * 
+ * @author yuchen
+ *
+ */
 public class VisualizationNetwork {
 	private ZContext context;
 	private ZMQ.Socket visualization;
@@ -24,7 +30,7 @@ public class VisualizationNetwork {
 		
 		@Override
 		public void run() {
-			System.out.println("Visualization collector thread starts");
+//			System.out.println("Visualization collector thread starts");
 			
 			ZMQ.Poller poller = new ZMQ.Poller(1);
 			poller.register(collector, ZMQ.Poller.POLLIN);
@@ -60,7 +66,14 @@ public class VisualizationNetwork {
 		collector = new VisualizationCollector(context);
 		collector.start();
 	}
-	
+	/**
+	 * This method will return msg in bytes.
+	 * The msg can be from any worker.
+	 * This method will block if there isn't any message coming
+	 * But that means you don't have any more things need to display
+	 * 
+	 * @return		The msg from any alive worker in bytes
+	 */
 	public byte[] recv(){
 		return visualization.recv();
 	}
