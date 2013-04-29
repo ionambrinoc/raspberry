@@ -107,7 +107,7 @@ public class PiCollector extends Thread{
                 }
                 // If it is heartbeat
                 else if(msg.size() == 1){
-                	System.out.println("Collector: Heartbeat from Controller received");
+//                	System.out.println("Collector: Heartbeat from Controller received");
                 }else{
                 	System.out.println("Collector: invalid message from ip");
                 	msg.dump(System.out);

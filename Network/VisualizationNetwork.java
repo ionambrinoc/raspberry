@@ -24,7 +24,7 @@ public class VisualizationNetwork {
 		
 		@Override
 		public void run() {
-			System.out.println("Visualization collector thread starts");
+//			System.out.println("Visualization collector thread starts");
 			
 			ZMQ.Poller poller = new ZMQ.Poller(1);
 			poller.register(collector, ZMQ.Poller.POLLIN);

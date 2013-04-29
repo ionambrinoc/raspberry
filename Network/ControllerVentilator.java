@@ -113,7 +113,7 @@ public class ControllerVentilator extends Thread{
 	
 	@Override
 	public void run() {
-		System.out.println("Ventilator: Ventilator starts");
+//		System.out.println("Ventilator: Ventilator starts");
 		
 		ZMQ.Poller poller = new ZMQ.Poller(2);
 		poller.register(pi, ZMQ.Poller.POLLIN);
