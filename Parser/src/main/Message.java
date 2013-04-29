@@ -1,4 +1,4 @@
-package parser;
+package main;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;

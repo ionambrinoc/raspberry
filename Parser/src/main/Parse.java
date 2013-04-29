@@ -1,5 +1,4 @@
-package parser;
-
+package main;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -7,22 +6,25 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import parser.Message;
 
 public class Parse {
-	static byte[] inputArray = new byte[10000];
-	static int i = 0;
+	static int i = 0; // i represents where in the inputArray we have processed
+	static int j = 0; // j represents where in the inputArray the last read was stored up to
+	static int readSize = 9216; // size of each read call. 9216 = 9*1024;
+	static int arraySize = 10240; // size of the inputArray
+	static byte[] inputArray = new byte[arraySize];
 	static BufferedInputStream in;
 	
 	
-	public static void readFile(BufferedInputStream in, byte[] inputArray) {	
+	public static void initialReadFile(BufferedInputStream in, byte[] inputArray) {	
 		try {
 			in = new BufferedInputStream (new FileInputStream("data1.dat"));
 			int size = in.available();
 			System.out.println("this is the size: "+size);
 			System.out.println("we have found the file");
 			try {
-				in.read(inputArray,0,10000);
+				j = readSize;
+				in.read(inputArray,0,j);
 				System.out.println("we have read the file");
 			}
 			catch (IOException e) {
@@ -40,12 +42,30 @@ public class Parse {
 //		System.out.println("here it is using New String "+s2);
 	}
 	
+	public static void readFile() { // BufferedInputStream in, byte[] inputArray) {
+		try {
+			int newStart = j; System.out.println("j equals "+j+" and the other thing is: "+(arraySize-newStart-1)+
+					" inputArray[newStart] = "+inputArray[newStart]+ " inputArray[blah] = "+inputArray[arraySize-newStart-1]);
+			if(newStart+readSize>arraySize) {
+				in.read(inputArray, newStart, arraySize-newStart-1); // read from the file filling up the latter part of the array
+				j = readSize - (arraySize-newStart-1); // this is the index of where in the array we will have stored up to
+				in.read(inputArray, 0, j); // read the file into the first part of the array
+			}
+			else {
+				j = readSize+newStart;
+				in.read(inputArray, newStart, j);
+			System.out.println("we have read the file");
+			}
+		}
+		catch (IOException e) {
+			System.out.println("we could not read the file");
+		}
+		
+	}
+	
 	public static void main(String[] args) throws IOException, InterruptedException {
-		System.out.println("Hi "+inputArray[1]);
-		readFile(in, inputArray);
-		System.out.println("should be a message size: "+toInt(inputArray[0], inputArray[1]));
-		System.out.println("should be a message type: "+toInt(inputArray[2], inputArray[3]));
-		while(i<inputArray.length) {
+		initialReadFile(in, inputArray);
+		while(i<arraySize) { // while the point we have processed is within the stored area
 			splitMessage(); // this is where the link with the controller needs to be I think...
 		}
 		// need to code what happens when we need to wrap round in the array
@@ -61,10 +81,25 @@ public class Parse {
 	}
 	
 	
-	public static Message splitMessage() {
+	public static ControllerMessage splitMessage() {
 		// i is where we have reached in inputArray. inputArray[i] is the first byte from the new message
 		int messageSize = toInt(inputArray[i], inputArray[i+1]);
 		Message message;
+		
+		if (i+messageSize>j) { // needs to read more of file
+			readFile(); //in, inputArray);
+			System.out.println("message too big, time to wrap around");
+		}
+		else if (messageSize==0) { // this shouldn't really happen, but might
+			i+=1;
+			if(i+1==j) {
+				// needs to read more of the file
+				readFile(); //in, inputArray);
+				System.out.println("message too big, and message size 0");
+			}
+			System.out.println("message size is 0, i is "+i); 
+			return null;
+		}
 		
 		int messageType = toInt(inputArray[i+2], inputArray[i+3]);
 		System.out.print("split into a new message. i="+i);
@@ -85,11 +120,12 @@ public class Parse {
 			i+=messageSize;
 			System.out.println(" but not a useful message though");
 			return null;
-		}
-		
+		}	
 		i+=messageSize;
+	
+		ControllerMessage messageToSend = new ControllerMessage(message);
 		
-		return message;		
+		return messageToSend;
 	}
 	
 	public static Message newAddMessage(int index) { // inputArray[index] is the start of the message
@@ -194,7 +230,12 @@ public class Parse {
 
 // to do:
 // sort out the two's compliment reading in problem
-// deal with it keeping reading...
+
+// deal with it keeping reading - set the size of buffer, when it reads, it needs to wrap around
+// and not just replace everything i.e. so a partially read message doesn't lose the first half
+
+// so, it needs to also deal with half-read messages
+
 // fix the reading in problem i.e. sort out why the stuff it reads in isn't what we really expect
 
 
