@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class StatTableModel extends AbstractTableModel{	
 	    private String[] columnNames = {"Symbol", "Price", "% change", "Volume", "Open", "High", "Low", "Prev Close"};
-	    private Object[][] data = {{"MCK",1,1,1,1,1,1,1}};
+	    private Object[][] data = {{"MCK",1,1,1,1,1,1,1},{"EIL",1,1,1,1,1,1,1}};
 
 	    public int getColumnCount() {
 	        return columnNames.length;
