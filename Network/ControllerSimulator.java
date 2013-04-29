@@ -20,7 +20,7 @@ public class ControllerSimulator{
 				case 3:
 					id = new byte[msg.length-3];
 					System.arraycopy(msg, 3, id, 0, msg.length-3);
-					System.out.println("confirmation from :"+new String(id));
+//					System.out.println("confirmation from :"+new String(id));
 					worker = new String(id);
 					break;
 			}
