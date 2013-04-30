@@ -27,8 +27,8 @@ public class Limit  //    each limit is a doubly linked list of limit objects
 	
 	public void addOrder(Order order)
 	{
-		int hash = hasher(order);
-		
+		int hash = hasher(order); 
+		order.parentLimit=this;
 		if (headOrder==null) 
 		{ 
 			headOrder = order; 
@@ -48,9 +48,10 @@ public class Limit  //    each limit is a doubly linked list of limit objects
 				}
 				else
 				{
-					WeakReference<Order> ref = hashTable.get(hash);
+					
+					WeakReference<Order> ref = hashTable.get(hash); 
 					Order searcher = ref.get();
-					while (hasher(searcher.nextOrder.idNumber) == hash && searcher.nextOrder !=null) 
+					while (searcher.nextOrder !=null && hasher(searcher.nextOrder.idNumber) == hash) 
 								searcher = searcher.nextOrder;
 					order.prevOrder = searcher;
 					order.nextOrder = searcher.nextOrder;
@@ -69,7 +70,7 @@ public class Limit  //    each limit is a doubly linked list of limit objects
 		return current;
 	}
 	
-	public Order getOrder(String symbol)  // get order by symbol; returns latest order found
+	public Order getOrderBySymbol(int symbol)  // get order by symbol; returns latest order found
 	{
 		Order current = headOrder; if (headOrder==null) return null;
 		while (current != null) if (current.symbol==symbol) return current;
@@ -80,9 +81,10 @@ public class Limit  //    each limit is a doubly linked list of limit objects
 	public void removeOrder (int idNumber) throws Throwable
 	{
 		Order current = getOrder(idNumber);
-		current.prevOrder.nextOrder = current.nextOrder; current.prevOrderInBook.nextOrderInBook = current.nextOrderInBook;
-		current.nextOrder.prevOrder = current.prevOrder; current.nextOrderInBook.prevOrderInBook = current.prevOrderInBook;
-		
+		int vol = current.getVolume();
+		if (current.prevOrder != null) current.prevOrder.nextOrder = current.nextOrder; 		
+		if (current.nextOrder != null) current.nextOrder.prevOrder = current.prevOrder; 
+		totalVolume-=vol;
 		if (headOrder==null && tailOrder == null) this.finalize();
 	}
 	
