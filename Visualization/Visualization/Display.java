@@ -14,7 +14,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
 
 
 @SuppressWarnings("serial")
@@ -61,19 +60,38 @@ public class Display extends JDesktopPane implements TableModelListener{
 	public void start() throws InterruptedException {
 		timer.start();
 		while(true){
+			System.out.println("While");
 			if(itIsTime){
-				System.out.println(itIsTime);
+				System.out.println("TimeTimeTimeTimeTimeTimeTimeTimeTimeTimeTime");
 				update();
 				itIsTime=false;
 			}
 			else {
+				System.out.println("");
 				statThread.sleep(1);
-				statThread.updateList();
+				//statThread.updateList();
 			}
 		}
 	}
-	
+
 	public void update(){
+		/*byte[] bs = {
+				0,0,0,(byte)0,
+				0,0,0, (byte)(100*(Math.random())),
+				0,(byte)(100*(Math.random())),0,0,
+				(byte)(100*(Math.random())),0,0,0,
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random()))};
+		Statistic s = new Statistic(bs);
+		s.getDisplayStrategy().display();*/
 		((statThread.getStatistic()).getDisplayStrategy()).display();
 	}
 	
@@ -83,11 +101,6 @@ public class Display extends JDesktopPane implements TableModelListener{
 	
 	@Override
 	public void tableChanged(TableModelEvent e) {
-		int row = e.getFirstRow();
-        int column = e.getColumn();
-        TableModel model = (TableModel)e.getSource();
-        String columnName = model.getColumnName(column);
-        Object data = model.getValueAt(row, column);
 	}
 	
 	public void paintComponent(Graphics g){
