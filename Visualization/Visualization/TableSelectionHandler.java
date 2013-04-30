@@ -19,6 +19,7 @@ public class TableSelectionHandler implements ListSelectionListener{
 		ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 		String symbol = null;
 
+		if (!lsm.isSelectionEmpty()){
         // Find out which index is selected.
         int minIndex = lsm.getMinSelectionIndex();
         int maxIndex = lsm.getMaxSelectionIndex();
@@ -33,5 +34,6 @@ public class TableSelectionHandler implements ListSelectionListener{
         try {
         	chartFrame.setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {}
+		}
 	}
 }
