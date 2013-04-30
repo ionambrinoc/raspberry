@@ -17,7 +17,6 @@ public class Visualize extends JFrame {
 		Dimension dim = toolkit.getScreenSize();
 		int height = (int)(dim.getHeight()*0.75);
 		int width = (int)(dim.getWidth()*0.75);
-		//panel = new JPanel(new GridLayout(10,6));
 		display = new Display();
 		display.setPreferredSize(new Dimension(width,height));
 		

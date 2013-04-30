@@ -30,6 +30,7 @@ public class PiCollector extends Thread{
 		this.context = context;
 		pi = context.createSocket(ZMQ.PAIR);
 		pi.connect("inproc://topi");
+		id = getHostAddress();
 	}
 	
 	private String getHostAddress(){
@@ -57,7 +58,6 @@ public class PiCollector extends Thread{
     private ZMQ.Socket connectVentilator(ZContext context) {
         ZMQ.Socket ventilator = context.createSocket(ZMQ.DEALER);
         // Set identity
-        String id = getHostAddress();
         if(id != null) ventilator.setIdentity(id.getBytes());
         
         ventilator.connect("tcp://192.168.1.100:10000");
@@ -107,7 +107,7 @@ public class PiCollector extends Thread{
                 }
                 // If it is heartbeat
                 else if(msg.size() == 1){
-                	System.out.println("Collector: Heartbeat from Controller received");
+//                	System.out.println("Collector: Heartbeat from Controller received");
                 }else{
                 	System.out.println("Collector: invalid message from ip");
                 	msg.dump(System.out);

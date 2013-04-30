@@ -9,7 +9,6 @@ public class StatThread extends Thread{
 	public StatThread(){
 		network = new VisualizationNetwork();
 		list = new LinkedList<Statistic>();//? extends Statistic
-		network.start();
 	}
 	
 	public void updateList() throws InterruptedException{
