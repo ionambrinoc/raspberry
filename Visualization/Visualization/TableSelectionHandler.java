@@ -30,6 +30,10 @@ public class TableSelectionHandler implements ListSelectionListener{
         }
 		
 		ChartFrame chartFrame = factory.createChartFrame(symbol);
+		
+		lsm.clearSelection();
+		
+		if (chartFrame == null) return;
         display.add(chartFrame);
         try {
         	chartFrame.setSelected(true);
