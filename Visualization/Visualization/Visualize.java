@@ -4,10 +4,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-
 @SuppressWarnings("serial")
 public class Visualize extends JFrame {
-	protected final Display display;
+	public final static Display display = new Display();
 	
 	public Visualize(){
 		super("Visualisation");
@@ -17,8 +16,6 @@ public class Visualize extends JFrame {
 		Dimension dim = toolkit.getScreenSize();
 		int height = (int)(dim.getHeight()*0.75);
 		int width = (int)(dim.getWidth()*0.75);
-		//panel = new JPanel(new GridLayout(10,6));
-		display = new Display();
 		display.setPreferredSize(new Dimension(width,height));
 		
 		setExtendedState(MAXIMIZED_BOTH);

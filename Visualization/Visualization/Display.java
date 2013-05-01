@@ -1,14 +1,11 @@
 package Visualization;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
@@ -17,7 +14,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
 
 
 @SuppressWarnings("serial")
@@ -34,8 +30,9 @@ public class Display extends JDesktopPane implements TableModelListener{
 
 		table = new JTable(new StatTableModel());
 		table.getModel().addTableModelListener(this);
+		(table.getSelectionModel()).setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableSelectionModel = table.getSelectionModel();
-		tableSelectionModel.addListSelectionListener(new TableSelectionHandler());
+		tableSelectionModel.addListSelectionListener(new TableSelectionHandler(this));
         table.setSelectionModel(tableSelectionModel);
 		table.setAutoCreateRowSorter(true);
 		table.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
@@ -44,36 +41,14 @@ public class Display extends JDesktopPane implements TableModelListener{
 		JScrollPane scrollPane = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
 		
-		JInternalFrame tableFrame = new JInternalFrame("Table");
+		JInternalFrame tableFrame = new JInternalFrame("Table",true);
+		tableFrame.setSize(650,200);
         tableFrame.setVisible(true);
-		//tableFrame.add(scrollPane);
-     //   JInternalFrame.setPreferredSize(new Dimension(30,30));
-      //  pack();
-        add(tableFrame);
+		tableFrame.add(scrollPane);
+        this.add(tableFrame);
         try {
             tableFrame.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
-
-		/*TRPanel = new JPanel();
-		TRPanel.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-		TRPanel.setForeground(new Color(0,225,0));
-		TRPanel.setOpaque(true);
-		TRPanel.setBackground(new Color(0,225,0));
-		add(TRPanel);
-
-		BLPanel = new JPanel();
-		BLPanel.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-		BLPanel.setForeground(new Color(255,0,225));
-		BLPanel.setOpaque(true);
-		BLPanel.setBackground(new Color(255,0,225));
-		add(BLPanel);
-
-		BRPanel = new JPanel();
-		BRPanel.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-		BRPanel.setForeground(new Color(255,255,0));
-		BRPanel.setOpaque(true);
-		BRPanel.setBackground(new Color(255,225,0));
-		add(BRPanel);*/
 
 		timer = new Timer(1000, new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -85,29 +60,47 @@ public class Display extends JDesktopPane implements TableModelListener{
 	public void start() throws InterruptedException {
 		timer.start();
 		while(true){
+			System.out.println("While");
 			if(itIsTime){
-				System.out.println(itIsTime);
+				System.out.println("TimeTimeTimeTimeTimeTimeTimeTimeTimeTimeTime");
 				update();
 				itIsTime=false;
 			}
 			else {
+				System.out.println("");
 				statThread.sleep(1);
-				statThread.updateList();
+				//statThread.updateList();
 			}
 		}
 	}
-	
+
 	public void update(){
+		/*byte[] bs = {
+				0,0,0,(byte)0,
+				0,0,0, (byte)(100*(Math.random())),
+				0,(byte)(100*(Math.random())),0,0,
+				(byte)(100*(Math.random())),0,0,0,
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random())),
+				0,0,0,(byte)(100*(Math.random()))};
+		Statistic s = new Statistic(bs);
+		s.getDisplayStrategy().display();*/
 		((statThread.getStatistic()).getDisplayStrategy()).display();
+	}
+	
+	public JTable getTable() {
+		return table;
 	}
 	
 	@Override
 	public void tableChanged(TableModelEvent e) {
-		int row = e.getFirstRow();
-        int column = e.getColumn();
-        TableModel model = (TableModel)e.getSource();
-        String columnName = model.getColumnName(column);
-        Object data = model.getValueAt(row, column);
 	}
 	
 	public void paintComponent(Graphics g){

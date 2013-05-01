@@ -2,6 +2,6 @@ package DisplayStrategy;
 
 public interface DisplayStatisticStrategy {
 
-	String display();
+	void display();
 
 }
