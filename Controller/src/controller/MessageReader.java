@@ -24,8 +24,11 @@ public class MessageReader {
 	public void ReadAndSendNextMessage(){
 	
 		ControllerMessage nextMessage = messageQueue.poll();
+		if (nextMessage != null)
+				{
 		String nextPi = symbolAssignment.addSymbol(nextMessage.symbol);
 		messageHistory.addMessage(nextMessage.message, nextMessage.orderId, nextPi);
 		messageSender.sendMessage(nextMessage.message, nextPi);
+	}
 	}
 }

@@ -1,49 +1,56 @@
-package main;
+package parser;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class Parse {
-	static int i = 0; // i represents where in the inputArray we have processed
-	static int j = 0; // j represents where in the inputArray the last read was stored up to
-	static int readSize = 9216; // size of each read call. 9216 = 9*1024;
-	static int arraySize = 10240; // size of the inputArray
-	static byte[] inputArray = new byte[arraySize];
-	static BufferedInputStream in;
+public class Parse extends Thread {
+	int i = 0; // i represents where in the inputArray we have processed
+	int j = 0; // j represents where in the inputArray the last read was stored up to
+	int readSize = 9216; // size of each read call. 9216 = 9*1024;
+	int arraySize = 10240; // size of the inputArray
+	byte[] inputArray = new byte[arraySize];
+	BufferedInputStream in;
+	final LinkedBlockingQueue<ControllerMessage> messageQueue;
 	
+	public Parse(LinkedBlockingQueue<ControllerMessage> messageQueue){
+		this.messageQueue = messageQueue;
+		
+	}
+
 	
-	public static void initialReadFile() {	
+	public void initialReadFile() {	
 		try {
-			in = new BufferedInputStream (new FileInputStream("data1.dat"));
+			in = new BufferedInputStream (new FileInputStream("data2.dat"));
 			int size = in.available();
-			System.out.println("this is the size: "+size);
-			System.out.println("we have found the file");
+//			System.out.println("this is the size: "+size);
+//			System.out.println("we have found the file");
 			try {
 				j = readSize;
 				in.read(inputArray,0,j);
-				System.out.println("we have read the file");
+//				System.out.println("we have read the file");
 			}
 			catch (IOException e) {
-				System.out.println("we could not read the file");
+//				System.out.println("we could not read the file");
 			}
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("we have not found the file");
+//			System.out.println("we have not found the file");
 		} catch (IOException e1) {
-			System.out.println("we could not work out the size");
+//			System.out.println("we could not work out the size");
 		}
 		String s = Arrays.toString(inputArray);
-		System.out.println("here it is using toString "+s);
+//		System.out.println("here it is using toString "+s);
 //		String s2 = new String(inputArray);   This give something horrible, left here as a reminder I guess...
 //		System.out.println("here it is using New String "+s2);
 	}
 	
 	
 	
-	public static void readFile() { // BufferedInputStream in, byte[] inputArray) {
+	public void readFile() { // BufferedInputStream in, byte[] inputArray) {
 		try {
 			int newStart = j; System.out.println("j equals "+j+" and the other thing is: "+(arraySize-newStart-1)+
 					" inputArray[newStart] = "+inputArray[newStart]+ " inputArray[blah] = "+inputArray[arraySize-newStart-1]);
@@ -69,13 +76,19 @@ public class Parse {
 		
 	}
 	
-	public static void main(String[] args) throws IOException, InterruptedException {
+	@Override
+	public void run() {
 		initialReadFile();
 		int packetSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]);
 		System.out.println("i= "+i+" and first packet size is "+packetSize);
 		while(i<arraySize) { // while the point we have processed is within the stored area
 	//		while(i+packetSize<j) { // while the next packet has been fully read and stored in inputArray
-				splitPacket(); // this is where the link with the controller needs to be I think...
+				try {
+					splitPacket();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // this is where the link with the controller needs to be I think...
 				packetSize = toInt(inputArray[i], inputArray[i+1]); // update packetSize to the size of the next packet
 	//		}
 			// the next packet hasn't been fully read/stored, so we need to read more of the file
@@ -84,7 +97,7 @@ public class Parse {
 		}
 		// need to code what happens when we need to wrap round in the array
 	}
-	public static int toInt(byte first, byte second) {
+	public int toInt(byte first, byte second) {
 /**	    ByteBuffer bb = ByteBuffer.wrap(new byte[] {second, first}); // swap second and first depending on endianness
 	    int answer = bb.getShort(); // Implicitly widened to an int per JVM spec.
 	    if(answer<0) { // due to 2's compliment
@@ -100,10 +113,10 @@ public class Parse {
 		return answer;
 	}
 	
-	public static void splitPacket() {
+	public void splitPacket() throws InterruptedException {
 		// this will split the data into packets
 		int remainingPacketSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]); // the first two bytes represent the size of the packet
-		System.out.println("the packet size is "+remainingPacketSize+" and the packet type is "+inputArray[(i+2)%arraySize]);
+//		System.out.println("the packet size is "+remainingPacketSize+" and the packet type is "+inputArray[(i+2)%arraySize]);
 		
 		i = (i+16)%arraySize; // the packet header is 16 bytes
 		remainingPacketSize-=16; // we move past the 16 bytes of the header
@@ -112,17 +125,20 @@ public class Parse {
 			int nextMessageSize = (toInt(inputArray[i%arraySize], inputArray[(i+1)%arraySize]));
 			int x = (i+nextMessageSize)%arraySize; // x is the where the end of the next message should be stored, we want this to be within the stored area
 			if( (x>j && x<(j+arraySize-readSize)) || x<(j-readSize) ) { // if the next message hasn't been fully read
-				System.out.println("the next message hasn't been fully read. i= "+i+". messageSize = "+nextMessageSize+". j="+j);
-				System.out.println("x = "+x+". j-readSize = "+ (j-readSize) );
+//				System.out.println("the next message hasn't been fully read. i= "+i+". messageSize = "+nextMessageSize+". j="+j);
+//				System.out.println("x = "+x+". j-readSize = "+ (j-readSize) );
 				readFile();
 			}
 			remainingPacketSize -= nextMessageSize; // decrement the remainingPacketSize by the size of the next message
-			splitMessage(); // split the packet into messages
+			ControllerMessage newMessage = splitMessage();
+			if(newMessage != null)
+				messageQueue.put(newMessage); // split the packet into messages
+			
 		}
 		
 	}
 	
-	public static ControllerMessage splitMessage() {
+	public ControllerMessage splitMessage() {
 		// i is where we have reached in inputArray. inputArray[i] is the first byte from the new message
 		int messageSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]);
 		Message message;
@@ -137,15 +153,15 @@ public class Parse {
 			if( ((i+1)%arraySize) == j) {
 				// needs to read more of the file
 				readFile(); //in, inputArray);
-				System.out.println("message too big, and message size 0");
-				System.out.println(inputArray[99999999]); // used to crash out of the system
+//				System.out.println("message too big, and message size 0");
+//				System.out.println(inputArray[99999999]); // used to crash out of the system
 			}
-			System.out.println("message size is 0, i is "+i); 
+//			System.out.println("message size is 0, i is "+i); 
 			return null;
 		}
 		
 		int messageType = toInt(inputArray[(i+2)%arraySize], inputArray[(i+3)%arraySize]);
-		System.out.print("new message of size "+messageSize+". i="+i);
+//		System.out.print("new message of size "+messageSize+". i="+i);
 		switch (messageType) {
 		case 100:
 			message = newAddMessage(i);
@@ -171,24 +187,24 @@ public class Parse {
 		return messageToSend;
 	}
 	
-	public static Message newAddMessage(int index) { // inputArray[index] is the start of the message
+	public Message newAddMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)1; // 1 is the reference for a message of type Add
 		for(int k= 1; k<5; k++) {
-			message[j] = inputArray[index+j+4]; // inputArray[index+4..index+8) = the time reference;
+			message[k] = inputArray[(index+k+4)%arraySize]; // inputArray[index+4..index+8) = the time reference;
 		}
 		for(int k = 5; k<9; k++) {
-			message[j] = inputArray[index+j+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
+			message[k] = inputArray[(index+k+8)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
 		for(int k = 9; k<13; k++) {
-			message[k] = inputArray[index+k+16]; // inputArray[index+16..index+20) = the OrderID reference;
+			message[k] = inputArray[(index+k+16)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
 		for(int k = 13; k<17; k++) {
-			message[k] = inputArray[index+k+20]; // inputArray[index+20..index+24) = the price reference;
+			message[k] = inputArray[(index+k+20)%arraySize]; // inputArray[index+20..index+24) = the price reference;
 		}
-		message[17] = inputArray[index+28]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
+		message[17] = inputArray[(index+28)%arraySize]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
 		for(int k = 18; k<22; k++) {
-			message[k] = inputArray[index+k+24]; // inputArray[index+24..index+28) = the volume reference;
+			message[k] = inputArray[(index+k+24)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		
 		Message newMessage = new Message(message);
@@ -196,46 +212,46 @@ public class Parse {
 		return newMessage;
 	}
 	
-	public static Message newModifyMessage(int index) { // inputArray[index] is the start of the message
+	public Message newModifyMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)2; // 2 is the reference for a message of type Modify
 		for(int k = 1; k<5; k++) {
-			message[k] = inputArray[index+k+4]; // inputArray[index+4..index+8) = the time reference;
+			message[k] = inputArray[(index+k+4)%arraySize]; // inputArray[index+4..index+8) = the time reference;
 		}
 		for(int k = 5; k<9; k++) {
-			message[k] = inputArray[index+k+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
+			message[k] = inputArray[(index+k+8)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
 		for(int k = 9; k<13; k++) {
-			message[k] = inputArray[index+k+16]; // inputArray[index+16..index+20) = the OrderID reference;
+			message[k] = inputArray[(index+k+16)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
 		for(int k = 13; k<17; k++) {
-			message[k] = inputArray[index+k+20]; // inputArray[index+20..index+24) = the price reference;
+			message[k] = inputArray[(index+k+20)%arraySize]; // inputArray[index+20..index+24) = the price reference;
 		}
-		message[17] = inputArray[index+28]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
+		message[17] = inputArray[(index+28)%arraySize]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
 		for(int k = 18; k<22; k++) {
-			message[k] = inputArray[index+k+24]; // inputArray[index+24..index+28) = the volume reference;
+			message[k] = inputArray[(index+k+24)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		Message newMessage = new Message(message);
 		
 		return newMessage;
 	}
 	
-	public static Message newDeleteMessage(int index) { // inputArray[index] is the start of the message
+	public Message newDeleteMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)3; // 3 is the reference for a message of type Delete
 		for(int k = 1; k<5; k++) {
-			message[k] = inputArray[index+k+4]; // inputArray[index+4..index+8) = the time reference;
+			message[k] = inputArray[(index+k+4)%arraySize]; // inputArray[index+4..index+8) = the time reference;
 		}
 		for(int k = 5; k<9; k++) {
-			message[k] = inputArray[index+k+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
+			message[k] = inputArray[(index+k+8)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
 		for(int k = 9; k<13; k++) {
-			message[k] = inputArray[index+k+16]; // inputArray[index+16..index+20) = the OrderID reference;
+			message[k] = inputArray[(index+k+16)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
 		for(int k = 13; k<17; k++) {
 			message[k] = 0; // delete messages have no price reference;
 		}
-		message[17] = inputArray[index+20]; // inputArray[20] is the side reference. Note, this is currently stored as an ASCII Character
+		message[17] = inputArray[(index+20)%arraySize]; // inputArray[20] is the side reference. Note, this is currently stored as an ASCII Character
 		for(int k = 18; k<22; k++) {
 			message[k] = 0; // delete messages have no volume reference;
 		}
@@ -244,7 +260,7 @@ public class Parse {
 		return newMessage;
 	}
 	
-	public static Message newExecuteMessage(int index) { // inputArray[index] is the start of the message
+	public Message newExecuteMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)0; // 0 is the reference for a message of type Add
 		for(int k = 1; k<5; k++) {
@@ -272,17 +288,8 @@ public class Parse {
 // fixed the problem where strange packet and messages sizes etc. occurred, caused by an error
 // when looping (skipping the final entry on inputArray)
 // it seems to now work, but as of yet (the code is running in the background) it seems to only
-// be full of Symbol Index Mapping control messages, like loads and loads of them. At least 30 minutes
+// be full of Symbol Index Mapping control messages, like loads and loads of them. At least 20 minutes
 // worth anyway. This isn't great really I feel for demonstration purposes
-
-// it at some point, gets time reference control messages too and security status control messages, this is fine
-
-// but, at one point, we get packet size 84 (which is 16 + 68), first message size 16 (type time reference)
-// meaning we should have 52 bytes of the packet left, but next message is of size "20020" which is obviously too big
-// (type 54 which isn't a type). after a few more weird messages like this it seems to recover a go back to
-// symbol index mapping messages
-// this is bad, not sure what happens to be honest, but as it does seem to recover, and happens really quickly,
-// might not actually be noticeable
 
 // could consider adding a counter to count how many bytes are boring stuff we don't do anything with
 // then "skip" them and start after that

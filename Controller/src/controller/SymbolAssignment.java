@@ -22,13 +22,17 @@ public class SymbolAssignment {
 		for (int i = 0; i<97;i++){
 			piSymbolHashTable.add(null);
 		}
-		for (Integer i = 0; i<2;i++){
-			add(i.toString());
-		}
+//		for (Integer i = 0; i<2;i++){
+//			add(i.toString());
+//		}
 	}
 	
 	protected int hashFunction(int input){
 		return (input % 97);
+	}
+	
+	public boolean pisAvailable(){
+		return !piFrequencyList.isEmpty();
 	}
 	
 	public String addSymbol(int symbol){ //returns the mac address of a pi
