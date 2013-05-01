@@ -1,6 +1,6 @@
 public class Communicator 
 {
-
+	private StatisticEngine engine;
 	private Book book;
 	private PiNetwork piNetwork;
 	
@@ -41,7 +41,7 @@ public class Communicator
 			
 			if (message.type==0)  // trade execution message
 				{
-					int symbol = message.symbol;
+					int symbol = message.symbol; int vol=0;
 					Order buy = book.getOrderBySymbol(symbol, true);
 					Order sell = book.getOrderBySymbol(symbol, false);
 					
@@ -55,7 +55,8 @@ public class Communicator
 						 piNetwork.sendToToController(confirmation.toByte());
 
 						 confirmation = new Confirmation(sellId);
-					     piNetwork.sendToToController(confirmation.toByte());		 
+					     piNetwork.sendToToController(confirmation.toByte());
+					     vol = buy.getVolume();
 					}
 					if (buy.getVolume()>sell.getVolume())
 					{
@@ -67,7 +68,8 @@ public class Communicator
 						 Confirmation confirmation = new Confirmation(sellId);
 					     piNetwork.sendToToController(confirmation.toByte());
 					     
-					     book.modifyOrder(buyId, buy.getVolume()-sellVolume, buy.getPrice());					     
+					     book.modifyOrder(buyId, buy.getVolume()-sellVolume, buy.getPrice());		
+					     vol = sell.getVolume();
 					}
 					if (buy.getVolume()<sell.getVolume())
 					{
@@ -79,8 +81,10 @@ public class Communicator
 						 Confirmation confirmation = new Confirmation(buyId);
 					     piNetwork.sendToToController(confirmation.toByte());
 					     
-					     book.modifyOrder(sellId, sell.getVolume()-buyVolume, buy.getPrice());					     
+					     book.modifyOrder(sellId, sell.getVolume()-buyVolume, buy.getPrice());		
+					     vol = buy.getVolume();
 					}
+					piNetwork.sendToVisualization((engine.addData(symbol, buy.getPrice(), vol, message.time)).toByte());
 				}	
 		}
 	}
