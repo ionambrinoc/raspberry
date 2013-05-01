@@ -1,5 +1,7 @@
 package Visualization;
 
+import java.util.concurrent.LinkedBlockingDeque;
+
 public interface StreamListener {
-	public void dataUpdate(Statistic s);
+	public void dataUpdate(LinkedBlockingDeque<Statistic> q);
 }
