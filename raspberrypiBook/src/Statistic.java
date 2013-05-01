@@ -1,6 +1,7 @@
 import java.nio.ByteBuffer;
 public class Statistic {
 	public final String symbol;
+	public final int symInt;
 	public final int price;
 	public final int change;
 	public final int volume;
@@ -15,6 +16,7 @@ public class Statistic {
 	public Statistic(byte[] bs){
 		ByteBuffer bb = ByteBuffer.wrap(bs);
 		this.symbol = Integer.toString(bb.getInt(0));
+		this.symInt = bb.getInt(0);
 		this.price = bb.getInt(4);
 		this.change = bb.getInt(8);
 		this.volume = bb.getInt(12);
@@ -30,7 +32,6 @@ public class Statistic {
 	public String getSymbol(){
 		return symbol;
 	}
-	
 	public int getPrice(){
 		return price;
 	}
@@ -63,7 +64,7 @@ public class Statistic {
 	}
 	
 	public Statistic(int s, int p, int c, int v, int o, int h, int l, int vwap, int smm, int sma, int t){
-		this.symbol = s;
+		this.symInt = s;
 		this.price = p;
 		this.change = c;
 		this.volume = v;
@@ -74,22 +75,23 @@ public class Statistic {
 		this.sMM = smm;
 		this.sMA = sma;
 		this.time = t;
+		this.symbol = Integer.toString(s);
 	}
 	
 	public byte[] toByte()
 	{
 		byte[] array = new byte[44];
-		byte[] s = ByteBuffer.allocate(4).putInt(symbol).array();
-		byte[] p = ByteBuffer.allocate(4).putInt(type).array();
-		byte[] c= ByteBuffer.allocate(4).putInt(stat1).array();
-		byte[] v= ByteBuffer.allocate(4).putInt(stat2).array();
-		byte[] o = ByteBuffer.allocate(4).putInt(symbol).array();
-		byte[] h = ByteBuffer.allocate(4).putInt(symbol).array();
-		byte[] l = ByteBuffer.allocate(4).putInt(symbol).array();
-		byte[] vwap = ByteBuffer.allocate(4).putInt(symbol).array();
-		byte[] smm = ByteBuffer.allocate(4).putInt(symbol).array();
-		byte[] sma = ByteBuffer.allocate(4).putInt(symbol).array();
-		byte[] t = ByteBuffer.allocate(4).putInt(symbol).array();
+		byte[] s = ByteBuffer.allocate(4).putInt(symInt).array();
+		byte[] p = ByteBuffer.allocate(4).putInt(price).array();
+		byte[] c= ByteBuffer.allocate(4).putInt(change).array();
+		byte[] v= ByteBuffer.allocate(4).putInt(volume).array();
+		byte[] o = ByteBuffer.allocate(4).putInt(open).array();
+		byte[] h = ByteBuffer.allocate(4).putInt(high).array();
+		byte[] l = ByteBuffer.allocate(4).putInt(low).array();
+		byte[] vwap = ByteBuffer.allocate(4).putInt(vWAP).array();
+		byte[] smm = ByteBuffer.allocate(4).putInt(sMM).array();
+		byte[] sma = ByteBuffer.allocate(4).putInt(sMA).array();
+		byte[] t = ByteBuffer.allocate(4).putInt(time).array();
 		System.arraycopy(s,0,array,0,4);
 		System.arraycopy(p,0,array,4,4);
 		System.arraycopy(c,0,array,8,4);
