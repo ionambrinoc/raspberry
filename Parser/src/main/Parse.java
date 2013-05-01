@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 public class Parse {
@@ -72,37 +71,54 @@ public class Parse {
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		initialReadFile();
-		int packetSize = toInt(inputArray[i], inputArray[i+1]);
+		int packetSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]);
 		System.out.println("i= "+i+" and first packet size is "+packetSize);
 		while(i<arraySize) { // while the point we have processed is within the stored area
-			while(i+packetSize<j) { // while the next packet has been fully read and stored in inputArray
+	//		while(i+packetSize<j) { // while the next packet has been fully read and stored in inputArray
 				splitPacket(); // this is where the link with the controller needs to be I think...
 				packetSize = toInt(inputArray[i], inputArray[i+1]); // update packetSize to the size of the next packet
-			}
+	//		}
 			// the next packet hasn't been fully read/stored, so we need to read more of the file
-			System.out.println("packet too big ("+packetSize+"), time to wrap around, i= "+i+" and j= "+j);
-			readFile();
+	//		System.out.println("packet too big ("+packetSize+"), time to wrap around, i= "+i+" and j= "+j);
+	//		readFile();
 		}
 		// need to code what happens when we need to wrap round in the array
 	}
 	public static int toInt(byte first, byte second) {
-	    ByteBuffer bb = ByteBuffer.wrap(new byte[] {second, first}); // swap second and first depending on endianness
+/**	    ByteBuffer bb = ByteBuffer.wrap(new byte[] {second, first}); // swap second and first depending on endianness
 	    int answer = bb.getShort(); // Implicitly widened to an int per JVM spec.
 	    if(answer<0) { // due to 2's compliment
 	    	answer+=256; // if leading bit is one, this will be read as -128, should be (+)128.
 	    	// N.B. this is the case for each byte, so the above won't always work...
 	    }
-	    return answer;
+	    System.out.println("answer is "+answer);
+*/
+		int answer = 0; int largeBit = second; int smallBit = first;
+		if(second<0) largeBit += 256;
+		if(first<0) smallBit += 256;
+		answer = largeBit*256+smallBit;
+		return answer;
 	}
 	
 	public static void splitPacket() {
 		// this will split the data into packets
-		int remainingPacketSize = toInt(inputArray[i], inputArray[i+1]); // the first two bytes represent the size of the packet
-		System.out.println("the packet size is "+remainingPacketSize);
+		int remainingPacketSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]); // the first two bytes represent the size of the packet
+		System.out.println("i = "+i+" and inputArray[i]= "+inputArray[i]+" and inputArray[i+1]= "+inputArray[(i+1)%arraySize]);
+		System.out.println("the packet size is "+remainingPacketSize+" and the packet type is "+inputArray[(i+2)%arraySize]);
+		if(remainingPacketSize==0) System.out.println(inputArray[999999]);
+		
 		i = (i+16)%arraySize; // the packet header is 16 bytes
 		remainingPacketSize-=16; // we move past the 16 bytes of the header
 		while (remainingPacketSize>0) { // while we are still in the same packet
-			remainingPacketSize -= (toInt(inputArray[i], inputArray[i+1])); // decrement the remainingPacketSize by the size of the next message
+			System.out.println("i= "+i);
+			int nextMessageSize = (toInt(inputArray[i%arraySize], inputArray[(i+1)%arraySize]));
+			int x = (i+nextMessageSize)%arraySize; // x is the where the end of the next message should be stored, we want this to be within the stored area
+			if( (x>j && x<(j+arraySize-readSize)) || x<(j-readSize) ) { // if the next message hasn't been fully read
+				System.out.println("the next message hasn't been fully read. i= "+i+". messageSize = "+nextMessageSize+". j="+j);
+				System.out.println("x = "+x+". j-readSize = "+ (j-readSize) );
+				readFile();
+			}
+			remainingPacketSize -= nextMessageSize; // decrement the remainingPacketSize by the size of the next message
 			splitMessage(); // split the packet into messages
 		}
 		
@@ -110,10 +126,11 @@ public class Parse {
 	
 	public static ControllerMessage splitMessage() {
 		// i is where we have reached in inputArray. inputArray[i] is the first byte from the new message
-		int messageSize = toInt(inputArray[i], inputArray[i+1]);
+		int messageSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]);
 		Message message;
 		
-		if ( ((i+messageSize)%arraySize) > j) { // this should no longer happen
+		int x = (i+messageSize)%arraySize;
+		if ( (x>j && x<(j+arraySize-readSize)) || x<(j-readSize)) { // this should no longer happen
 			System.out.println("why are we here?");
 			readFile(); //in, inputArray);
 		}
@@ -123,13 +140,14 @@ public class Parse {
 				// needs to read more of the file
 				readFile(); //in, inputArray);
 				System.out.println("message too big, and message size 0");
+				System.out.println(inputArray[99999999]);
 			}
 			System.out.println("message size is 0, i is "+i); 
 			return null;
 		}
 		
 		int messageType = toInt(inputArray[i+2], inputArray[i+3]);
-		System.out.print("new message. i="+i);
+		System.out.print("new message of size "+messageSize+". i="+i);
 		switch (messageType) {
 		case 100:
 			message = newAddMessage(i);
@@ -145,7 +163,7 @@ public class Parse {
 			break;
 		default:
 			i= (i+messageSize)%arraySize;
-			System.out.println(" ignored");
+			System.out.println(" ignored, type was "+messageType+" and i is now "+i);
 			return null;
 		}	
 		i= (i+messageSize)%arraySize;
@@ -253,22 +271,10 @@ public class Parse {
 	}
 }
 
-
-
-// to do:
-// sort out the two's compliment reading in problem
-
-// deal with it keeping reading - set the size of buffer, when it reads, it needs to wrap around
-// and not just replace everything i.e. so a partially read message doesn't lose the first half
-// could consider only opening a message/packet if the whole thing has been read/stored
-// which would deal with the problem of half-read messages
-// can't do it for packets, as a packet could be too big to fit in one go
-
-// so we start with a packet: packet header (16 bytes), control message (14 bytes, sequence number reset)
-// then next packet, size 282 bytes, type original message: 16 byte packet header, 7 x 38 byte symbol index mapping control messages ish
-// then new packet, size 54 bytes, type original message: 16 byte packet header, 38 byte symbol index mapping control message
-// then more the same (this is confirmed by what is output)
-
+// the code runs, stopping when I wanted (when we get a weird messageSize) at some point, where we have had lots of messages
+// of size 38, and type 3=SymbolIndexMapping (where packets have been size 54, type 11=original message)
+// we suddenly get a packet of size 13902 and type 0, whereafter it goes really strange
+// currently, I don't know why this happens, but am working on it.
 
 
 
