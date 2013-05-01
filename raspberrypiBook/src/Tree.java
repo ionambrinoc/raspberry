@@ -41,7 +41,7 @@ public class Tree
 				{
 					Limit current = extremeLimit; int steps=0;
 					while (current.limitPrice>price && steps<size)
-						{		current=current.nextLimit; System.out.println(steps);		steps+=1;		}
+						{		current=current.nextLimit;	steps+=1;		}
 					current=current.prevLimit;
 					limit = new Limit (price, current, current.nextLimit);
 					current.nextLimit.prevLimit=limit; current.nextLimit=limit;
@@ -65,7 +65,7 @@ public class Tree
 				{
 					Limit current = extremeLimit; int steps=0;
 					while (current.limitPrice<price && steps<size)
-						{		current=current.nextLimit; System.out.println(steps);		steps+=1;		}
+						{		current=current.nextLimit;		steps+=1;		}
 					current=current.prevLimit;
 					limit = new Limit (price, current, current.nextLimit);
 					current.nextLimit.prevLimit=limit; current.nextLimit=limit;
@@ -91,6 +91,7 @@ public class Tree
 		if (current.limitPrice!=price) return null;
 			else return current;
 	}
+	
 	
 	public void removeLimit (int price) throws Throwable
 	{
