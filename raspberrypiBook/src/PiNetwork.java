@@ -16,7 +16,7 @@ public class PiNetwork
 		pi = context.createSocket(ZMQ.PAIR);
 		pi.bind("inproc://topi");
 		visualization = context.createSocket(ZMQ.DEALER);
-		visualization.connect("tcp://192.168.1.100:20000");
+		visualization.connect("tcp://192.168.1.207:20000");
 
 		collector = new PiCollector(context);
 		collector.start();

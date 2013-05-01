@@ -60,7 +60,7 @@ public class PiCollector extends Thread{
         // Set identity
         if(id != null) ventilator.setIdentity(id.getBytes());
         
-        ventilator.connect("tcp://192.168.1.100:10000");
+        ventilator.connect("tcp://192.168.1.140:10000");
         updateVentilator();
         // Tell controller I am ready, send heartbeat
         sendHeartbeats(ventilator);
