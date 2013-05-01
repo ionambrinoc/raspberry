@@ -6,8 +6,9 @@ public class Tree
 {
 	private final int hashNumber = 647;
 	public final boolean buySide;
+	private int size = 0;
 	
-	public Limit headLimit; public Limit tailLimit; public Limit extremeLimit; // highest buy or lowest sell
+	public Limit extremeLimit; // highest buy or lowest sell
 	private ArrayList<WeakReference<Limit>> hashTable = new ArrayList<WeakReference<Limit>>(hashNumber); 
 	
 	private int hasher (int price)
@@ -17,67 +18,63 @@ public class Tree
 	{
 		this.buySide = side; 
 		for (int i=0; i< hashNumber; i++) hashTable.add(null);
-		headLimit = null;
-		tailLimit = null;
 		extremeLimit = null;
 	}
 	
-	public void addLimit(int price)
+	public Limit addLimit(int price)
 	{
 			int hash = hasher (price);
-			Limit limit;
+			Limit limit = null;
 			
-			if (headLimit == null)
+			System.out.println("Adding limit"+price);
+			if (buySide)
 			{
-				limit = new Limit (price, null, null);
-				headLimit = limit; 				tailLimit = limit; 
-				headLimit.nextLimit = tailLimit; tailLimit.prevLimit=headLimit;
-				hashTable.set(hash, new WeakReference<Limit>(limit));
+				if (extremeLimit==null)
+				{
+					limit = new Limit (price, null, null);
+					hashTable.set(hash, new WeakReference<Limit>(limit));
+					extremeLimit=limit;
+					limit.prevLimit=limit; limit.nextLimit=limit;
+					size=1;
+				}
+				else 
+				{
+					Limit current = extremeLimit; int steps=0;
+					while (current.limitPrice>price && steps<size)
+						{		current=current.nextLimit;	steps+=1;		}
+					current=current.prevLimit;
+					limit = new Limit (price, current, current.nextLimit);
+					current.nextLimit.prevLimit=limit; current.nextLimit=limit;
+					if (getBucket(price)==null) hashTable.set(hasher(price), new WeakReference<Limit>(limit));
+					size+=1;
+					if (limit.limitPrice>extremeLimit.limitPrice) extremeLimit=limit;
+				}
+			
 			}
 			else
 			{
-				if (hashTable.get(hash) == null) 
+				if (extremeLimit==null)
 				{
-					System.out.println("Adding limit"+price);
-					limit = new Limit (price, tailLimit, headLimit);
-					
+					limit = new Limit (price, null, null);
 					hashTable.set(hash, new WeakReference<Limit>(limit));
-					tailLimit.nextLimit=limit; headLimit.prevLimit=limit;
-					Limit oldTail = tailLimit;
-					tailLimit=limit; // add to tail	
-					limit.prevLimit = oldTail; limit.nextLimit = headLimit;
-					System.out.println("Limit prev"+tailLimit.limitPrice+ "next" + tailLimit.prevLimit.limitPrice);
+					extremeLimit=limit;
+					limit.prevLimit=limit; limit.nextLimit=limit;
+					size=1;
 				}
-				else
+				else 
 				{
-					WeakReference<Limit> ref = hashTable.get(hash); //TODO: add limits in descending order of price for buy
-					Limit searcher = ref.get();						//TODO: add limits in ascending order of price for sell
-					if (buySide)
-						{
-							while (searcher.nextLimit !=null && hasher(searcher.nextLimit.limitPrice) == hash
-									&& 	searcher.limitPrice>price) 
-											searcher = searcher.nextLimit;
-							if (searcher.limitPrice>price) limit = new Limit (price, searcher.prevLimit, searcher);
-								else limit = new Limit(price, searcher, searcher.nextLimit);
-							if (searcher.nextLimit==null) limit.nextLimit=headLimit;
-							searcher.nextLimit=limit;
-						}	
-						else
-							{
-								while (searcher.nextLimit !=null && hasher(searcher.nextLimit.limitPrice) == hash
-										&& 	searcher.limitPrice<price) 
-											searcher = searcher.nextLimit;
-								if (searcher.limitPrice<price) limit = new Limit (price, searcher.prevLimit, searcher);
-									else limit = new Limit(price, searcher, searcher.nextLimit);
-								if (searcher.nextLimit==null) limit.nextLimit=headLimit;
-								searcher.nextLimit=limit;
-							}
-				}		
+					Limit current = extremeLimit; int steps=0;
+					while (current.limitPrice<price && steps<size)
+						{		current=current.nextLimit;		steps+=1;		}
+					current=current.prevLimit;
+					limit = new Limit (price, current, current.nextLimit);
+					current.nextLimit.prevLimit=limit; current.nextLimit=limit;
+					if (getBucket(price)==null) hashTable.set(hasher(price), new WeakReference<Limit>(limit));
+					size+=1;
+					if (limit.limitPrice<extremeLimit.limitPrice) extremeLimit=limit;
+				}
 			}
-			
-			
-			if (buySide) if (extremeLimit==null || price>extremeLimit.limitPrice) extremeLimit=limit;
-			if (!buySide)if (extremeLimit==null || price<extremeLimit.limitPrice) extremeLimit=limit;
+			return limit;
 	}
 	
 	public WeakReference<Limit> getBucket (int price)
@@ -85,20 +82,23 @@ public class Tree
 	
 	public Limit getLimit (int price)
 	{
-		if (hashTable.get(hasher(price))==null) return null; 
-		Limit current = hashTable.get(hasher(price)).get();
-		while (current.nextLimit != null) if (current.limitPrice==price) return current;
-									else current=current.nextLimit;
-		if (current.limitPrice==price) return current;
-			else return null;
+		if (getBucket(price)==null) return null;
+		Limit current = getBucket(price).get();
+		int steps = 0;
+		
+		while (current.limitPrice != price && steps<size)
+			{ current=current.nextLimit; steps+=1; }
+		if (current.limitPrice!=price) return null;
+			else return current;
 	}
+	
 	
 	public void removeLimit (int price) throws Throwable
 	{
 		Limit current = getLimit(price);
 		if (current.prevLimit != null) current.prevLimit.nextLimit = current.nextLimit; 
 		if (current.nextLimit != null) current.nextLimit.prevLimit = current.prevLimit; 
-		if (headLimit==null && tailLimit == null) this.finalize();
+		if (extremeLimit == null) this.finalize();
 	}
 
 	public void addOrder (Order order)
@@ -106,8 +106,9 @@ public class Tree
 		if (order.buy==buySide)
 		{
 			
-			Limit limit = getLimit(order.getPrice());
-			if (limit==null) { addLimit(order.getPrice()); limit = tailLimit; }
+			Limit limit = getLimit(order.getPrice()); 
+			
+			if (limit==null) { limit=addLimit(order.getPrice());  }
 			limit.addOrder(order);		
 		}
 		System.out.println("Order added" + order.idNumber); 

@@ -6,13 +6,13 @@ public class Book
 {
 	private final int hashNumber = 647;
 	
-	private Tree BuyTree;			public Limit highestBuy;
-	private Tree SellTree; 			public Limit lowestSell;
+	public Tree BuyTree;			public Limit highestBuy;
+	public Tree SellTree; 			private Limit lowestSell;
 	
 	public Order headOrder;					public Order tailOrder;
 	private ArrayList<WeakReference<Order>> hashTable = new ArrayList<WeakReference<Order>>(hashNumber);
 	
-	private int hasher (int idNumber)
+	public int hasher (int idNumber)
 	{	return idNumber%hashNumber;		  }
 	
 	public Book()
@@ -44,7 +44,6 @@ public class Book
 				}
 				else
 				{
-					
 					WeakReference<Order> ref = hashTable.get(hash); 
 					Order searcher = ref.get(); 
 				
@@ -66,16 +65,24 @@ public class Book
 	{
 		if (hashTable.get(hasher(idNumber))==null) return null;
 		Order current = hashTable.get(hasher(idNumber)).get(); 
-		while (current.nextOrder != null) if (current.idNumber==idNumber) return current;
-									else current=current.nextOrder; 
+		while (current.nextOrderInBook != null) if (current.idNumber==idNumber) return current;
+									else current=current.nextOrderInBook; 
 		return current;
 	}
 
 	public void removeOrder (int idNumber) throws Throwable //OK
 	{
-		Order current = getOrder(idNumber);
-		if (current.buy==true) BuyTree.getLimit(current.getPrice()).removeOrder(idNumber);
-			else SellTree.getLimit(current.getPrice()).removeOrder(idNumber);
+		Order current = getOrder(idNumber); System.out.println(current.idNumber);
+		if (current.buy==true) 
+			{
+				BuyTree.getLimit(current.getPrice()).removeOrder(idNumber);
+				if (BuyTree.getLimit(current.getPrice()).totalVolume==0) BuyTree.removeLimit(current.getPrice());
+			}
+			else 
+				{
+					SellTree.getLimit(current.getPrice()).removeOrder(idNumber);
+					if (SellTree.getLimit(current.getPrice()).totalVolume==0) SellTree.removeLimit(current.getPrice());
+				}
 		if (current.prevOrderInBook !=null) current.prevOrderInBook.nextOrderInBook = current.nextOrderInBook;
 		if (current.nextOrderInBook!=null) current.nextOrderInBook.prevOrderInBook = current.prevOrderInBook;
 	}
@@ -111,36 +118,20 @@ public class Book
 		Limit limit; int price;
 		if (buy)
 		{
-			for (int i=hashNumber; i>0; i--)
-			{
-				if (BuyTree.getBucket(i)!=null)
-				{
-					limit = BuyTree.getBucket(i).get(); price = limit.limitPrice;
-					if (limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
-				
-					while (limit.getOrderBySymbol(symbol)==null && price != limit.limitPrice) limit=limit.nextLimit;
-				
-					if (BuyTree.getBucket(i).get().getOrderBySymbol(symbol)!=null)
-						return BuyTree.getBucket(i).get().getOrderBySymbol(symbol);
-				}	
-			}
+			limit = highestBuy; price = highestBuy.limitPrice;
+			if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
+				else limit=limit.nextLimit;
+			while (price!=limit.limitPrice && limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
+			if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
 			return null;
 		}
 		else
 			{
-				for (int i=0; i<hashNumber; i++)
-				{
-					if (BuyTree.getBucket(i)!=null)
-					{
-						limit = BuyTree.getBucket(i).get(); price = limit.limitPrice;
-						if (limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
-				
-						while (limit.getOrderBySymbol(symbol)==null && price != limit.limitPrice) limit=limit.nextLimit;
-				
-						if (BuyTree.getBucket(i).get().getOrderBySymbol(symbol)!=null)
-							return BuyTree.getBucket(i).get().getOrderBySymbol(symbol);
-					}	
-				}
+				limit = lowestSell; price = lowestSell.limitPrice;
+				if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
+					else limit=limit.nextLimit;
+				while (price!=limit.limitPrice && limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
+				if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
 				return null;
 			}
 	}
