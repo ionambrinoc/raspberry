@@ -22,9 +22,9 @@ public class DisplayTableRow implements DisplayStatisticStrategy{
 		int i = 0;
 		String symbol = statistic.getSymbol();
 		
-		while(i<rows && (model.getValueAt(i,0) != symbol)){
+		while(i<rows && (!((String)model.getValueAt(i,0)).equals(symbol)))
 			i++;
-		}
+
 		
 		if(i>=rows){
 			model.addRow(new Object[]{symbol,0,0,0,0,0,0,0});

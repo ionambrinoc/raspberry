@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.List;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+
+import DisplayStrategy.DisplayTableRow;
 
 
 @SuppressWarnings("serial")
@@ -31,7 +34,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 		table = new JTable(new StatTableModel());
 		table.getModel().addTableModelListener(this);
 		(table.getSelectionModel()).setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableSelectionModel = table.getSelectionModel();
+		tableSelectionModel = table.getSelectionModel();		
 		tableSelectionModel.addListSelectionListener(new TableSelectionHandler(this));
         table.setSelectionModel(tableSelectionModel);
 		table.setAutoCreateRowSorter(true);
@@ -57,19 +60,19 @@ public class Display extends JDesktopPane implements TableModelListener{
 		});
 	}
 	
+	public StatThread getStatThread(){
+		return statThread;
+	}
+	
 	public void start() throws InterruptedException {
 		timer.start();
 		while(true){
-			System.out.println("While");
 			if(itIsTime){
-				System.out.println("TimeTimeTimeTimeTimeTimeTimeTimeTimeTimeTime");
 				update();
 				itIsTime=false;
 			}
 			else {
-				System.out.println("");
-				statThread.sleep(1);
-				//statThread.updateList();
+				statThread.updateList();
 			}
 		}
 	}
@@ -92,7 +95,10 @@ public class Display extends JDesktopPane implements TableModelListener{
 				0,0,0,(byte)(100*(Math.random()))};
 		Statistic s = new Statistic(bs);
 		s.getDisplayStrategy().display();*/
-		((statThread.getStatistic()).getDisplayStrategy()).display();
+		List<Statistic> list = statThread.peekStatistic();
+		for (Statistic stat : list){
+			new DisplayTableRow(stat).display();
+		}
 	}
 	
 	public JTable getTable() {

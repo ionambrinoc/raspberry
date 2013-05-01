@@ -1,12 +1,8 @@
 package Visualization;
 import java.nio.ByteBuffer;
-import DisplayStrategy.DisplayStatisticStrategy;
-import DisplayStrategy.DisplayTableRow;
-
 
 public class Statistic {
-	protected final DisplayStatisticStrategy displayStrategy;
-	public final int symbol;
+	public final String symbol;
 	public final int price;
 	public final int change;
 	public final int volume;
@@ -23,7 +19,7 @@ public class Statistic {
 	
 	public Statistic(byte[] bs){
 		ByteBuffer bb = ByteBuffer.wrap(bs);
-		this.symbol = bb.getInt(0);
+		this.symbol = Integer.toString(bb.getInt(0));
 		this.price = bb.getInt(4);
 		this.change = bb.getInt(8);
 		this.volume = bb.getInt(12);
@@ -37,12 +33,10 @@ public class Statistic {
 		this.mACD = bb.getInt(44);
 		this.mACDSignal = bb.getInt(48);
 		this.histogram = bb.getInt(52);
-		
-		displayStrategy = new DisplayTableRow(this);
 	}
 	
 	public String getSymbol(){
-		return "EIL";
+		return symbol;
 	}
 	
 	public int getPrice(){
@@ -83,9 +77,5 @@ public class Statistic {
 	}
 	public int getHistogram(){
 		return histogram;
-	}
-	
-	public DisplayStatisticStrategy getDisplayStrategy() {
-		return displayStrategy;
 	}
 }
