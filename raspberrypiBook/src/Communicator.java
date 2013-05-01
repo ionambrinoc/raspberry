@@ -1,3 +1,7 @@
+package main;
+
+
+
 public class Communicator 
 {
 	private StatisticEngine engine;
