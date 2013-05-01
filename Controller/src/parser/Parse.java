@@ -1,4 +1,4 @@
-package main;
+package parser;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -272,17 +272,8 @@ public class Parse {
 // fixed the problem where strange packet and messages sizes etc. occurred, caused by an error
 // when looping (skipping the final entry on inputArray)
 // it seems to now work, but as of yet (the code is running in the background) it seems to only
-// be full of Symbol Index Mapping control messages, like loads and loads of them. At least 30 minutes
+// be full of Symbol Index Mapping control messages, like loads and loads of them. At least 20 minutes
 // worth anyway. This isn't great really I feel for demonstration purposes
-
-// it at some point, gets time reference control messages too and security status control messages, this is fine
-
-// but, at one point, we get packet size 84 (which is 16 + 68), first message size 16 (type time reference)
-// meaning we should have 52 bytes of the packet left, but next message is of size "20020" which is obviously too big
-// (type 54 which isn't a type). after a few more weird messages like this it seems to recover a go back to
-// symbol index mapping messages
-// this is bad, not sure what happens to be honest, but as it does seem to recover, and happens really quickly,
-// might not actually be noticeable
 
 // could consider adding a counter to count how many bytes are boring stuff we don't do anything with
 // then "skip" them and start after that

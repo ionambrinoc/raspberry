@@ -1,5 +1,7 @@
 package controller;
 
+import parser.ControllerMessage;
+
 public class MessageReader {
 	
 	protected ParserReader parserReader;
@@ -17,9 +19,9 @@ public class MessageReader {
 	
 	public void ReadAndSendNextMessage(){
 	
-		ParserMessage nextMessage = parserReader.getMessage();
+		ControllerMessage nextMessage = parserReader.getMessage();
 		String nextPi = symbolAssignment.addSymbol(nextMessage.symbol);
-		messageHistory.addMessage(nextMessage.message, nextMessage.orderID, nextPi);
+		messageHistory.addMessage(nextMessage.message, nextMessage.orderId, nextPi);
 		messageSender.sendMessage(nextMessage.message, nextPi);
 	}
 }
