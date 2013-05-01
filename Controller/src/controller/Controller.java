@@ -19,14 +19,14 @@ public class Controller {
 		this.messageHistory = new MessageHistory(messageSender);
 		this.parserReader = new ParserReader();
 		this.messageReader = new MessageReader(parserReader, messageHistory, symbolAssignment, messageSender);
-		this.piManager = new PiManager(controllerNetwork, messageSender, symbolAssignment, messageHistory);
+		this.piManager = new PiManager(messageSender, symbolAssignment, messageHistory);
 	}
 	
 	public static void main(String[] args) {
 		Controller controller = new Controller();
 		while (true){
-			if (controller.controllerNetwork.getSema()){
-				controller.controllerNetwork.executeMessage();
+			if (controller.controllerNetwork.hasMessage()){
+				controller.piManager.executeMessage(controller.controllerNetwork.nextMessage());
 			}
 			else {
 				controller.messageReader.ReadAndSendNextMessage();

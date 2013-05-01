@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.Collections"/>
-<fullyQualifiedTypeName name="com.google.common.collect.BiMap"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="java.util.Queue"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="com.google.common.collect.HashBiMap"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<<<<<<< HEAD
-<fullyQualifiedTypeName name="DisplayStrategy.DisplayLastOrderPriceStrategy"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
-<fullyQualifiedTypeName name="javax.swing.JLabel"/>
-<fullyQualifiedTypeName name="java.awt.Font"/>
-<fullyQualifiedTypeName name="Visualization.LastOrderPrice"/>
-=======
-<fullyQualifiedTypeName name="networking.ControllerNetworkListener"/>
-<fullyQualifiedTypeName name="networking.ControllerNetwork"/>
-<fullyQualifiedTypeName name="java.util.concurrent.Semaphore"/>
->>>>>>> 60020eec1c0195061f2398f72eddd327d0850e51
+<fullyQualifiedTypeName name="java.nio.ByteBuffer"/>
 </qualifiedTypeNameHistroy>

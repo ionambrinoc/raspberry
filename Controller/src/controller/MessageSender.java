@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Iterator;
 import networking.ControllerNetwork;
 import java.util.List;
@@ -11,14 +9,14 @@ public class MessageSender {
 		this.controllerNetwork = controllerNetwork;
 	}
 
-	public void sendMessage(byte[] newOrders, Integer newPi) {
-		controllerNetwork.send((newPi.toString().getBytes()), newPi);
+	public void sendMessage(byte[] newOrders, String newPi) {
+		controllerNetwork.send((newOrders), newPi);
 		//System.out.println(new String(newPi.toString().getBytes()));
 	}
 
 	
 	
-	public void sendMessage(List<byte[]> newOrders, int newPi) {
+	public void sendMessage(List<byte[]> newOrders, String newPi) {
 		Iterator<byte[]> newOrdersIterator = newOrders.iterator();
 		while (newOrdersIterator.hasNext()){
 			sendMessage(newOrdersIterator.next(), newPi);

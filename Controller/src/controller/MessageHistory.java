@@ -17,7 +17,7 @@ public class MessageHistory {
 		history = new ListOfPi();
 	}
 
-	public void addMessage(byte[] message, Integer orderID, int pi) {
+	public void addMessage(byte[] message, Integer orderID, String pi) {
 		Pi newPi = history.get(pi); // checks to see if any messages have been sent to this particular pi before
 		if (newPi != null) { 
 			if (newPi.listOfOrderID.containsKey(orderID)){ //checks to see if that orderid has been seen before
@@ -32,15 +32,15 @@ public class MessageHistory {
 		else history.listOfPi = new ArrayList<Pi>();
 	}
 	
-	public void orderCompleted(int pi, int orderID){
-		history.get(pi).listOfOrderID.remove(orderID);
+	public void orderCompleted(int orderId, String piId){
+		history.get(piId).listOfOrderID.remove(orderId);
 	}
 	
-	public List<byte[]> piDown(int oldPiAddress, int newPiAddress) {
+	public List<byte[]> piDown(String piId, String newPi2) {
 		List<byte[]> listOfMessagesToBeSent = new LinkedList<byte[]>();
 		
-		Pi oldPi = history.get(oldPiAddress);
-		Pi newPi = history.get(newPiAddress);
+		Pi oldPi = history.get(piId);
+		Pi newPi = history.get(newPi2);
 		
 		Iterator<Integer> oldPiElements = oldPi.listOfOrderID.keySet().iterator();
 		while (oldPiElements.hasNext()) {
@@ -55,7 +55,7 @@ public class MessageHistory {
 	}
 	
 	protected class Pi {
-		public int name;
+		public String name;
 		public HashMap<Integer, Queue<byte[]>> listOfOrderID; //List of OrderIDs
 		
 	}
@@ -67,9 +67,9 @@ public class MessageHistory {
 			listOfPi = new ArrayList<Pi>(10);
 		}
 		
-		public Pi get(int nameOfPi){
+		public Pi get(String piId){
 			for (int i = 0; i < listOfPi.size(); i ++){
-				if (listOfPi.get(i).name == nameOfPi) return listOfPi.get(i);
+				if (listOfPi.get(i).name == piId) return listOfPi.get(i);
 			}
 			return null;
 		}
