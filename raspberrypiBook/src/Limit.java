@@ -20,8 +20,8 @@ public class Limit  //    each limit is a doubly linked list of limit objects
 	
 	public Limit (int price, Limit prevLimit, Limit nextLimit)
 	{
-		this.limitPrice=price;					this.prevLimit    =null;
-		totalVolume        =0;					this.nextLimit    =null;
+		this.limitPrice=price;					this.prevLimit    = prevLimit;
+		totalVolume        =0;					this.nextLimit    = nextLimit;
 		for (int i=0; i< hashNumber; i++) hashTable.add(null);
 	}
 	

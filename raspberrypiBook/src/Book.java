@@ -6,8 +6,8 @@ public class Book
 {
 	private final int hashNumber = 647;
 	
-	private Tree BuyTree;			public Limit highestBuy;
-	private Tree SellTree; 			public Limit lowestSell;
+	public Tree BuyTree;			public Limit highestBuy;
+	private Tree SellTree; 			private Limit lowestSell;
 	
 	public Order headOrder;					public Order tailOrder;
 	private ArrayList<WeakReference<Order>> hashTable = new ArrayList<WeakReference<Order>>(hashNumber);
@@ -44,7 +44,6 @@ public class Book
 				}
 				else
 				{
-					
 					WeakReference<Order> ref = hashTable.get(hash); 
 					Order searcher = ref.get(); 
 				
@@ -111,36 +110,20 @@ public class Book
 		Limit limit; int price;
 		if (buy)
 		{
-			for (int i=hashNumber; i>0; i--)
-			{
-				if (BuyTree.getBucket(i)!=null)
-				{
-					limit = BuyTree.getBucket(i).get(); price = limit.limitPrice;
-					if (limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
-				
-					while (limit.getOrderBySymbol(symbol)==null && price != limit.limitPrice) limit=limit.nextLimit;
-				
-					if (BuyTree.getBucket(i).get().getOrderBySymbol(symbol)!=null)
-						return BuyTree.getBucket(i).get().getOrderBySymbol(symbol);
-				}	
-			}
+			limit = highestBuy; price = highestBuy.limitPrice;
+			if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
+				else limit=limit.nextLimit;
+			while (price!=limit.limitPrice && limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
+			if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
 			return null;
 		}
 		else
 			{
-				for (int i=0; i<hashNumber; i++)
-				{
-					if (BuyTree.getBucket(i)!=null)
-					{
-						limit = BuyTree.getBucket(i).get(); price = limit.limitPrice;
-						if (limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
-				
-						while (limit.getOrderBySymbol(symbol)==null && price != limit.limitPrice) limit=limit.nextLimit;
-				
-						if (BuyTree.getBucket(i).get().getOrderBySymbol(symbol)!=null)
-							return BuyTree.getBucket(i).get().getOrderBySymbol(symbol);
-					}	
-				}
+				limit = lowestSell; price = lowestSell.limitPrice;
+				if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
+					else limit=limit.nextLimit;
+				while (price!=limit.limitPrice && limit.getOrderBySymbol(symbol)==null) limit=limit.nextLimit;
+				if (limit.getOrderBySymbol(symbol)!=null) return limit.getOrderBySymbol(symbol);
 				return null;
 			}
 	}
