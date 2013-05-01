@@ -36,6 +36,11 @@ public class Display extends JDesktopPane implements TableModelListener{
 		(table.getSelectionModel()).setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableSelectionModel = table.getSelectionModel();		
 		tableSelectionModel.addListSelectionListener(new TableSelectionHandler(this));
+		//
+		//
+		//((StatTableModel)table.getModel()).addRow(new Object[]{"1",1,1,1,1,1,1});
+		//
+		//
         table.setSelectionModel(tableSelectionModel);
 		table.setAutoCreateRowSorter(true);
 		table.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));

@@ -37,7 +37,8 @@ public class StatThread{
 	protected void fireUpdate(Statistic s){
 		String symbol = s.getSymbol();
 		StreamListener l = listeners.get(symbol);
-		if (l!=null) l.dataUpdate(s);
+		LinkedBlockingDeque<Statistic> q = map.get(symbol);
+		if (l!=null) l.dataUpdate(q);
 	}
 	
 	public void addStreamListener(String symbol, StreamListener l){
