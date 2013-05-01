@@ -45,7 +45,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 		table.setFillsViewportHeight(true);
 		
 		JInternalFrame tableFrame = new JInternalFrame("Table",true);
-		tableFrame.setSize(650,200);
+		tableFrame.setSize(600,200);
         tableFrame.setVisible(true);
 		tableFrame.add(scrollPane);
         this.add(tableFrame);

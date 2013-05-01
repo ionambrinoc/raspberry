@@ -9,13 +9,9 @@ public class Statistic {
 	public final int open;
 	public final int high;
 	public final int low;
-	public final int prevClose;
 	public final int vWAP;
 	public final int sMM;
 	public final int sMA;
-	public final int mACD;
-	public final int mACDSignal;
-	public final int histogram;
 	public final int time;
 	
 	public Statistic(byte[] bs){
@@ -27,14 +23,10 @@ public class Statistic {
 		this.open = bb.getInt(16);
 		this.high = bb.getInt(20);
 		this.low = bb.getInt(24);
-		this.prevClose = bb.getInt(28);
-		this.vWAP = bb.getInt(32);
-		this.sMM = bb.getInt(36);
-		this.sMA = bb.getInt(40);
-		this.mACD = bb.getInt(44);
-		this.mACDSignal = bb.getInt(48);
-		this.histogram = bb.getInt(52);
-		this.time = bb.getInt(56);
+		this.vWAP = bb.getInt(28);
+		this.sMM = bb.getInt(32);
+		this.sMA = bb.getInt(36);
+		this.time = bb.getInt(40);
 	}
 	
 	public String getSymbol(){
@@ -59,9 +51,6 @@ public class Statistic {
 	public int getLow(){
 		return low;
 	}
-	public int getPrevClose(){
-		return prevClose;
-	}
 	public int getVWAP(){
 		return vWAP;
 	}
@@ -70,15 +59,6 @@ public class Statistic {
 	}
 	public int getSMA(){
 		return sMA;
-	}
-	public int getMACD(){
-		return mACD;
-	}
-	public int getMACDSignal(){
-		return mACDSignal;
-	}
-	public int getHistogram(){
-		return histogram;
 	}
 	public int getTime(){
 		return time;
