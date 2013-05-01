@@ -50,7 +50,7 @@ public class Parse {
 			if(newStart+readSize>arraySize) {
 				// we will need to wrap around
 				System.out.println("we need to wrap around, storing from "+newStart+" until the end.");
-				in.read(inputArray, newStart, arraySize-newStart-1); // read from the file filling up the latter part of the array
+				in.read(inputArray, newStart, arraySize-newStart); // read from the file filling up the latter part of the array
 				System.out.println("j = "+j);
 				j = readSize - (arraySize-newStart-1); // this is the index of where in the array we will have stored up to
 				System.out.println("j now = "+j);
@@ -103,9 +103,7 @@ public class Parse {
 	public static void splitPacket() {
 		// this will split the data into packets
 		int remainingPacketSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]); // the first two bytes represent the size of the packet
-		System.out.println("i = "+i+" and inputArray[i]= "+inputArray[i]+" and inputArray[i+1]= "+inputArray[(i+1)%arraySize]);
 		System.out.println("the packet size is "+remainingPacketSize+" and the packet type is "+inputArray[(i+2)%arraySize]);
-		if(remainingPacketSize==0) System.out.println(inputArray[999999]);
 		
 		i = (i+16)%arraySize; // the packet header is 16 bytes
 		remainingPacketSize-=16; // we move past the 16 bytes of the header
@@ -140,13 +138,13 @@ public class Parse {
 				// needs to read more of the file
 				readFile(); //in, inputArray);
 				System.out.println("message too big, and message size 0");
-				System.out.println(inputArray[99999999]);
+				System.out.println(inputArray[99999999]); // used to crash out of the system
 			}
 			System.out.println("message size is 0, i is "+i); 
 			return null;
 		}
 		
-		int messageType = toInt(inputArray[i+2], inputArray[i+3]);
+		int messageType = toInt(inputArray[(i+2)%arraySize], inputArray[(i+3)%arraySize]);
 		System.out.print("new message of size "+messageSize+". i="+i);
 		switch (messageType) {
 		case 100:
@@ -176,21 +174,21 @@ public class Parse {
 	public static Message newAddMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)1; // 1 is the reference for a message of type Add
-		for(int j = 1; j<5; j++) {
+		for(int k= 1; k<5; k++) {
 			message[j] = inputArray[index+j+4]; // inputArray[index+4..index+8) = the time reference;
 		}
-		for(int j = 5; j<9; j++) {
+		for(int k = 5; k<9; k++) {
 			message[j] = inputArray[index+j+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
-		for(int j = 9; j<13; j++) {
-			message[j] = inputArray[index+j+16]; // inputArray[index+16..index+20) = the OrderID reference;
+		for(int k = 9; k<13; k++) {
+			message[k] = inputArray[index+k+16]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
-		for(int j = 13; j<17; j++) {
-			message[j] = inputArray[index+j+20]; // inputArray[index+20..index+24) = the price reference;
+		for(int k = 13; k<17; k++) {
+			message[k] = inputArray[index+k+20]; // inputArray[index+20..index+24) = the price reference;
 		}
-		message[17] = inputArray[28]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
-		for(int j = 18; j<22; j++) {
-			message[j] = inputArray[index+j+24]; // inputArray[index+24..index+28) = the volume reference;
+		message[17] = inputArray[index+28]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
+		for(int k = 18; k<22; k++) {
+			message[k] = inputArray[index+k+24]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		
 		Message newMessage = new Message(message);
@@ -201,21 +199,21 @@ public class Parse {
 	public static Message newModifyMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)2; // 2 is the reference for a message of type Modify
-		for(int j = 1; j<5; j++) {
-			message[j] = inputArray[index+j+4]; // inputArray[index+4..index+8) = the time reference;
+		for(int k = 1; k<5; k++) {
+			message[k] = inputArray[index+k+4]; // inputArray[index+4..index+8) = the time reference;
 		}
-		for(int j = 5; j<9; j++) {
-			message[j] = inputArray[index+j+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
+		for(int k = 5; k<9; k++) {
+			message[k] = inputArray[index+k+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
-		for(int j = 9; j<13; j++) {
-			message[j] = inputArray[index+j+16]; // inputArray[index+16..index+20) = the OrderID reference;
+		for(int k = 9; k<13; k++) {
+			message[k] = inputArray[index+k+16]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
-		for(int j = 13; j<17; j++) {
-			message[j] = inputArray[index+j+20]; // inputArray[index+20..index+24) = the price reference;
+		for(int k = 13; k<17; k++) {
+			message[k] = inputArray[index+k+20]; // inputArray[index+20..index+24) = the price reference;
 		}
-		message[17] = inputArray[28]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
-		for(int j = 18; j<22; j++) {
-			message[j] = inputArray[index+j+24]; // inputArray[index+24..index+28) = the volume reference;
+		message[17] = inputArray[index+28]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
+		for(int k = 18; k<22; k++) {
+			message[k] = inputArray[index+k+24]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		Message newMessage = new Message(message);
 		
@@ -225,21 +223,21 @@ public class Parse {
 	public static Message newDeleteMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)3; // 3 is the reference for a message of type Delete
-		for(int j = 1; j<5; j++) {
-			message[j] = inputArray[index+j+4]; // inputArray[index+4..index+8) = the time reference;
+		for(int k = 1; k<5; k++) {
+			message[k] = inputArray[index+k+4]; // inputArray[index+4..index+8) = the time reference;
 		}
-		for(int j = 5; j<9; j++) {
-			message[j] = inputArray[index+j+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
+		for(int k = 5; k<9; k++) {
+			message[k] = inputArray[index+k+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
-		for(int j = 9; j<13; j++) {
-			message[j] = inputArray[index+j+16]; // inputArray[index+16..index+20) = the OrderID reference;
+		for(int k = 9; k<13; k++) {
+			message[k] = inputArray[index+k+16]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
-		for(int j = 13; j<17; j++) {
-			message[j] = 0; // delete messages have no price reference;
+		for(int k = 13; k<17; k++) {
+			message[k] = 0; // delete messages have no price reference;
 		}
-		message[17] = inputArray[20]; // inputArray[20] is the side reference. Note, this is currently stored as an ASCII Character
-		for(int j = 18; j<22; j++) {
-			message[j] = 0; // delete messages have no volume reference;
+		message[17] = inputArray[index+20]; // inputArray[20] is the side reference. Note, this is currently stored as an ASCII Character
+		for(int k = 18; k<22; k++) {
+			message[k] = 0; // delete messages have no volume reference;
 		}
 		Message newMessage = new Message(message);
 		
@@ -249,21 +247,21 @@ public class Parse {
 	public static Message newExecuteMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)0; // 0 is the reference for a message of type Add
-		for(int j = 1; j<5; j++) {
-			message[j] = inputArray[index+j+4]; // inputArray[index+4..index+8) = the time reference;
+		for(int k = 1; k<5; k++) {
+			message[k] = inputArray[index+k+4]; // inputArray[index+4..index+8) = the time reference;
 		}
-		for(int j = 5; j<9; j++) {
-			message[j] = inputArray[index+j+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
+		for(int k = 5; k<9; k++) {
+			message[k] = inputArray[index+k+8]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
-		for(int j = 9; j<13; j++) {
-			message[j] = inputArray[index+j+16]; // inputArray[index+16..index+20) = the OrderID reference;
+		for(int k = 9; k<13; k++) {
+			message[k] = inputArray[index+k+16]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
-		for(int j = 13; j<17; j++) {
-			message[j] = inputArray[index+j+20]; // inputArray[index+20..index+24) = the price reference;
+		for(int k = 13; k<17; k++) {
+			message[k] = inputArray[index+k+20]; // inputArray[index+20..index+24) = the price reference;
 		}
 		message[17] = 2; // execute messages have no side reference
-		for(int j = 18; j<22; j++) {
-			message[j] = inputArray[index+j+24]; // inputArray[index+24..index+28) = the volume reference;
+		for(int k = 18; k<22; k++) {
+			message[k] = inputArray[index+k+24]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		Message newMessage = new Message(message);
 		
@@ -271,10 +269,17 @@ public class Parse {
 	}
 }
 
-// the code runs, stopping when I wanted (when we get a weird messageSize) at some point, where we have had lots of messages
-// of size 38, and type 3=SymbolIndexMapping (where packets have been size 54, type 11=original message)
-// we suddenly get a packet of size 13902 and type 0, whereafter it goes really strange
-// currently, I don't know why this happens, but am working on it.
+// fixed the problem where strange packet and messages sizes etc. occurred, caused by an error
+// when looping (skipping the final entry on inputArray)
+// it seems to now work, but as of yet (the code is running in the background) it seems to only
+// be full of Symbol Index Mapping control messages, like loads and loads of them. At least 20 minutes
+// worth anyway. This isn't great really I feel for demonstration purposes
+
+// could consider adding a counter to count how many bytes are boring stuff we don't do anything with
+// then "skip" them and start after that
+
+// also needs to incorporate the other three files I guess, although it seems that in a short demonstration
+// we won't really have enough time for that to be needed
 
 
 
