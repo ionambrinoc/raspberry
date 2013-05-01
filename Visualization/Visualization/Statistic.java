@@ -16,6 +16,7 @@ public class Statistic {
 	public final int mACD;
 	public final int mACDSignal;
 	public final int histogram;
+	public final int time;
 	
 	public Statistic(byte[] bs){
 		ByteBuffer bb = ByteBuffer.wrap(bs);
@@ -33,6 +34,7 @@ public class Statistic {
 		this.mACD = bb.getInt(44);
 		this.mACDSignal = bb.getInt(48);
 		this.histogram = bb.getInt(52);
+		this.time = bb.getInt(56);
 	}
 	
 	public String getSymbol(){
@@ -77,5 +79,8 @@ public class Statistic {
 	}
 	public int getHistogram(){
 		return histogram;
+	}
+	public int getTime(){
+		return time;
 	}
 }

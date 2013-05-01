@@ -30,14 +30,14 @@ public class StatThread{
 		if(q.size() == 1000) q.takeFirst();
 		q.putLast(statistic);
 		
-		//
 		fireUpdate(statistic);
 		
 	}
 	
 	protected void fireUpdate(Statistic s){
 		String symbol = s.getSymbol();
-		(listeners.get(symbol)).dataUpdate(s);
+		StreamListener l = listeners.get(symbol);
+		if (l!=null) l.dataUpdate(s);
 	}
 	
 	public void addStreamListener(String symbol, StreamListener l){

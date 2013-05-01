@@ -12,12 +12,11 @@ public final class ChartFrameFactory {
 	
 	public ChartFrame createChartFrame(final String symbol, final StatThread thread) {
 		if(!currentSymbols.contains(symbol)){
-			ChartFrame chartFrame = new ChartFrame(symbol);
+			ChartFrame chartFrame = new ChartFrame(symbol, thread);
 			currentSymbols.add(symbol);
 			chartFrame.setSize(600,400);
 			chartFrame.setLocation((int)(100*Math.random()),(int)(200+100*Math.random()));
 			chartFrame.setVisible(true);
-			thread.addStreamListener(symbol,chartFrame);
 			
 			chartFrame.addInternalFrameListener(new InternalFrameAdapter() {
 				@Override
