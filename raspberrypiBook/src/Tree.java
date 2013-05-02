@@ -1,3 +1,4 @@
+package main;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 

@@ -1,3 +1,4 @@
+package main;
 public class Order implements Comparable<Order>
 {
 	public final int idNumber;

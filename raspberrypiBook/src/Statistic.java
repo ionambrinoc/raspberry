@@ -1,3 +1,4 @@
+package main;
 import java.nio.ByteBuffer;
 public class Statistic {
 	public final String symbol;
