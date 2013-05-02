@@ -11,13 +11,16 @@ import com.steema.teechart.editors.ChartEditor;
 import com.steema.teechart.styles.Bar;
 import com.steema.teechart.styles.Series;
 
+import Visualization.StatThread;
 import Visualization.Statistic;
 import Visualization.StreamListener;
 
 @SuppressWarnings("serial")
 public class ChartFrame extends JInternalFrame implements StreamListener{
-	protected ChartFrame(String symbol) {
+	protected ChartFrame(String symbol, StatThread thread) {
 		super("Charts for "+symbol, true, true, true);
+		thread.addStreamListener(symbol,this);
+		
 		JPanel jpanel = new JPanel();
 		jpanel.setLayout(null);
 		TChart priceChart = new TChart();
@@ -40,7 +43,6 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 	@Override
 	public void dataUpdate(Statistic s) {
 		// TODO Auto-generated method stub
-		System.out.println("ChartUpdate");
 		//add(s.getPrice(),time????);
 	}
 
