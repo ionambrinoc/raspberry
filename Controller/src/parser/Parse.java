@@ -5,17 +5,24 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class Parse {
-	static int i = 0; // i represents where in the inputArray we have processed
-	static int j = 0; // j represents where in the inputArray the last read was stored up to
-	static int readSize = 9216; // size of each read call. 9216 = 9*1024;
-	static int arraySize = 10240; // size of the inputArray
-	static byte[] inputArray = new byte[arraySize];
-	static BufferedInputStream in;
+public class Parse extends Thread {
+	int i = 0; // i represents where in the inputArray we have processed
+	int j = 0; // j represents where in the inputArray the last read was stored up to
+	int readSize = 9216; // size of each read call. 9216 = 9*1024;
+	int arraySize = 10240; // size of the inputArray
+	byte[] inputArray = new byte[arraySize];
+	BufferedInputStream in;
+	final LinkedBlockingQueue<ControllerMessage> messageQueue;
 	
+	public Parse(LinkedBlockingQueue<ControllerMessage> messageQueue){
+		this.messageQueue = messageQueue;
+		
+	}
+
 	
-	public static void initialReadFile() {	
+	public void initialReadFile() {	
 		try {
 			in = new BufferedInputStream (new FileInputStream("data1.dat"));
 			int size = in.available();
@@ -43,7 +50,7 @@ public class Parse {
 	
 	
 	
-	public static void readFile() { // BufferedInputStream in, byte[] inputArray) {
+	public void readFile() { // BufferedInputStream in, byte[] inputArray) {
 		try {
 			int newStart = j; System.out.println("j equals "+j+" and the other thing is: "+(arraySize-newStart-1)+
 					" inputArray[newStart] = "+inputArray[newStart]+ " inputArray[blah] = "+inputArray[arraySize-newStart-1]);
@@ -69,13 +76,19 @@ public class Parse {
 		
 	}
 	
-	public static void main(String[] args) throws IOException, InterruptedException {
+	@Override
+	public void run() {
 		initialReadFile();
 		int packetSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]);
 		System.out.println("i= "+i+" and first packet size is "+packetSize);
 		while(i<arraySize) { // while the point we have processed is within the stored area
 	//		while(i+packetSize<j) { // while the next packet has been fully read and stored in inputArray
-				splitPacket(); // this is where the link with the controller needs to be I think...
+				try {
+					splitPacket();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // this is where the link with the controller needs to be I think...
 				packetSize = toInt(inputArray[i], inputArray[i+1]); // update packetSize to the size of the next packet
 	//		}
 			// the next packet hasn't been fully read/stored, so we need to read more of the file
@@ -84,7 +97,7 @@ public class Parse {
 		}
 		// need to code what happens when we need to wrap round in the array
 	}
-	public static int toInt(byte first, byte second) {
+	public int toInt(byte first, byte second) {
 /**	    ByteBuffer bb = ByteBuffer.wrap(new byte[] {second, first}); // swap second and first depending on endianness
 	    int answer = bb.getShort(); // Implicitly widened to an int per JVM spec.
 	    if(answer<0) { // due to 2's compliment
@@ -100,7 +113,7 @@ public class Parse {
 		return answer;
 	}
 	
-	public static void splitPacket() {
+	public void splitPacket() throws InterruptedException {
 		// this will split the data into packets
 		int remainingPacketSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]); // the first two bytes represent the size of the packet
 		System.out.println("the packet size is "+remainingPacketSize+" and the packet type is "+inputArray[(i+2)%arraySize]);
@@ -117,12 +130,12 @@ public class Parse {
 				readFile();
 			}
 			remainingPacketSize -= nextMessageSize; // decrement the remainingPacketSize by the size of the next message
-			splitMessage(); // split the packet into messages
+			messageQueue.put(splitMessage()); // split the packet into messages
 		}
 		
 	}
 	
-	public static ControllerMessage splitMessage() {
+	public ControllerMessage splitMessage() {
 		// i is where we have reached in inputArray. inputArray[i] is the first byte from the new message
 		int messageSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]);
 		Message message;
@@ -171,7 +184,7 @@ public class Parse {
 		return messageToSend;
 	}
 	
-	public static Message newAddMessage(int index) { // inputArray[index] is the start of the message
+	public Message newAddMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)1; // 1 is the reference for a message of type Add
 		for(int k= 1; k<5; k++) {
@@ -196,7 +209,7 @@ public class Parse {
 		return newMessage;
 	}
 	
-	public static Message newModifyMessage(int index) { // inputArray[index] is the start of the message
+	public Message newModifyMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)2; // 2 is the reference for a message of type Modify
 		for(int k = 1; k<5; k++) {
@@ -220,7 +233,7 @@ public class Parse {
 		return newMessage;
 	}
 	
-	public static Message newDeleteMessage(int index) { // inputArray[index] is the start of the message
+	public Message newDeleteMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)3; // 3 is the reference for a message of type Delete
 		for(int k = 1; k<5; k++) {
@@ -244,7 +257,7 @@ public class Parse {
 		return newMessage;
 	}
 	
-	public static Message newExecuteMessage(int index) { // inputArray[index] is the start of the message
+	public Message newExecuteMessage(int index) { // inputArray[index] is the start of the message
 		byte[] message = new byte[22];
 		message[0] = (byte)0; // 0 is the reference for a message of type Add
 		for(int k = 1; k<5; k++) {

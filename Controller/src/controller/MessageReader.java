@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.concurrent.LinkedBlockingQueue;
+
 import parser.ControllerMessage;
 
 public class MessageReader {
@@ -8,18 +10,20 @@ public class MessageReader {
 	protected MessageHistory messageHistory;
 	protected MessageSender messageSender;
 	protected SymbolAssignment symbolAssignment;
+	protected LinkedBlockingQueue<ControllerMessage> messageQueue;
 	
 	
-	public MessageReader(ParserReader parserReader, MessageHistory messageHistory, SymbolAssignment symbolAssignment, MessageSender messageSender){
+	public MessageReader(ParserReader parserReader, MessageHistory messageHistory, SymbolAssignment symbolAssignment, MessageSender messageSender, LinkedBlockingQueue<ControllerMessage> messageQueue){
 		this.parserReader = parserReader;
 		this.messageHistory = messageHistory;
 		this.symbolAssignment = symbolAssignment;
 		this.messageSender = messageSender;
+		this.messageQueue = messageQueue;
 	}
 	
 	public void ReadAndSendNextMessage(){
 	
-		ControllerMessage nextMessage = parserReader.getMessage();
+		ControllerMessage nextMessage = messageQueue.poll();
 		String nextPi = symbolAssignment.addSymbol(nextMessage.symbol);
 		messageHistory.addMessage(nextMessage.message, nextMessage.orderId, nextPi);
 		messageSender.sendMessage(nextMessage.message, nextPi);
