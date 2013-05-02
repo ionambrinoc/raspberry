@@ -80,12 +80,14 @@ public class Limit  //    each limit is a doubly linked list of limit objects
 	
 	public void removeOrder (int idNumber) throws Throwable
 	{
-		Order current = getOrder(idNumber);
+		Order current = getOrder(idNumber); System.out.println(current.idNumber);
 		int vol = current.getVolume();
-		if (current.prevOrder != null) current.prevOrder.nextOrder = current.nextOrder; 		
+		if (current.idNumber==headOrder.idNumber) headOrder=current.nextOrder;
+		if (current.idNumber==tailOrder.idNumber) tailOrder=current.prevOrder;
+		if (current.prevOrder != null) current.prevOrder.nextOrder = current.nextOrder; 
 		if (current.nextOrder != null) current.nextOrder.prevOrder = current.prevOrder; 
 		totalVolume-=vol;
-		if (headOrder==null && tailOrder == null) this.finalize();
+		if (totalVolume==0) { prevLimit.nextLimit=nextLimit; nextLimit.prevLimit=prevLimit; prevLimit=null; nextLimit=null; }
 	}
 	
 	public void modifyOrder (int idNumber, int vol, int price)

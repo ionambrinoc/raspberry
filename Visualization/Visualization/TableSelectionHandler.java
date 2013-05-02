@@ -29,7 +29,7 @@ public class TableSelectionHandler implements ListSelectionListener{
             }
         }
 		
-		ChartFrame chartFrame = factory.createChartFrame(symbol);
+		ChartFrame chartFrame = factory.createChartFrame(symbol,display.getStatThread());
 		
 		lsm.clearSelection();
 		
