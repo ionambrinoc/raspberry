@@ -14,8 +14,8 @@ public final class ChartFrameFactory {
 		if(!currentSymbols.contains(symbol)){
 			ChartFrame chartFrame = new ChartFrame(symbol, thread);
 			currentSymbols.add(symbol);
-			chartFrame.setSize(600, 338);
-			chartFrame.setLocation((int)(100*Math.random()),(int)(200+100*Math.random()));
+			chartFrame.setSize(425, 500);
+			chartFrame.setLocation((int)(100*Math.random()),(int)(200+80*Math.random()));
 			chartFrame.setVisible(true);
 			
 			chartFrame.addInternalFrameListener(new InternalFrameAdapter() {
