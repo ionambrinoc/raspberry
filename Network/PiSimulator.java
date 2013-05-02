@@ -1,6 +1,7 @@
 public class PiSimulator{
 	private static PiNetwork network;
 	public static void main(String[] args) throws InterruptedException {
+	
 		network = new PiNetwork();
 		int i = 0;
 		while(true){
