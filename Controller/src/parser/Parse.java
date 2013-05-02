@@ -1,4 +1,4 @@
-package main;
+package parser;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
