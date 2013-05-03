@@ -37,6 +37,5 @@ public class DisplayTableRow implements DisplayStatisticStrategy{
 		model.setValueAt(statistic.getOpen(), i, 4);
 		model.setValueAt(statistic.getHigh(), i, 5);
 		model.setValueAt(statistic.getLow(), i, 6);
-		model.setValueAt(statistic.getPrevClose(), i, 7);
 	}
 }
