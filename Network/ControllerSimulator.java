@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class ControllerSimulator{
 	private static ControllerNetwork network;
-	static String worker = null;
+	static ArrayList<String> workers = new ArrayList<>();
 	
 	private static void processMsg(byte[] msg){
 			byte[] id;
@@ -8,20 +10,19 @@ public class ControllerSimulator{
 				case 1:
 					id = new byte[msg.length-1];
 					System.arraycopy(msg, 1, id, 0, msg.length-1);
-					worker = new String(id);
-					System.out.println(worker+" is up");
+					workers.add(new String(id));
+					System.out.println(workers+" is up");
 					break;
 				case 2:
 					id = new byte[msg.length-1];
 					System.arraycopy(msg, 1, id, 0, msg.length-1);
 					System.out.println(new String(id)+" is down");
-					worker = null;
+					workers.remove(new String(id));
 					break;
 				case 3:
 					id = new byte[msg.length-3];
 					System.arraycopy(msg, 3, id, 0, msg.length-3);
-//					System.out.println("confirmation from :"+new String(id));
-					worker = new String(id);
+					System.out.println("Message received from "+new String(id));
 					break;
 			}
 	}
@@ -34,14 +35,13 @@ public class ControllerSimulator{
 				byte[] msg = network.nextMessage();
 				processMsg(msg);
 			}
-			if(worker == null){
+			if(workers.isEmpty()){
 				System.out.println("waiting for worker");
 				byte[] msg = network.nextMessage();
 				processMsg(msg);
 			}else{
-				i = (i+1)%100;
-				network.send("hello".getBytes(), worker);
-				if(i == 0) worker = null;
+				for(String worker : workers)
+					network.send("hello".getBytes(), worker);
 			}
 		}
 	}

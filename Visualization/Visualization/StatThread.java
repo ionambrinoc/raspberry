@@ -1,7 +1,6 @@
 package Visualization;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -19,15 +18,15 @@ public class StatThread{
 	public void updateList() throws InterruptedException{
 		byte[] bs = network.recv();
 		Statistic statistic = new Statistic(bs);
-		
+		int n = 50;
 		// Add to the correct queue for the symbol of the statistic
 		LinkedBlockingDeque<Statistic> q = map.get(statistic.getSymbol());
 		if(q == null){
-			q = new LinkedBlockingDeque<Statistic>(1000);
+			q = new LinkedBlockingDeque<Statistic>(n);
 			map.put(statistic.getSymbol(), q);
 		}
 
-		if(q.size() == 1000) q.takeFirst();
+		if(q.size() == n) q.takeFirst();
 		q.putLast(statistic);
 		
 		fireUpdate(statistic);
@@ -61,5 +60,9 @@ public class StatThread{
 		//Chart implements DataListener has newData(data){add(data)}
 		//When a chart closes, listener is remove from list of listeners in this class. (ChartFrameFactory.internalFrameClosed)
 		return list;
+	}
+
+	public void rubbish() {
+		network.recv();
 	}
 }

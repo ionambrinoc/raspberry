@@ -36,11 +36,6 @@ public class Display extends JDesktopPane implements TableModelListener{
 		(table.getSelectionModel()).setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableSelectionModel = table.getSelectionModel();		
 		tableSelectionModel.addListSelectionListener(new TableSelectionHandler(this));
-		//
-		//
-		//((StatTableModel)table.getModel()).addRow(new Object[]{"1",1,1,1,1,1,1});
-		//
-		//
         table.setSelectionModel(tableSelectionModel);
 		table.setAutoCreateRowSorter(true);
 		table.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
@@ -58,7 +53,7 @@ public class Display extends JDesktopPane implements TableModelListener{
             tableFrame.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
 
-		timer = new Timer(1000, new ActionListener(){
+		timer = new Timer(50, new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				itIsTime = true;
 			}
@@ -71,19 +66,26 @@ public class Display extends JDesktopPane implements TableModelListener{
 	
 	public void start() throws InterruptedException {
 		timer.start();
+		int count = 1;
 		while(true){
 			if(itIsTime){
-				update();
+				statThread.updateList();
+				if (count >= 20) {
+					update();
+					count = 1;
+				}
+				count++;
 				itIsTime=false;
 			}
-			else {
-				statThread.updateList();
+			else{
+				statThread.rubbish();
 			}
 		}
 	}
 
 	public void update(){
-		/*byte[] bs = {
+		/*Test:
+		 * byte[] bs = {
 				0,0,0,(byte)0,
 				0,0,0, (byte)(100*(Math.random())),
 				0,(byte)(100*(Math.random())),0,0,
@@ -121,14 +123,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,  RenderingHints.VALUE_ANTIALIAS_ON);
 		Color oldColor = g.getColor();
 		g.setColor(Color.black);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		/*for (GameElement gameElement : cave.getGameElements()){
-			getGameElementPainter(gameElement).paint(g2d,gameElement);
-			if(applicationState.getToolSelected() == ToolSelected.EDIT && applicationState.isSelected(gameElement)){
-				getGameElementPainter(gameElement).paintSelection(g2d, gameElement);
-			}
-		}*/
-		
+		g.fillRect(0, 0, getWidth(), getHeight());		
 		g.setColor(oldColor);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, oldAntialiasing);
 	}
