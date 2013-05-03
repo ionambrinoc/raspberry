@@ -4,7 +4,7 @@ public class ApplicationFrame
 	public static void main(String[] args) throws Throwable
 	{
 		Book book = new Book();
-		PiNetwork network = new PiNetwork;
+		PiNetwork network = new PiNetwork();
 		Communicator comm = new Communicator(book, network);
 		comm.start();
 		
