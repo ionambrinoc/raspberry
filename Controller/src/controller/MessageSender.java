@@ -10,8 +10,9 @@ public class MessageSender {
 	}
 
 	public void sendMessage(byte[] newOrders, String newPi) {
-		controllerNetwork.send((newOrders), newPi);
+//		controllerNetwork.send((newOrders), newPi);
 		//System.out.println(new String(newPi.toString().getBytes()));
+		System.out.println(newOrders.toString());
 	}
 
 	

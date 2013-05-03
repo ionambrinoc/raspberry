@@ -26,7 +26,7 @@ public class Controller {
 		this.messageHistory = new MessageHistory(messageSender);
 		this.parserReader = new ParserReader();
 		this.piManager = new PiManager(messageSender, symbolAssignment, messageHistory);
-		this.messageQueue = new LinkedBlockingQueue<ControllerMessage>();
+		this.messageQueue = new LinkedBlockingQueue<ControllerMessage>(10);
 		this.parse = new Parse(messageQueue);
 		this.messageReader = new MessageReader(parserReader, messageHistory, symbolAssignment, messageSender, messageQueue);
 		parse.start();
@@ -39,7 +39,7 @@ public class Controller {
 				controller.piManager.executeMessage(controller.controllerNetwork.nextMessage());
 			}
 			else {
-				controller.messageReader.ReadAndSendNextMessage();
+				if (controller.symbolAssignment.pisAvailable()) controller.messageReader.ReadAndSendNextMessage();
 			}
 		}
 	}
