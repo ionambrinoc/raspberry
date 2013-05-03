@@ -28,6 +28,13 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 	JFreeChart chart2;
 	String symbol;
 	
+	XYSeries price = new XYSeries("Price");
+	XYSeries vwap = new XYSeries("VWAP");
+	XYSeries smm = new XYSeries("SMM");
+	XYSeries sma = new XYSeries("SMA");
+	XYSeries high = new XYSeries("High");
+	XYSeries low = new XYSeries("Low");
+	
 	protected ChartFrame(String symbol, StatThread thread) {
 		super("Charts for symbol "+symbol, false, true, false);
 
@@ -46,29 +53,6 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
         jPanel.add(chartPanel2);
         setContentPane(jPanel);
         
-		thread.addStreamListener(symbol,this);
-	}
-
-	@Override
-	public void dataUpdate(LinkedBlockingDeque<Statistic> q) {
-		priceDataSet.removeAllSeries();
-		candleDataSet.removeAllSeries();
-		XYSeries price = new XYSeries("Price");
-		XYSeries vwap = new XYSeries("VWAP");
-		XYSeries smm = new XYSeries("SMM");
-		XYSeries sma = new XYSeries("SMA");
-		XYSeries high = new XYSeries("High");
-		XYSeries low = new XYSeries("Low");
-
-		for (Statistic s : q) {
-			price.add(s.getTime(),s.getPrice());
-			vwap.add(s.getTime(),s.getVWAP());
-			smm.add(s.getTime(),s.getSMM());
-			sma.add(s.getTime(),s.getSMA());
-			high.add(s.getTime(),s.getHigh());
-			low.add(s.getTime(),s.getLow());
-		 }
-
 		priceDataSet.addSeries(price);
 		priceDataSet.addSeries(vwap);
 		priceDataSet.addSeries(smm);
@@ -76,6 +60,25 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 		candleDataSet.addSeries(sma);
 		candleDataSet.addSeries(high);
 		candleDataSet.addSeries(low);
+        
+		thread.addStreamListener(symbol,this);
+	}
+
+	@Override
+	public void dataUpdate(Statistic s) {
+		
+		if(price.getItemCount() == 50) price.remove(0);
+		price.add(s.getTime(),s.getPrice());
+		if(vwap.getItemCount() == 50) vwap.remove(0);
+		vwap.add(s.getTime(),s.getVWAP());
+		if(smm.getItemCount() == 50) smm.remove(0);
+		smm.add(s.getTime(),s.getSMM());
+		if(sma.getItemCount() == 50) sma.remove(0);
+		sma.add(s.getTime(),s.getSMA());
+		if(high.getItemCount() == 50) high.remove(0);
+		high.add(s.getTime(),s.getHigh());
+		if(low.getItemCount() == 50) low.remove(0);
+		low.add(s.getTime(),s.getLow());
 
 		final BufferedImage image = new BufferedImage(ChartPanel.WIDTH, ChartPanel.HEIGHT, BufferedImage.TYPE_INT_RGB);
 	    final Graphics2D g2 = image.createGraphics();

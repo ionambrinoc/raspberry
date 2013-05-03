@@ -21,7 +21,6 @@ import DisplayStrategy.DisplayTableRow;
 
 @SuppressWarnings("serial")
 public class Display extends JDesktopPane implements TableModelListener{
-	protected final Timer timer;
 	protected final JTable table;
 	ListSelectionModel tableSelectionModel;
 	StatThread statThread;
@@ -52,12 +51,6 @@ public class Display extends JDesktopPane implements TableModelListener{
         try {
             tableFrame.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
-
-		timer = new Timer(50, new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				itIsTime = true;
-			}
-		});
 	}
 	
 	public StatThread getStatThread(){
@@ -65,21 +58,19 @@ public class Display extends JDesktopPane implements TableModelListener{
 	}
 	
 	public void start() throws InterruptedException {
-		timer.start();
-		int count = 1;
+		long nextTableUpdate = System.currentTimeMillis()+1000;
+		long nextChartUpdate = System.currentTimeMillis()+300;
 		while(true){
-			if(itIsTime){
-				statThread.updateList();
-				if (count >= 20) {
+				boolean tableUpdate = nextTableUpdate<System.currentTimeMillis();
+				boolean chartUpdate = nextChartUpdate<System.currentTimeMillis();
+				if(tableUpdate){
+					nextTableUpdate = System.currentTimeMillis()+1000;
 					update();
-					count = 1;
 				}
-				count++;
-				itIsTime=false;
-			}
-			else{
-				statThread.rubbish();
-			}
+				if(chartUpdate) {
+					nextChartUpdate = System.currentTimeMillis()+300;
+				}
+				statThread.updateList(chartUpdate);
 		}
 	}
 

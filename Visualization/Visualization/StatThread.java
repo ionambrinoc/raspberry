@@ -2,42 +2,41 @@ package Visualization;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
 
 public class StatThread{
 	VisualizationNetwork network;
-	HashMap<String,LinkedBlockingDeque<Statistic>> map;
+	HashMap<String,VisualizationQueue> map;
 	HashMap<String,StreamListener> listeners;
 	
 	public StatThread(){
 		network = new VisualizationNetwork();
-		map = new HashMap<String,LinkedBlockingDeque<Statistic>>();
+		map = new HashMap<String,VisualizationQueue>();
 		listeners = new HashMap<String,StreamListener>();
 	}
 	
-	public void updateList() throws InterruptedException{
+	public void updateList(boolean fire) throws InterruptedException{
 		byte[] bs = network.recv();
 		Statistic statistic = new Statistic(bs);
 		int n = 50;
 		// Add to the correct queue for the symbol of the statistic
-		LinkedBlockingDeque<Statistic> q = map.get(statistic.getSymbol());
+		VisualizationQueue q = map.get(statistic.getSymbol());
 		if(q == null){
-			q = new LinkedBlockingDeque<Statistic>(n);
+			q = new VisualizationQueue(n);
 			map.put(statistic.getSymbol(), q);
 		}
 
 		if(q.size() == n) q.takeFirst();
-		q.putLast(statistic);
-		
-		fireUpdate(statistic);
+		q.put(statistic);
+		statistic = q.peekLast();
+		if(fire)
+			fireUpdate(statistic);
 		
 	}
 	
 	protected void fireUpdate(Statistic s){
 		String symbol = s.getSymbol();
 		StreamListener l = listeners.get(symbol);
-		LinkedBlockingDeque<Statistic> q = map.get(symbol);
-		if (l!=null) l.dataUpdate(q);
+		if (l!=null) l.dataUpdate(s);
 	}
 	
 	public void addStreamListener(String symbol, StreamListener l){
@@ -50,7 +49,7 @@ public class StatThread{
 
 	public List<Statistic> peekStatistic(){
 		ArrayList<Statistic> list = new ArrayList<Statistic>();
-		for (LinkedBlockingDeque<Statistic> q: map.values()){
+		for (VisualizationQueue q: map.values()){
 			Object o = q.peekLast();
 			if (o != null)
 				list.add((Statistic)o);
@@ -60,9 +59,5 @@ public class StatThread{
 		//Chart implements DataListener has newData(data){add(data)}
 		//When a chart closes, listener is remove from list of listeners in this class. (ChartFrameFactory.internalFrameClosed)
 		return list;
-	}
-
-	public void rubbish() {
-		network.recv();
 	}
 }
