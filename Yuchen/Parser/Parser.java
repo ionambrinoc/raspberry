@@ -1,10 +1,9 @@
-
-
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class Parser {
 	DataInputStream di;
@@ -12,6 +11,38 @@ public class Parser {
 	final String data2 = "data2.dat";
 	final String data3 = "data3.dat";
 	String current = data1;
+
+	public class FileReader extends Thread {
+		LinkedBlockingQueue<Message> queue;
+		Parser parser;
+		
+		public FileReader(LinkedBlockingQueue<Message> queue) {
+			this.queue = queue;
+			parser = new Parser();
+		}
+
+		public void run() {
+			while(true){
+				int num = 0;
+				
+				while(num == 0){
+					num = parser.decodePacketHeader();
+				}
+				
+				for(int j=0; j<num; j++){
+					Message msg = parser.nextMessage();
+					
+					if(msg != null) {
+						try {
+							queue.put(msg);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+	}
 
 	public Parser() {
 		try {
@@ -54,7 +85,6 @@ public class Parser {
 		try{
 			short size = Short.reverseBytes(di.readShort());
 			short type = Short.reverseBytes(di.readShort());
-//			System.out.println(size+" "+type);
 			switch(type){
 				case 100:
 					if(size != 31){
