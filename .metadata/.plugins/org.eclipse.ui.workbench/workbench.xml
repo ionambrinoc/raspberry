@@ -54,13 +54,13 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/SymbolAssignment.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="6" selectionOffset="879" selectionTopPixel="537"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageHistory.java" partName="MessageHistory.java" path="/home/pi/GroupProject/Controller/src/controller/MessageHistory.java" title="MessageHistory.java" tooltip="Controller/src/controller/MessageHistory.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageHistory.java" partName="MessageHistory.java" path="/home/pi/GroupProject/Controller/src/controller/MessageHistory.java" title="MessageHistory.java" tooltip="Controller/src/controller/MessageHistory.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageHistory.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1313" selectionTopPixel="175"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageSender.java" partName="MessageSender.java" path="/home/pi/GroupProject/Controller/src/controller/MessageSender.java" title="MessageSender.java" tooltip="Controller/src/controller/MessageSender.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageSender.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="294" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="472" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageReader.java" partName="MessageReader.java" path="/home/pi/GroupProject/Controller/src/controller/MessageReader.java" title="MessageReader.java" tooltip="Controller/src/controller/MessageReader.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/MessageReader.java"/>
@@ -106,9 +106,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/networking/ControllerSimulator.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="19" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerVentilator.java" partName="ControllerVentilator.java" path="/home/pi/GroupProject/Controller/src/networking/ControllerVentilator.java" title="ControllerVentilator.java" tooltip="Controller/src/networking/ControllerVentilator.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ControllerVentilator.java" partName="ControllerVentilator.java" path="/home/pi/GroupProject/Controller/src/networking/ControllerVentilator.java" title="ControllerVentilator.java" tooltip="Controller/src/networking/ControllerVentilator.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/networking/ControllerVentilator.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3555" selectionTopPixel="1353"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FlowControl.java" partName="FlowControl.java" path="/home/pi/GroupProject/Controller/src/controller/FlowControl.java" title="FlowControl.java" tooltip="Controller/src/controller/FlowControl.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Controller/src/controller/FlowControl.java"/>
@@ -177,6 +177,9 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (3 items)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="180" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="532"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -236,7 +239,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -625,16 +628,9 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/networking/ControllerNetwork.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/Controller.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/FlowControl.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/controller/MessageSender.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Controller/src/networking/ControllerVentilator.java"/>
 </editors>
-<item historyLabel="SymbolAssignment.java" index="2">
-<position info="not_deleted" x="879" y="6"/>
-</item>
-<item historyLabel="MessageSender.java" index="1">
-<position info="not_deleted" x="235" y="0"/>
-</item>
-<item historyLabel="PiManager.java" index="0">
-<position info="not_deleted" x="759" y="6"/>
-</item>
 <item historyLabel="MessageHistory.java" index="5">
 <position info="not_deleted" x="991" y="0"/>
 </item>
@@ -773,8 +769,17 @@
 <item historyLabel="FlowControl.java" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="MessageHistory.java" index="5">
+<item historyLabel="MessageHistory.java" index="5">
 <position info="not_deleted" x="1313" y="0"/>
+</item>
+<item historyLabel="MessageSender.java" index="10">
+<position info="not_deleted" x="294" y="0"/>
+</item>
+<item historyLabel="ControllerVentilator.java" index="11">
+<position info="not_deleted" x="3" y="0"/>
+</item>
+<item active="true" historyLabel="ControllerVentilator.java" index="11">
+<position info="not_deleted" x="3237" y="39"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>

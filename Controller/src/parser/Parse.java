@@ -24,7 +24,7 @@ public class Parse extends Thread {
 	
 	public void initialReadFile() {	
 		try {
-			in = new BufferedInputStream (new FileInputStream("data1.dat"));
+			in = new BufferedInputStream (new FileInputStream("data2.dat"));
 			int size = in.available();
 			System.out.println("this is the size: "+size);
 			System.out.println("we have found the file");
@@ -117,7 +117,7 @@ public class Parse extends Thread {
 		// this will split the data into packets
 		int remainingPacketSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]); // the first two bytes represent the size of the packet
 		System.out.println("the packet size is "+remainingPacketSize+" and the packet type is "+inputArray[(i+2)%arraySize]);
-		
+		i = inputArray[999999];
 		i = (i+16)%arraySize; // the packet header is 16 bytes
 		remainingPacketSize-=16; // we move past the 16 bytes of the header
 		while (remainingPacketSize>0) { // while we are still in the same packet
