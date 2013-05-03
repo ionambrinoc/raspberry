@@ -10,15 +10,16 @@ public class MessageSender {
 	}
 
 	public void sendMessage(byte[] newOrders, String newPi) {
-//		controllerNetwork.send((newOrders), newPi);
+		controllerNetwork.send((newOrders), newPi);
 		//System.out.println(new String(newPi.toString().getBytes()));
-		System.out.println(newOrders.toString());
+		System.out.println(newOrders);
 	}
 
 	
 	
 	public void sendMessage(List<byte[]> newOrders, String newPi) {
 		Iterator<byte[]> newOrdersIterator = newOrders.iterator();
+		System.out.println("Retransmitting");
 		while (newOrdersIterator.hasNext()){
 			sendMessage(newOrdersIterator.next(), newPi);
 		}

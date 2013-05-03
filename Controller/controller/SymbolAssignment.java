@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.google.common.primitives.UnsignedInteger;
 
 
 public class SymbolAssignment {
@@ -59,11 +58,12 @@ public class SymbolAssignment {
 	}
 	
 	public void add(String piId) { //Adds a pi to the pool available to have symbols assigned to them
-		piTranslate.put(gUPI, piId); //Gives it a unique integer value.
-		piFrequencyList.add(new uPIFrequency(gUPI)); //Adds the pi to the frequency list with frequency 0.
-		gUPI += 1; //Ensure the next pi will be given a new number.
+		if (!piTranslate.containsValue((piId))){
+			piTranslate.put(gUPI, piId); //Gives it a unique integer value.
+			piFrequencyList.add(new uPIFrequency(gUPI)); //Adds the pi to the frequency list with frequency 0.
+			gUPI += 1; //Ensure the next pi will be given a new number.
+		}
 	}
-
 	public String removePi(String piId) {
 		Integer oldPiUPI = piTranslate.inverse().get(piId);
 		uPIFrequency newPi = piFrequencyList.remove(); // get pi with lowest utilisation
@@ -73,6 +73,7 @@ public class SymbolAssignment {
 				newPi.frequency ++;
 			}
 		}
+		piTranslate.remove(piId);
 		return piTranslate.get(newPi.uPI);
 	}
 

@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.io.DataInputStream;
 import java.nio.ByteBuffer;
 import java.util.List;
 
@@ -43,12 +44,15 @@ public class PiManager {
 		System.out.println("Message being executed");
 		ByteBuffer bb = ByteBuffer.wrap(message);
 		byte messageType = bb.get();
+		
 		int orderId = 0;
-		if (messageType == 3) {orderId = bb.getInt();}
-		String piId = bb.asCharBuffer().toString();
-		if (messageType == 1) {piUp(piId);};
-		if (messageType == 2) {piDown(piId);};
-		if (messageType == 3) {orderConfirmed(orderId, piId);};
+		if (messageType == 3) { orderId = bb.getInt(); System.out.println(orderId);}
+		byte[] id = new byte[bb.remaining()];
+		bb.get(id, 0, bb.remaining());
+		System.out.println(new String(id));
+		if (messageType == 1) {piUp(new String(id)); System.out.println("up");};
+		if (messageType == 2) {piDown(new String(id)); System.out.println("out");};
+		if (messageType == 3) {orderConfirmed(orderId, new String(id));};
 		
 	}
 

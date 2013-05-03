@@ -37,7 +37,6 @@ public class Controller {
 		while (true){
 			
 			if (controller.controllerNetwork.hasMessage()){
-				System.out.println("up");
 				controller.piManager.executeMessage(controller.controllerNetwork.nextMessage());
 			}
 			else {

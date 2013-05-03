@@ -33,7 +33,9 @@ public class MessageHistory {
 	}
 	
 	public void orderCompleted(int orderId, String piId){
-		history.get(piId).listOfOrderID.remove(orderId);
+		if (history.get(piId)!=null){
+			history.get(piId).listOfOrderID.remove(orderId);
+		}
 	}
 	
 	public List<byte[]> piDown(String piId, String newPi2) {

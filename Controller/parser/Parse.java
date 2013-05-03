@@ -24,7 +24,7 @@ public class Parse extends Thread {
 	
 	public void initialReadFile() {	
 		try {
-			in = new BufferedInputStream (new FileInputStream("data2.dat"));
+			in = new BufferedInputStream (new FileInputStream("data1.dat"));
 			int size = in.available();
 //			System.out.println("this is the size: "+size);
 //			System.out.println("we have found the file");
@@ -52,26 +52,26 @@ public class Parse extends Thread {
 	
 	public void readFile() { // BufferedInputStream in, byte[] inputArray) {
 		try {
-			int newStart = j; System.out.println("j equals "+j+" and the other thing is: "+(arraySize-newStart-1)+
-					" inputArray[newStart] = "+inputArray[newStart]+ " inputArray[blah] = "+inputArray[arraySize-newStart-1]);
+			int newStart = j; //System.out.println("j equals "+j+" and the other thing is: "+(arraySize-newStart-1)+
+					//" inputArray[newStart] = "+inputArray[newStart]+ " inputArray[blah] = "+inputArray[arraySize-newStart-1]);
 			if(newStart+readSize>arraySize) {
 				// we will need to wrap around
-				System.out.println("we need to wrap around, storing from "+newStart+" until the end.");
+//				System.out.println("we need to wrap around, storing from "+newStart+" until the end.");
 				in.read(inputArray, newStart, arraySize-newStart); // read from the file filling up the latter part of the array
-				System.out.println("j = "+j);
+//				System.out.println("j = "+j);
 				j = readSize - (arraySize-newStart-1); // this is the index of where in the array we will have stored up to
-				System.out.println("j now = "+j);
+//				System.out.println("j now = "+j);
 				in.read(inputArray, 0, j); // read the file into the first part of the array
 			}
 			else {
 				j = readSize+newStart;
-				System.out.println("it all fits in, so no need to wrap around");
+//				System.out.println("it all fits in, so no need to wrap around");
 				in.read(inputArray, newStart, readSize);
-			System.out.println("we have read the file");
+//			System.out.println("we have read the file");
 			}
 		}
 		catch (IOException e) {
-			System.out.println("we could not read the file");
+//			System.out.println("we could not read the file");
 		}
 		
 	}
@@ -80,7 +80,7 @@ public class Parse extends Thread {
 	public void run() {
 		initialReadFile();
 		int packetSize = toInt(inputArray[i], inputArray[(i+1)%arraySize]);
-		System.out.println("i= "+i+" and first packet size is "+packetSize);
+//		System.out.println("i= "+i+" and first packet size is "+packetSize);
 		while(i<arraySize) { // while the point we have processed is within the stored area
 	//		while(i+packetSize<j) { // while the next packet has been fully read and stored in inputArray
 				try {
@@ -131,9 +131,10 @@ public class Parse extends Thread {
 			}
 			remainingPacketSize -= nextMessageSize; // decrement the remainingPacketSize by the size of the next message
 			ControllerMessage newMessage = splitMessage();
-			if(newMessage != null)
+			if(newMessage != null){
 				messageQueue.put(newMessage); // split the packet into messages
-			
+//				System.out.println(newMessage.message);
+			}
 		}
 		
 	}
@@ -191,20 +192,20 @@ public class Parse extends Thread {
 		byte[] message = new byte[22];
 		message[0] = (byte)1; // 1 is the reference for a message of type Add
 		for(int k= 1; k<5; k++) {
-			message[k] = inputArray[(index+k+4)%arraySize]; // inputArray[index+4..index+8) = the time reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+4..index+8) = the time reference;
 		}
 		for(int k = 5; k<9; k++) {
-			message[k] = inputArray[(index+k+8)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
 		for(int k = 9; k<13; k++) {
-			message[k] = inputArray[(index+k+16)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
+			message[k] = inputArray[(index+k+7)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
 		for(int k = 13; k<17; k++) {
-			message[k] = inputArray[(index+k+20)%arraySize]; // inputArray[index+20..index+24) = the price reference;
+			message[k] = inputArray[(index+k+7)%arraySize]; // inputArray[index+20..index+24) = the price reference;
 		}
 		message[17] = inputArray[(index+28)%arraySize]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
 		for(int k = 18; k<22; k++) {
-			message[k] = inputArray[(index+k+24)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
+			message[k] = inputArray[(index+k+6)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		
 		Message newMessage = new Message(message);
@@ -216,20 +217,20 @@ public class Parse extends Thread {
 		byte[] message = new byte[22];
 		message[0] = (byte)2; // 2 is the reference for a message of type Modify
 		for(int k = 1; k<5; k++) {
-			message[k] = inputArray[(index+k+4)%arraySize]; // inputArray[index+4..index+8) = the time reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+4..index+8) = the time reference;
 		}
 		for(int k = 5; k<9; k++) {
-			message[k] = inputArray[(index+k+8)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
 		for(int k = 9; k<13; k++) {
-			message[k] = inputArray[(index+k+16)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
+			message[k] = inputArray[(index+k+7)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
 		for(int k = 13; k<17; k++) {
-			message[k] = inputArray[(index+k+20)%arraySize]; // inputArray[index+20..index+24) = the price reference;
+			message[k] = inputArray[(index+k+7)%arraySize]; // inputArray[index+20..index+24) = the price reference;
 		}
 		message[17] = inputArray[(index+28)%arraySize]; // inputArray[28] is the side reference. Note, this is currently stored as an ASCII Character
 		for(int k = 18; k<22; k++) {
-			message[k] = inputArray[(index+k+24)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
+			message[k] = inputArray[(index+k+6)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		Message newMessage = new Message(message);
 		
@@ -240,13 +241,13 @@ public class Parse extends Thread {
 		byte[] message = new byte[22];
 		message[0] = (byte)3; // 3 is the reference for a message of type Delete
 		for(int k = 1; k<5; k++) {
-			message[k] = inputArray[(index+k+4)%arraySize]; // inputArray[index+4..index+8) = the time reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+4..index+8) = the time reference;
 		}
 		for(int k = 5; k<9; k++) {
-			message[k] = inputArray[(index+k+8)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
 		for(int k = 9; k<13; k++) {
-			message[k] = inputArray[(index+k+16)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
+			message[k] = inputArray[(index+k+7)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
 		for(int k = 13; k<17; k++) {
 			message[k] = 0; // delete messages have no price reference;
@@ -264,20 +265,20 @@ public class Parse extends Thread {
 		byte[] message = new byte[22];
 		message[0] = (byte)0; // 0 is the reference for a message of type Add
 		for(int k = 1; k<5; k++) {
-			message[k] = inputArray[(index+k+4)%arraySize]; // inputArray[index+4..index+8) = the time reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+4..index+8) = the time reference;
 		}
 		for(int k = 5; k<9; k++) {
-			message[k] = inputArray[(index+k+8)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
+			message[k] = inputArray[(index+k+3)%arraySize]; // inputArray[index+8..index+12) = the Symbol Index reference;
 		}
 		for(int k = 9; k<13; k++) {
-			message[k] = inputArray[(index+k+16)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
+			message[k] = inputArray[(index+k+7)%arraySize]; // inputArray[index+16..index+20) = the OrderID reference;
 		}
 		for(int k = 13; k<17; k++) {
-			message[k] = inputArray[(index+k+20)%arraySize]; // inputArray[index+20..index+24) = the price reference;
+			message[k] = inputArray[(index+k+7)%arraySize]; // inputArray[index+20..index+24) = the price reference;
 		}
 		message[17] = 2; // execute messages have no side reference
 		for(int k = 18; k<22; k++) {
-			message[k] = inputArray[(index+k+24)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
+			message[k] = inputArray[(index+k+6)%arraySize]; // inputArray[index+24..index+28) = the volume reference;
 		}
 		Message newMessage = new Message(message);
 		

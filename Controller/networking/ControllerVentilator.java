@@ -67,6 +67,7 @@ public class ControllerVentilator extends Thread{
         		// One pi is up
         		System.out.println("Ventilator: "+worker.identity.toString()+" is connected");
         		byte[] id = worker.identity.getData();
+        		System.out.println(new String(id));
         		byte[] msg = new byte[1+id.length];
         		msg[0] = 1; System.arraycopy(id, 0, msg, 1, id.length);
         		controller.send(msg, 0);
