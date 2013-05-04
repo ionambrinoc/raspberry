@@ -52,8 +52,8 @@ public class Statistic {
 	public int getPrice(){
 		return price;
 	}
-	public int getChange(){
-		return change;
+	public float getChange(){
+		return change/100;
 	}
 	public int getVolume(){
 		return volume;
