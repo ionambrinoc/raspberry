@@ -4,14 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import MapCreator.MapCreator;
+
 public class StatThread{
 	VisualizationNetwork network;
 	HashMap<String,VisualizationQueue> map;
 	//HashMap<String,LinkedBlockingDeque> map;//
 	HashMap<String,StreamListener> listeners;
+	MapCreator mapCreator;
+	HashMap<Integer,Integer> scaleMap;
+	HashMap<Integer,String> symbolMap;
 	
 	public StatThread(){
 		network = new VisualizationNetwork();
+		mapCreator = new MapCreator();
+		scaleMap = mapCreator.getScaleMap();
+		symbolMap = mapCreator.getSymbolMap();
 		map = new HashMap<String,VisualizationQueue>();
 		//map = new HashMap<String,LinkedBlockingDeque>();//
 		listeners = new HashMap<String,StreamListener>();
@@ -20,6 +28,7 @@ public class StatThread{
 	public void updateList(boolean fire) throws InterruptedException{
 		byte[] bs = network.recv();
 		Statistic statistic = new Statistic(bs);
+		updateStat(statistic);	
 		System.out.println(statistic.toString());
 		int n = 2000;
 		// Add to the correct queue for the symbol of the statistic
@@ -36,9 +45,21 @@ public class StatThread{
 		statistic = (Statistic) q.peekLast();
 		if(fire)
 			fireUpdate(statistic);
-		
 	}
 	
+	private void updateStat(Statistic statistic) {
+		int sym = statistic.symInt;
+		if(scaleMap.get(sym) != null){
+			statistic.symbol = symbolMap.get(sym);
+			double price = statistic.price;
+			System.out.println(scaleMap == null);
+			int scale = scaleMap.get(sym);
+			for(int i=0; i<scale; i++) price/=10;
+			statistic.actualPrice = price;
+		}
+
+	}
+
 	protected void fireUpdate(Statistic s){
 		String symbol = s.getSymbol();
 		StreamListener l = listeners.get(symbol);

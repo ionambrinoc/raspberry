@@ -3,10 +3,7 @@ package ChartFrameFactory;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.LinkedBlockingDeque;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
@@ -17,6 +14,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import MapCreator.MapCreator;
 import Visualization.StatThread;
 import Visualization.Statistic;
 import Visualization.StreamListener;
@@ -44,8 +42,8 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 		priceDataSet = new XYSeriesCollection();
 		candleDataSet = new XYSeriesCollection();
 		
-		chart = ChartFactory.createXYLineChart("Symbol "+symbol+ "'s Price, VWAP, SMM", "Time", "Price", priceDataSet, PlotOrientation.VERTICAL, true, false, false);
-		chart2 = ChartFactory.createXYLineChart("Symbol "+symbol+ "'s SMA, High, Low", "Time", "Price", candleDataSet, PlotOrientation.VERTICAL, true, false, false);
+		chart = ChartFactory.createXYLineChart(symbol+" Price, VWAP, SMM", "Time", "Price", priceDataSet, PlotOrientation.VERTICAL, true, false, false);
+		chart2 = ChartFactory.createXYLineChart(symbol+" SMA, High, Low", "Time", "Price", candleDataSet, PlotOrientation.VERTICAL, true, false, false);
 		ChartPanel chartPanel = new ChartPanel(chart);
 		ChartPanel chartPanel2 = new ChartPanel(chart2);
         chartPanel.setPreferredSize(new java.awt.Dimension(400, 225));

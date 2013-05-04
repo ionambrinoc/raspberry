@@ -5,6 +5,7 @@ public class Statistic {
 	public String symbol;
 	public int symInt;
 	public int price;
+	public double actualPrice;
 	public int change;
 	public int volume;
 	public int open;
@@ -49,8 +50,8 @@ public class Statistic {
 	public String getSymbol(){
 		return symbol;
 	}
-	public int getPrice(){
-		return price;
+	public double getPrice(){
+		return actualPrice;
 	}
 	public double getChange(){
 		return change/100.00;

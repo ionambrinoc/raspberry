@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.HashMap;
 import java.util.List;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import DisplayStrategy.DisplayTableRow;
+import MapCreator.MapCreator;
 
 
 @SuppressWarnings("serial")
@@ -45,7 +47,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 		table.setFillsViewportHeight(true);
 		
 		JInternalFrame tableFrame = new JInternalFrame("Table",true);
-		tableFrame.setSize(600,740);
+		tableFrame.setSize(600,700);
         tableFrame.setVisible(true);
 		tableFrame.add(scrollPane);
         this.add(tableFrame);
