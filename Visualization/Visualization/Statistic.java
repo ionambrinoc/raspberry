@@ -1,18 +1,19 @@
 package Visualization;
 import java.nio.ByteBuffer;
+
 public class Statistic {
-	public final String symbol;
-	public final int symInt;
-	public final int price;
-	public final int change;
-	public final int volume;
-	public final int open;
-	public final int high;
-	public final int low;
-	public final int vWAP;
-	public final int sMM;
-	public final int sMA;
-	public final int time;
+	public String symbol;
+	public int symInt;
+	public int price;
+	public int change;
+	public int volume;
+	public int open;
+	public int high;
+	public int low;
+	public int vWAP;
+	public int sMM;
+	public int sMA;
+	public int time;
 	
 	public Statistic(byte[] bs){
 		ByteBuffer bb = ByteBuffer.wrap(bs);
@@ -28,6 +29,21 @@ public class Statistic {
 		this.sMM = bb.getInt(32);
 		this.sMA = bb.getInt(36);
 		this.time = bb.getInt(40);
+	}
+	
+	public Statistic(int s, int p, int c, int v, int o, int h, int l, int vwap, int smm, int sma, int t){
+		this.symInt = s;
+		this.price = p;
+		this.change = c;
+		this.volume = v;
+		this.open = o;
+		this.high = h;
+		this.low = l;
+		this.vWAP = vwap;
+		this.sMM = smm;
+		this.sMA = sma;
+		this.time = t;
+		this.symbol = Integer.toString(s);
 	}
 	
 	public String getSymbol(){
@@ -64,21 +80,6 @@ public class Statistic {
 		return time;
 	}
 	
-	public Statistic(int s, int p, int c, int v, int o, int h, int l, int vwap, int smm, int sma, int t){
-		this.symInt = s;
-		this.price = p;
-		this.change = c;
-		this.volume = v;
-		this.open = o;
-		this.high = h;
-		this.low = l;
-		this.vWAP = vwap;
-		this.sMM = smm;
-		this.sMA = sma;
-		this.time = t;
-		this.symbol = Integer.toString(s);
-	}
-	
 	public byte[] toByte()
 	{
 		byte[] array = new byte[44];
@@ -106,6 +107,15 @@ public class Statistic {
 		System.arraycopy(t,0,array,40,4);
 		
 		return array;
+	}
+
+	@Override
+	public String toString() {
+		return "Statistic [symbol=" + symbol + ", symInt=" + symInt
+				+ ", price=" + price + ", change=" + change + ", volume="
+				+ volume + ", open=" + open + ", high=" + high + ", low=" + low
+				+ ", vWAP=" + vWAP + ", sMM=" + sMM + ", sMA=" + sMA
+				+ ", time=" + time + "]";
 	}
 
 }

@@ -1,5 +1,6 @@
 package Visualization;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -44,7 +45,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 		table.setFillsViewportHeight(true);
 		
 		JInternalFrame tableFrame = new JInternalFrame("Table",true);
-		tableFrame.setSize(600,200);
+		tableFrame.setSize(600,700);
         tableFrame.setVisible(true);
 		tableFrame.add(scrollPane);
         this.add(tableFrame);
@@ -58,17 +59,19 @@ public class Display extends JDesktopPane implements TableModelListener{
 	}
 	
 	public void start() throws InterruptedException {
-		long nextTableUpdate = System.currentTimeMillis()+1000;
-		long nextChartUpdate = System.currentTimeMillis()+300;
+		int tableUpdateFreq = 100;
+		int chartUpdateFreq = 300;
+		long nextTableUpdate = System.currentTimeMillis()+tableUpdateFreq;
+		long nextChartUpdate = System.currentTimeMillis()+chartUpdateFreq;
 		while(true){
 				boolean tableUpdate = nextTableUpdate<System.currentTimeMillis();
 				boolean chartUpdate = nextChartUpdate<System.currentTimeMillis();
 				if(tableUpdate){
-					nextTableUpdate = System.currentTimeMillis()+1000;
+					nextTableUpdate = System.currentTimeMillis()+tableUpdateFreq;
 					update();
 				}
 				if(chartUpdate) {
-					nextChartUpdate = System.currentTimeMillis()+300;
+					nextChartUpdate = System.currentTimeMillis()+chartUpdateFreq;
 				}
 				statThread.updateList(chartUpdate);
 		}
