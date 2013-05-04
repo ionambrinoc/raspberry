@@ -19,7 +19,7 @@ public class VisualizationNetwork {
 			// prepare context and sockets
 			this.context = context;
 			collector = context.createSocket(ZMQ.ROUTER);
-			collector.bind("tcp://192.168.1.100:20000");
+			collector.bind("tcp://192.168.1.207:20000");
 			visualization = context.createSocket(ZMQ.PAIR);
 			visualization.connect("inproc://tovisualization");
 		}

@@ -37,7 +37,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 		tableSelectionModel = table.getSelectionModel();		
 		tableSelectionModel.addListSelectionListener(new TableSelectionHandler(this));
         table.setSelectionModel(tableSelectionModel);
-		table.setAutoCreateRowSorter(true);
+		table.setAutoCreateRowSorter(false);
 		table.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		table.setBackground(Color.black);
 		table.setForeground(Color.white);
@@ -45,7 +45,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 		table.setFillsViewportHeight(true);
 		
 		JInternalFrame tableFrame = new JInternalFrame("Table",true);
-		tableFrame.setSize(600,700);
+		tableFrame.setSize(600,740);
         tableFrame.setVisible(true);
 		tableFrame.add(scrollPane);
         this.add(tableFrame);

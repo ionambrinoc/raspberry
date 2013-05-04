@@ -3,6 +3,8 @@ package ChartFrameFactory;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.LinkedBlockingDeque;
 
 import javax.swing.JInternalFrame;
@@ -66,19 +68,22 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 
 	@Override
 	public void dataUpdate(Statistic s) {
-		
-		if(price.getItemCount() == 50) price.remove(0);
-		price.add(s.getTime(),s.getPrice());
-		if(vwap.getItemCount() == 50) vwap.remove(0);
-		vwap.add(s.getTime(),s.getVWAP());
-		if(smm.getItemCount() == 50) smm.remove(0);
-		smm.add(s.getTime(),s.getSMM());
-		if(sma.getItemCount() == 50) sma.remove(0);
-		sma.add(s.getTime(),s.getSMA());
-		if(high.getItemCount() == 50) high.remove(0);
-		high.add(s.getTime(),s.getHigh());
-		if(low.getItemCount() == 50) low.remove(0);
-		low.add(s.getTime(),s.getLow());
+		int n = 2000;
+		Date date = new Date((long)s.getTime());
+		double time = date.getHours()+(date.getMinutes()/10);
+		time = s.getTime();
+		if(price.getItemCount() == n) price.remove(0);
+		price.add(time,s.getPrice());
+		if(vwap.getItemCount() == n) vwap.remove(0);
+		vwap.add(time,s.getVWAP());
+		if(smm.getItemCount() == n) smm.remove(0);
+		smm.add(time,s.getSMM());
+		if(sma.getItemCount() == n) sma.remove(0);
+		sma.add(time,s.getSMA());
+		if(high.getItemCount() == n) high.remove(0);
+		high.add(time,s.getHigh());
+		if(low.getItemCount() == n) low.remove(0);
+		low.add(time,s.getLow());
 
 		final BufferedImage image = new BufferedImage(ChartPanel.WIDTH, ChartPanel.HEIGHT, BufferedImage.TYPE_INT_RGB);
 	    final Graphics2D g2 = image.createGraphics();
