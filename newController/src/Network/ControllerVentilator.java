@@ -105,7 +105,7 @@ public class ControllerVentilator extends Thread{
 	public ControllerVentilator(ZContext context) {
 		this.context = context;
 		pi = context.createSocket(ZMQ.ROUTER);
-		pi.bind("tcp://192.168.1.207:10000");
+		pi.bind("tcp://192.168.1.100:10000");
 		controller = context.createSocket(ZMQ.PAIR);
 		controller.connect("inproc://tocontroller");
 		workers = new WorkersPool(pi);

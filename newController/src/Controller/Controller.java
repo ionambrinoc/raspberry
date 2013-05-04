@@ -35,8 +35,8 @@ public class Controller {
 						Message msg = MessageQueue.take();
 						int symbol = msg.symbol;
 						byte[] byteMsg = msg.toBytes();
+//						if(msg.symbol == 6553)
 						network.send(byteMsg, chooseWorker(symbol,workers));
-						System.out.println("Message sent");
 					} catch (InterruptedException e) {
 						System.out.println("Failed to take message");
 						e.printStackTrace();
@@ -49,7 +49,6 @@ public class Controller {
 	private static String chooseWorker(int symbol, ArrayList<String> workers) {
 		if ((!symbolToId.containsKey(symbol)) || (symbolToId.containsKey(symbol) && !workers.contains((symbolToId.get(symbol))))){
 			String minWorker = workers.get(0);
-			System.out.println(minWorker);
 			int minSize = idToSize.get(minWorker);
 			for (String worker: workers){
 				int size = idToSize.get(worker);

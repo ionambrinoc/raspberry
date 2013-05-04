@@ -85,6 +85,12 @@ public class Parser extends Thread {
 							return null;
 						}
 						return getExecutionMessage();
+					case 220:
+						if(size != 54){
+							System.out.println("invalid size: "+size);
+							return null;
+						}
+						return getTradeMessage();
 					default:
 						di.skip(size-4);
 						return null;
@@ -183,6 +189,23 @@ public class Parser extends Thread {
 				return new Message(type, time, orderId, volume, price, false , sIndex);
 			} catch (IOException e) {
 				System.out.println("getExecutionMessage");
+			}
+			return null;
+		}
+		
+		private Message getTradeMessage() {
+			try {
+				int type = 220;
+				int time = Integer.reverseBytes(di.readInt());
+				di.skip(4);
+				int sIndex = Integer.reverseBytes(di.readInt());
+				di.skip(8);	
+				int price = Integer.reverseBytes(di.readInt());
+				int volume = Integer.reverseBytes(di.readInt());
+				di.skip(22);
+				return new Message(type, time, -1, volume, price, false , sIndex);
+			} catch (IOException e) {
+				System.out.println("getTradeMessage");
 			}
 			return null;
 		}

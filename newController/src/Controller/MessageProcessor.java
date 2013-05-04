@@ -33,7 +33,7 @@ public class MessageProcessor {
 			case 3:
 				id = new byte[msg.length-3];
 				System.arraycopy(msg, 3, id, 0, msg.length-3);
-				System.out.println("Message received from "+new String(id));
+//				System.out.println("Message received from "+new String(id));
 				break;
 		}
 	}
