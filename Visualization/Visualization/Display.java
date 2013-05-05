@@ -1,25 +1,19 @@
 package Visualization;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.HashMap;
 import java.util.List;
 import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.Timer;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import DisplayStrategy.DisplayTableRow;
-import MapCreator.MapCreator;
 
 
 @SuppressWarnings("serial")
@@ -62,7 +56,7 @@ public class Display extends JDesktopPane implements TableModelListener{
 	
 	public void start() throws InterruptedException {
 		int tableUpdateFreq = 100;
-		int chartUpdateFreq = 300;
+		int chartUpdateFreq = 100;
 		long nextTableUpdate = System.currentTimeMillis()+tableUpdateFreq;
 		long nextChartUpdate = System.currentTimeMillis()+chartUpdateFreq;
 		while(true){

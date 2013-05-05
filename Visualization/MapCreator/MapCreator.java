@@ -64,7 +64,6 @@ public class MapCreator {
 				scales.put(symbolIndex, priceScale);
 				
 				if(!br.ready() && file == "map1.txt") {
-					System.out.println("enter");
 					br.close();
 					file = "map2.txt";
 					br = new BufferedReader(new FileReader(file));

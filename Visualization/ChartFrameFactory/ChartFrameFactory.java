@@ -1,9 +1,12 @@
 package ChartFrameFactory;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+
+import Visualization.VisualizationQueue;
 
 import Visualization.StatThread;
 
@@ -12,7 +15,8 @@ public final class ChartFrameFactory {
 	
 	public ChartFrame createChartFrame(final String symbol, final StatThread thread) {
 		if(!currentSymbols.contains(symbol)){
-			ChartFrame chartFrame = new ChartFrame(symbol, thread);
+			HashMap<String, VisualizationQueue> map = thread.map;
+			ChartFrame chartFrame = new ChartFrame(symbol, thread, map.get(symbol));
 			currentSymbols.add(symbol);
 			chartFrame.setSize(425, 500);
 			chartFrame.setLocation((int)(600+300*Math.random()),(int)(100*Math.random()));

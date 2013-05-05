@@ -2,13 +2,11 @@ package Visualization;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
-
 import MapCreator.MapCreator;
 
 public class StatThread{
 	VisualizationNetwork network;
-	HashMap<String,VisualizationQueue> map;
+	public HashMap<String,VisualizationQueue> map;
 	//HashMap<String,LinkedBlockingDeque> map;//
 	HashMap<String,StreamListener> listeners;
 	MapCreator mapCreator;
@@ -28,8 +26,7 @@ public class StatThread{
 	public void updateList(boolean fire) throws InterruptedException{
 		byte[] bs = network.recv();
 		Statistic statistic = new Statistic(bs);
-		updateStat(statistic);	
-		System.out.println(statistic.toString());
+		updateStat(statistic);
 		int n = 2000;
 		// Add to the correct queue for the symbol of the statistic
 		VisualizationQueue q = map.get(statistic.getSymbol());
@@ -42,9 +39,8 @@ public class StatThread{
 
 		if(q.size() == n) q.takeFirst();
 		q.put(statistic);
-		statistic = (Statistic) q.peekLast();
 		if(fire)
-			fireUpdate(statistic);
+			fireUpdate();
 	}
 	
 	private void updateStat(Statistic statistic) {
@@ -52,18 +48,37 @@ public class StatThread{
 		if(scaleMap.get(sym) != null){
 			statistic.symbol = symbolMap.get(sym);
 			double price = statistic.price;
-			System.out.println(scaleMap == null);
+			double open = statistic.open;
+			double high = statistic.high;
+			double low = statistic.low;
+			double vWAP = statistic.vWAP;
+			double sMM = statistic.sMM;
+			double sMA = statistic.sMA;
 			int scale = scaleMap.get(sym);
-			for(int i=0; i<scale; i++) price/=10;
+			for(int i=0; i<scale; i++) {
+				price/=10;
+				open/=10;
+				high/=10;
+				low/=10;
+				vWAP/=10;
+				sMM/=10;
+				sMA/=10;
+			}
 			statistic.actualPrice = price;
+			statistic.actualOpen = open;
+			statistic.actualHigh = high;
+			statistic.actualLow = low;
+			statistic.actualVwap = vWAP;
+			statistic.actualSmm = sMM;
+			statistic.actualSma = sMA;
 		}
 
 	}
 
-	protected void fireUpdate(Statistic s){
-		String symbol = s.getSymbol();
-		StreamListener l = listeners.get(symbol);
-		if (l!=null) l.dataUpdate(s);
+	protected void fireUpdate(){
+		for (StreamListener l : listeners.values()){
+			l.dataUpdate();
+		}
 	}
 	
 	public void addStreamListener(String symbol, StreamListener l){

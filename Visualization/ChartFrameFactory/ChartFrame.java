@@ -18,9 +18,12 @@ import MapCreator.MapCreator;
 import Visualization.StatThread;
 import Visualization.Statistic;
 import Visualization.StreamListener;
+import Visualization.VisualizationQueue;
 
 @SuppressWarnings("serial")
 public class ChartFrame extends JInternalFrame implements StreamListener{
+	
+	protected VisualizationQueue queue;
 	
 	XYSeriesCollection priceDataSet;
 	XYSeriesCollection candleDataSet;
@@ -35,9 +38,10 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 	XYSeries high = new XYSeries("High");
 	XYSeries low = new XYSeries("Low");
 	
-	protected ChartFrame(String symbol, StatThread thread) {
-		super("Charts for symbol "+symbol, false, true, false);
+	protected ChartFrame(String symbol, StatThread thread, VisualizationQueue queue) {
+		super("Charts for "+symbol, false, true, false);
 
+		this.queue = queue;
 		this.symbol = symbol;
 		priceDataSet = new XYSeriesCollection();
 		candleDataSet = new XYSeriesCollection();
@@ -65,7 +69,8 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 	}
 
 	@Override
-	public void dataUpdate(Statistic s) {
+	public void dataUpdate() {
+		/*Statistic s = this.queue.peekLast();
 		int n = 2000;
 		Date date = new Date((long)s.getTime());
 		double time = date.getHours()+(date.getMinutes()/10);
@@ -82,6 +87,17 @@ public class ChartFrame extends JInternalFrame implements StreamListener{
 		high.add(time,s.getHigh());
 		if(low.getItemCount() == n) low.remove(0);
 		low.add(time,s.getLow());
+		*/
+		
+		for (Statistic s : queue){
+			int time = s.getTime();
+			price.add(time,s.getPrice());
+			vwap.add(time,s.getVWAP());
+			smm.add(time,s.getSMM());
+			sma.add(time,s.getSMA());
+			high.add(time,s.getHigh());
+			low.add(time,s.getLow());
+		}
 
 		final BufferedImage image = new BufferedImage(ChartPanel.WIDTH, ChartPanel.HEIGHT, BufferedImage.TYPE_INT_RGB);
 	    final Graphics2D g2 = image.createGraphics();

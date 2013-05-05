@@ -8,12 +8,19 @@ public class Statistic {
 	public double actualPrice;
 	public int change;
 	public int volume;
+	public double actualOpen;
 	public int open;
+	public double actualHigh;
 	public int high;
+	public double actualLow;
 	public int low;
+	
 	public int vWAP;
+	public double actualVwap;
 	public int sMM;
+	public double actualSmm;
 	public int sMA;
+	public double actualSma;
 	public int time;
 	
 	public Statistic(byte[] bs){
@@ -59,23 +66,23 @@ public class Statistic {
 	public int getVolume(){
 		return volume;
 	}
-	public int getOpen(){
-		return open;
+	public double getOpen(){
+		return actualOpen;
 	}
-	public int getHigh(){
-		return high;
+	public double getHigh(){
+		return actualHigh;
 	}
-	public int getLow(){
-		return low;
+	public double getLow(){
+		return actualLow;
 	}
-	public int getVWAP(){
-		return vWAP;
+	public double getVWAP(){
+		return actualVwap;
 	}
-	public int getSMM(){
-		return sMM;
+	public double getSMM(){
+		return actualSmm;
 	}
-	public int getSMA(){
-		return sMA;
+	public double getSMA(){
+		return actualSma;
 	}
 	public int getTime(){
 		return time;
